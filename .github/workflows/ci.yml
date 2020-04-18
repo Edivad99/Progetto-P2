@@ -28,4 +28,5 @@ jobs:
       - name: Eseguo qmake
         run: |
           ls
+          ls $Qt5_DIR/lib/cmake
           qmake
