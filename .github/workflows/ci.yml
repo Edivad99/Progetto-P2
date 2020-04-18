@@ -1,0 +1,33 @@
+name: Qt test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copio il codice da GitHub
+        uses: actions/checkout@v2
+        
+      - name: Install Qt with options
+        uses: ./
+        with:
+          modules: 'qtcharts qtwebengine'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          extra: '--external 7z'
+      
+      - name: Installo Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.9.5'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'win64_mingw73'
+          dir: '${{ github.workspace }}/example/'
+          install-deps: 'true'
+          mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
+          cached: 'false'
+          aqtversion: '==0.8'
+          py7zrversion: '==0.6'
