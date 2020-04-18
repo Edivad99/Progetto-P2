@@ -11,6 +11,13 @@ jobs:
       - name: Copio il codice da GitHub
         uses: actions/checkout@v2
       
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: QtCache
+      
       - name: Installo Qt
         uses: jurplel/install-qt-action@v2
         with:
@@ -21,6 +28,10 @@ jobs:
           dir: '${{ github.workspace }}/example/'
           install-deps: 'true'
           mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
-          cached: 'false'
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
           aqtversion: '==0.8'
           py7zrversion: '==0.6'
+
+      - name: Eseguo qmake
+        run: |
+          qmake
