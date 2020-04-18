@@ -34,4 +34,5 @@ jobs:
 
       - name: Eseguo qmake
         run: |
+          ls
           qmake
