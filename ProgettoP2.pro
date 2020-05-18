@@ -17,10 +17,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     MainWidget.cpp \
-    main.cpp
+    lavoratore.cpp \
+    main.cpp \
+    persona.cpp \
+    studente.cpp
 
 HEADERS += \
-    MainWidget.h
+    MainWidget.h \
+    lavoratore.h \
+    persona.h \
+    studente.h
 
 FORMS +=
 
