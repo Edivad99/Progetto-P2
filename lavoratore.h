@@ -2,12 +2,14 @@
 #define LAVORATORE_H
 #include "persona.h"
 #include <string>
+#include <QDate>
 
 using std::string;
 class Lavoratore : public Persona
 {
 public:
-    Lavoratore(string nome, string cognome, /*Data datanascita,*/ string codicefiscale, string reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso);
+    //TODO: Forse dovremmo usare QTime per gestire le varie ore di lavoro?
+    Lavoratore(string nome, string cognome, QDate datanascita, string codicefiscale, string reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso);
 
     virtual ~Lavoratore();
 

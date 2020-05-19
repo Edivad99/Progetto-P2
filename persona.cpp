@@ -1,8 +1,10 @@
 #include "persona.h"
 
-Persona::Persona(string nome, string cognome, /*Data datanascita,*/ string codicefiscale)
-    :Nome(nome), Cognome(cognome), /*DataNascita(datanascita),*/ CodiceFiscale(codicefiscale){};
-//è giusta la dichiarazione e lista di inizializzazione?
+Persona::Persona(string nome, string cognome, QDate datanascita, string codicefiscale)
+    :Nome(nome), Cognome(cognome), DataNascita(datanascita), CodiceFiscale(codicefiscale)
+{
+
+};
 
 Persona::~Persona()//quello di base per ora, magari poi lo tolgo se non verrà usato
 {

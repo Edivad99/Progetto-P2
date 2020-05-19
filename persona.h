@@ -1,12 +1,13 @@
 #ifndef PERSONA_H
 #define PERSONA_H
 #include <string>
+#include <QDate>
 
 using std::string;
 class Persona
 {
 public:
-    Persona(string nome, string cognome, /*Data datanascita,*/ string codicefiscale);
+    Persona(string nome, string cognome, QDate datanascita, string codicefiscale);
 
     ~Persona();
 
@@ -18,8 +19,8 @@ public:
 
 private:
     string Nome;
-    string Cognome; //#inclue <string> non lo vede, boh
-    //Data DataNascita; non ho trovato la classe standard per la data
+    string Cognome;
+    QDate DataNascita;
     string CodiceFiscale;
 };
 

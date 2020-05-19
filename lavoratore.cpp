@@ -1,7 +1,7 @@
 #include "lavoratore.h"
 
-Lavoratore::Lavoratore(string nome, string cognome, /*Data datanascita,*/ string codicefiscale, string reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso)
-    : Persona(nome,cognome, /*datanascita,*/ codicefiscale), Reparto(reparto),
+Lavoratore::Lavoratore(string nome, string cognome, QDate datanascita, string codicefiscale, string reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso)
+    : Persona(nome,cognome, datanascita, codicefiscale), Reparto(reparto),
       PagaPerOra(pagaperora), OreLavoro(orelavoro), OreLavorare(orelavorare), OreFerie(oreferie), OrePermesso(orepermesso)
 {
 
