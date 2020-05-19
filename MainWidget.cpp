@@ -38,5 +38,7 @@ void MainWidget::setApplicationStyle()
 {
     setMinimumSize(QSize(400,400));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+    //TODO: Da rimuovere e mettere nel file css appena possibile
+    mainLayout->setMargin(0);
 }
 
