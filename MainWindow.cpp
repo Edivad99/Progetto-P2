@@ -1,8 +1,6 @@
-#include "MainWidget.h"
+#include "MainWindow.h"
 
-
-
-MainWidget::MainWidget(QWidget *parent): QWidget(parent)
+MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 {
     mainLayout = new QVBoxLayout(this);
 
@@ -12,7 +10,7 @@ MainWidget::MainWidget(QWidget *parent): QWidget(parent)
     setLayout(mainLayout);
 }
 
-void MainWidget::addMenuButtons()
+void MainWindow::addMenuButtons()
 {
     QMenuBar* menuBar = new QMenuBar(this);
 
@@ -34,7 +32,7 @@ void MainWidget::addMenuButtons()
     mainLayout->addWidget(menuBar);
 }
 
-void MainWidget::setApplicationStyle()
+void MainWindow::setApplicationStyle()
 {
     setWindowState(Qt::WindowMaximized);
     setMinimumSize(QSize(400,400));

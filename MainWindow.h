@@ -1,5 +1,5 @@
-#ifndef WIDGET_H
-#define WIDGET_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QWidget>
 #include <QMenuBar>
@@ -7,13 +7,13 @@
 #include <QAction>
 #include <QVBoxLayout>
 
-class MainWidget : public QWidget
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWidget(QWidget *parent = nullptr);
-    ~MainWidget() = default;
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() = default;
 
 private:
 
@@ -23,4 +23,4 @@ private:
     void addMenuButtons();
     void setApplicationStyle();
 };
-#endif // WIDGET_H
+#endif // MAINWINDOW_H

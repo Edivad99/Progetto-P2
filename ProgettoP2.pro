@@ -16,14 +16,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    MainWidget.cpp \
+    MainWindow.cpp \
     lavoratore.cpp \
     main.cpp \
     persona.cpp \
     studente.cpp
 
 HEADERS += \
-    MainWidget.h \
+    MainWindow.h \
     lavoratore.h \
     persona.h \
     studente.h
