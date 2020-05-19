@@ -1,15 +1,17 @@
 #ifndef LAVORATORE_H
 #define LAVORATORE_H
 #include "persona.h"
+#include <string>
 
+using std::string;
 class Lavoratore : public Persona
 {
 public:
-    Lavoratore(char nome, char cognome, /*Data datanascita,*/ char codicefiscale, char reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso);
+    Lavoratore(string nome, string cognome, /*Data datanascita,*/ string codicefiscale, string reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso);
 
     virtual ~Lavoratore();
 
-    char getReparto() const;
+    string getReparto() const;
 
     float getOreLavoro() const;
 
@@ -30,7 +32,7 @@ public:
 */
 
 private:
-    char Reparto;
+    string Reparto;
     float PagaPerOra;
     float OreLavoro;//ore trasformate in base dieci
     float OreLavorare;//come sopra

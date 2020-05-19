@@ -1,6 +1,6 @@
 #include "persona.h"
 
-Persona::Persona(char nome, char cognome, /*Data datanascita,*/ char codicefiscale)
+Persona::Persona(string nome, string cognome, /*Data datanascita,*/ string codicefiscale)
     :Nome(nome), Cognome(cognome), /*DataNascita(datanascita),*/ CodiceFiscale(codicefiscale){};
 //è giusta la dichiarazione e lista di inizializzazione?
 
@@ -9,17 +9,17 @@ Persona::~Persona()//quello di base per ora, magari poi lo tolgo se non verrà u
 
 }
 
-char Persona::getNome() const
+string Persona::getNome() const
 {
     return Nome;
 }
 
-char Persona::getCognome() const
+string Persona::getCognome() const
 {
     return Cognome;
 }
 
-char Persona::getCodiceFiscale() const
+string Persona::getCodiceFiscale() const
 {
     return CodiceFiscale;
 }

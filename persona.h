@@ -1,23 +1,26 @@
 #ifndef PERSONA_H
 #define PERSONA_H
+#include <string>
+
+using std::string;
 class Persona
 {
 public:
-    Persona(char nome, char cognome, /*Data datanascita,*/ char codicefiscale);
+    Persona(string nome, string cognome, /*Data datanascita,*/ string codicefiscale);
 
     ~Persona();
 
-    char getNome() const;
+    string getNome() const;
 
-    char getCognome() const;
+    string getCognome() const;
 
-    char getCodiceFiscale() const;
+    string getCodiceFiscale() const;
 
 private:
-    char Nome;
-    char Cognome; //#inclue <string> non lo vede, boh
+    string Nome;
+    string Cognome; //#inclue <string> non lo vede, boh
     //Data DataNascita; non ho trovato la classe standard per la data
-    char CodiceFiscale;
+    string CodiceFiscale;
 };
 
 #endif // PERSONA_H
