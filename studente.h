@@ -6,15 +6,17 @@
 
 using std::string;
 
+enum Occupazione{Superiori, Universita};
+
 class Studente : public Persona
 {
 public:
-    Studente(string nome, string cognome, QDate datanascita, string codicefiscale, int occupazione);
+    Studente(string nome, string cognome, QDate datanascita, string codicefiscale, enum Occupazione occupazione);
 
     ~Studente();//magari metterlo vituale ?
 
 private:
-    enum Occupazione{Superiori, Universita};
+    Occupazione Occupazione;
 };
 
 #endif // STUDENTE_H
