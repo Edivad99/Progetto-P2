@@ -3,9 +3,14 @@
 MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 {
     mainLayout = new QVBoxLayout(this);
-
+    tabWidget = new QTabWidget();
+    //La barra dei menu va per prima
     addMenuButtons();
+    tabWidget->setMovable(true);
+    tabWidget->addTab(new HomeTab(), "Home");
+    tabWidget->addTab(new TabellaTab(), "Tabella");
 
+    mainLayout->addWidget(tabWidget);
     setApplicationStyle();
     setLayout(mainLayout);
 }

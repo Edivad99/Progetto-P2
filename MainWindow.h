@@ -6,6 +6,9 @@
 #include <QMenu>
 #include <QAction>
 #include <QVBoxLayout>
+#include <QTabWidget>
+#include "hometab.h"
+#include "tabellatab.h"
 
 class MainWindow : public QWidget
 {
@@ -18,6 +21,7 @@ public:
 private:
 
     QVBoxLayout *mainLayout;
+    QTabWidget *tabWidget;
 
 
     void addMenuButtons();
