@@ -17,20 +17,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     MainWindow.cpp \
-    hometab.cpp \
-    lavoratore.cpp \
     main.cpp \
-    persona.cpp \
-    studente.cpp \
-    tabellatab.cpp
+    model/lavoratore.cpp \
+    model/persona.cpp \
+    model/studente.cpp \
+    view/hometab.cpp \
+    view/tabellatab.cpp
 
 HEADERS += \
     MainWindow.h \
-    hometab.h \
-    lavoratore.h \
-    persona.h \
-    studente.h \
-    tabellatab.h
+    model/lavoratore.h \
+    model/persona.h \
+    model/studente.h \
+    view/hometab.h \
+    view/tabellatab.h
 
 FORMS +=
 

@@ -7,8 +7,8 @@
 #include <QAction>
 #include <QVBoxLayout>
 #include <QTabWidget>
-#include "hometab.h"
-#include "tabellatab.h"
+#include "view/hometab.h"
+#include "view/tabellatab.h"
 
 class MainWindow : public QWidget
 {

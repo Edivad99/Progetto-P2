@@ -1,6 +1,6 @@
 #ifndef LAVORATORE_H
 #define LAVORATORE_H
-#include "persona.h"
+#include "model/persona.h"
 #include <string>
 #include <QDate>
 
