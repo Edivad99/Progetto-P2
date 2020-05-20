@@ -2,8 +2,11 @@
 #define TABELLATAB_H
 
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QWidget>
 #include <QLabel>
+#include <QTableWidget>
+#include <sstream>
 
 class TabellaTab : public QWidget
 {
@@ -11,7 +14,12 @@ class TabellaTab : public QWidget
 public:
     TabellaTab(QWidget *parent = 0);
 private:
-    QVBoxLayout *mainLayout;
+    QHBoxLayout *mainLayout;
+    QVBoxLayout *actionTable;
+    QTableWidget* table;
+
+
+    void aggiungiTestoEsempio();
 };
 
 #endif // TABELLATAB_H
