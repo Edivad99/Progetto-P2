@@ -1,7 +1,7 @@
 #include "persona.h"
 
-Persona::Persona(string nome, string cognome, QDate datanascita, string codicefiscale)
-    :Nome(nome), Cognome(cognome), DataNascita(datanascita), CodiceFiscale(codicefiscale)
+Persona::Persona(string nome, string cognome, QDate dataNascita, string codiceFiscale, Telefono numeroTelefono)
+    :_nome(nome), _cognome(cognome), _dataNascita(dataNascita), _codiceFiscale(codiceFiscale), _numeroTelefono(numeroTelefono)
 {
 
 };
@@ -13,15 +13,20 @@ Persona::~Persona()//quello di base per ora, magari poi lo tolgo se non verrà u
 
 string Persona::getNome() const
 {
-    return Nome;
+    return _nome;
 }
 
 string Persona::getCognome() const
 {
-    return Cognome;
+    return _cognome;
 }
 
 string Persona::getCodiceFiscale() const
 {
-    return CodiceFiscale;
+    return _codiceFiscale;
+}
+
+void Persona::setNumeroTelefono(Telefono numeroTelefono)
+{
+    _numeroTelefono = numeroTelefono;
 }

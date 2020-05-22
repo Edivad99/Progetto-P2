@@ -2,12 +2,13 @@
 #define PERSONA_H
 #include <string>
 #include <QDate>
+#include "util/telefono.h"
 
 using std::string;
 class Persona
 {
 public:
-    Persona(string nome, string cognome, QDate datanascita, string codicefiscale);
+    Persona(string nome, string cognome, QDate dataNascita, string codiceFiscale, Telefono numeroTelefono);
 
     ~Persona();
 
@@ -17,11 +18,14 @@ public:
 
     string getCodiceFiscale() const;
 
+    void setNumeroTelefono(Telefono numeroTelefono);
+
 private:
-    string Nome;
-    string Cognome;
-    QDate DataNascita;
-    string CodiceFiscale;
+    const string _nome;
+    const string _cognome;
+    const QDate _dataNascita;
+    const string _codiceFiscale;
+    Telefono _numeroTelefono;
 };
 
 #endif // PERSONA_H

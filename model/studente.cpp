@@ -1,7 +1,7 @@
 #include "studente.h"
 
-Studente::Studente(string nome, string cognome, QDate datanascita, string codicefiscale, enum Occupazione occupazione)
-    :Persona(nome, cognome, datanascita, codicefiscale), Occupazione(occupazione)
+Studente::Studente(string nome, string cognome, QDate dataNascita, string codiceFiscale, Telefono numeroTelefono, enum Occupazione occupazione)
+    :Persona(nome, cognome, dataNascita, codiceFiscale, numeroTelefono), Occupazione(occupazione)
 {
 
 }

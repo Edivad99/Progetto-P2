@@ -1,56 +1,39 @@
 #include "lavoratore.h"
 
-Lavoratore::Lavoratore(string nome, string cognome, QDate datanascita, string codicefiscale, string reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso)
-    : Persona(nome,cognome, datanascita, codicefiscale), Reparto(reparto),
-      PagaPerOra(pagaperora), OreLavoro(orelavoro), OreLavorare(orelavorare), OreFerie(oreferie), OrePermesso(orepermesso)
+Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Telefono numeroTelefono, std::string reparto,
+                       float pagaPerOra, float orePreviste, float oreFerie, float orePermesso):
+    Persona(nome, cognome, dataNascita, codiceFiscale, numeroTelefono), _reparto(reparto), _pagaPerOra(pagaPerOra), _orePreviste(orePreviste), _oreFerie(oreFerie),
+    _orePermesso(orePermesso)
 {
 
 }
 
-Lavoratore::~Lavoratore()//quello di base per ora, magari poi lo tolgo se non verrà usato
+std::string Lavoratore::getReparto() const
 {
-
+    return _reparto;
 }
 
-string Lavoratore::getReparto() const
+float Lavoratore::getOrePreviste() const
 {
-    return Reparto;
-}
-
-float Lavoratore::getOreLavoro() const
-{
-    return OreLavoro;
-}
-
-float Lavoratore::getOreLavorare() const
-{
-    return OreLavorare;
+    return _orePreviste;
 }
 
 float Lavoratore::getOreFerie() const
 {
-    return OreFerie;
+    return _oreFerie;
 }
 
 float Lavoratore::getOrePermesso() const
 {
-    return OrePermesso;
+    return _orePermesso;
 }
 
 float Lavoratore::getPagaPerOra() const
 {
-    return PagaPerOra;
+    return _pagaPerOra;
 }
 
-float Lavoratore::Stipendio(float PagaPerOra) const
+float Lavoratore::Stipendio() const
 {
-    //fai return del stipendio annuale (se possibile calcolalo preciso, se non possibile
-    //perche lavoratore lavora da meno di un anno in azzienda, calcola stipendio atteso(magari usando come valore per i mesi mancanti un valore medio))
-    return 0;
-}
-
-float Lavoratore::Stipendio(int mese) const
-{
-    //da vedere come implementare perche mancano i collegamente con una classe Data e una lista delle ore lavorate durante quel preciso mese
     return 0;
 }

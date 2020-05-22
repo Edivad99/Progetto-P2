@@ -5,19 +5,20 @@
 #include <QDate>
 
 using std::string;
+
 class Lavoratore : public Persona
 {
 public:
     //TODO: Forse dovremmo usare QTime per gestire le varie ore di lavoro?
-    Lavoratore(string nome, string cognome, QDate datanascita, string codicefiscale, string reparto, float pagaperora, float orelavoro, float orelavorare, float oreferie, float orepermesso);
-
-    virtual ~Lavoratore();
+    //uuid per id dei lavoratori costante
+    //enum sesso
+    //rendi costante i campi
+    Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Telefono numeroTelefono, string reparto,
+               float pagaPerOra, float orePreviste, float oreFerie, float orePermesso);
 
     string getReparto() const;
 
-    float getOreLavoro() const;
-
-    float getOreLavorare() const;
+    float getOrePreviste() const;
 
     float getOreFerie() const;
 
@@ -25,21 +26,14 @@ public:
 
     float getPagaPerOra() const;
 
-    virtual float Stipendio(float PagaPerOra) const;
-    virtual float Stipendio(int mese) const;
-/*pensavo:
- * 1.1 parametro(PagaPerOra) = stipendio annuale
- * 2.2 parametri(magari un mese) e PagaPerOra = stipendio di quel mese
- * qua è ancora vago perchè non so come calcolare lo stipendio, facciamo che è in base a OreLavorare? oppure in altro modo? e se poi mettiamo straordinari?
-*/
+    virtual float Stipendio() const;
 
-private:
-    string Reparto;
-    float PagaPerOra;
-    float OreLavoro;//ore trasformate in base dieci
-    float OreLavorare;//come sopra
-    float OreFerie;//come sopra
-    float OrePermesso;//come sopra
+protected:
+    string _reparto;
+    float _pagaPerOra;
+    float _orePreviste;//come sopra
+    float _oreFerie;//come sopra
+    float _orePermesso;//come sopra
 };
 
 #endif // LAVORATORE_H
