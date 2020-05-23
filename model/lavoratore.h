@@ -11,6 +11,8 @@ class Lavoratore : public Persona
 {
 public:
     //TODO: Forse dovremmo usare QTime per gestire le varie ore di lavoro?
+    //TODO: Impostare se è a tempo determinato o no
+    //TODO: Permettere di cambiare la paga e le ore
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                float pagaPerOra, float orePreviste, float oreFerie, float orePermesso, QUuid IDAziendale = QUuid::createUuid());
 

@@ -19,6 +19,7 @@ SOURCES += \
     MainWindow.cpp \
     main.cpp \
     model/lavoratore.cpp \
+    model/operaio.cpp \
     model/persona.cpp \
     model/studente.cpp \
     util/telefono.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 HEADERS += \
     MainWindow.h \
     model/lavoratore.h \
+    model/operaio.h \
     model/persona.h \
     model/studente.h \
     util/telefono.h \
