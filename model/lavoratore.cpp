@@ -1,7 +1,7 @@
 #include "lavoratore.h"
 
 Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono, std::string reparto,
-                       float pagaPerOra, int orePreviste, int oreFerie, int orePermesso, QUuid IDAziendale):
+                       float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale):
     Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono), _reparto(reparto), _pagaPerOra(pagaPerOra), _orePreviste(orePreviste), _oreFerie(oreFerie),
     _orePermesso(orePermesso), _IDAziendale(IDAziendale)
 {
@@ -13,17 +13,17 @@ std::string Lavoratore::getReparto() const
     return _reparto;
 }
 
-int Lavoratore::getOrePreviste() const
+OreLavorative Lavoratore::getOrePreviste() const
 {
     return _orePreviste;
 }
 
-int Lavoratore::getOreFerie() const
+OreLavorative Lavoratore::getOreFerie() const
 {
     return _oreFerie;
 }
 
-int Lavoratore::getOrePermesso() const
+OreLavorative Lavoratore::getOrePermesso() const
 {
     return _orePermesso;
 }
