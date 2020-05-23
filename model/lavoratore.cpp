@@ -28,6 +28,14 @@ int Lavoratore::getOrePermesso() const
     return _orePermesso;
 }
 
+string Lavoratore::getStringID(bool complete) const
+{
+    if(complete)
+        return _IDAziendale.toString().toStdString();//{fec984fc-82b4-44e1-90cd-3366f44d4ac6}
+    else
+        return _IDAziendale.toString().toStdString().substr(1,8);//fec984fc
+}
+
 float Lavoratore::getPagaPerOra() const
 {
     return _pagaPerOra;

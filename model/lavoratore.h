@@ -28,6 +28,9 @@ public:
 
     QUuid getID() const;
 
+    //Se impostato su false restituisce i primi 8 caratteri, che è abbastanza per distinguere i lavoratori
+    string getStringID(bool complete = false) const;
+
     virtual float Stipendio() const;
 
 protected:
