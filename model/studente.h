@@ -11,7 +11,7 @@ enum Occupazione{Superiori, Universita};
 class Studente : public Persona
 {
 public:
-    Studente(string nome, string cognome, QDate dataNascita, string codiceFiscale, Telefono numeroTelefono, enum Occupazione occupazione);
+    Studente(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, enum Occupazione occupazione);
 
     ~Studente();//magari metterlo vituale ?
 

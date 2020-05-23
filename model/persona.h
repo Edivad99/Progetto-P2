@@ -5,10 +5,13 @@
 #include "util/telefono.h"
 
 using std::string;
+
+enum Genere{M, F};
+
 class Persona
 {
 public:
-    Persona(string nome, string cognome, QDate dataNascita, string codiceFiscale, Telefono numeroTelefono);
+    Persona(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono);
 
     ~Persona();
 
@@ -18,6 +21,10 @@ public:
 
     string getCodiceFiscale() const;
 
+    Genere getGenere() const;
+
+    Telefono getNumeroTelefono() const;
+
     void setNumeroTelefono(Telefono numeroTelefono);
 
 private:
@@ -25,6 +32,7 @@ private:
     const string _cognome;
     const QDate _dataNascita;
     const string _codiceFiscale;
+    const Genere _genere;
     Telefono _numeroTelefono;
 };
 

@@ -1,8 +1,8 @@
 #include "lavoratore.h"
 
-Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Telefono numeroTelefono, std::string reparto,
+Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono, std::string reparto,
                        float pagaPerOra, float orePreviste, float oreFerie, float orePermesso):
-    Persona(nome, cognome, dataNascita, codiceFiscale, numeroTelefono), _reparto(reparto), _pagaPerOra(pagaPerOra), _orePreviste(orePreviste), _oreFerie(oreFerie),
+    Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono), _reparto(reparto), _pagaPerOra(pagaPerOra), _orePreviste(orePreviste), _oreFerie(oreFerie),
     _orePermesso(orePermesso)
 {
 

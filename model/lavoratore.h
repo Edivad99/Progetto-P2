@@ -13,7 +13,7 @@ public:
     //uuid per id dei lavoratori costante
     //enum sesso
     //rendi costante i campi
-    Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Telefono numeroTelefono, string reparto,
+    Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                float pagaPerOra, float orePreviste, float oreFerie, float orePermesso);
 
     string getReparto() const;
