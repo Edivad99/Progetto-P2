@@ -1,16 +1,15 @@
 #include "telefono.h"
 
 
-Telefono::Telefono(std::string numeroTelefono, std::string prefisso): _numeroTelefono((isNumber(numeroTelefono) ? numeroTelefono : "0")),
+Telefono::Telefono(string numeroTelefono, string prefisso): _numeroTelefono((isNumber(numeroTelefono) ? numeroTelefono : "0")),
     _prefisso((isNumber(prefisso) ? prefisso : "0"))
 {
 
 }
 
-bool Telefono::isNumber(std::string numero)
+bool Telefono::isNumber(string numero)
 {
     string::const_iterator it = numero.begin();
-    if(numero.at(0) == '+') ++it;
     while (it != numero.end() && std::isdigit(*it)) ++it;
     return !numero.empty() && it == numero.end();
 }

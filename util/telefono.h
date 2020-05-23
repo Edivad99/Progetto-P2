@@ -9,7 +9,7 @@ using std::string;
 class Telefono
 {
 public:
-    Telefono(string numeroTelefono, string prefisso = "+39");
+    Telefono(string numeroTelefono, string prefisso = "39");
 
     static bool isNumber(string numero);
 
