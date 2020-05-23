@@ -21,6 +21,6 @@ private:
     string _prefisso;
 };
 
-std::ostream &operator<<(std::ostream& os, Telefono telefono);
+std::ostream& operator<<(std::ostream& os, const Telefono& telefono);
 
 #endif // TELEFONO_H

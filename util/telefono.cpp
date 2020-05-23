@@ -24,7 +24,7 @@ string Telefono::getPrefisso() const
     return _prefisso;
 }
 
-std::ostream &operator<<(std::ostream& os, Telefono telefono)
+std::ostream& operator<<(std::ostream& os, const Telefono& telefono)
 {
     if(telefono.getNumeroTelefono() == "0")
         os << "Sconosciuto";

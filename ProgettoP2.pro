@@ -22,6 +22,7 @@ SOURCES += \
     model/operaio.cpp \
     model/persona.cpp \
     model/studente.cpp \
+    util/orelavorative.cpp \
     util/telefono.cpp \
     view/hometab.cpp \
     view/tabellatab.cpp
@@ -32,6 +33,7 @@ HEADERS += \
     model/operaio.h \
     model/persona.h \
     model/studente.h \
+    util/orelavorative.h \
     util/telefono.h \
     view/hometab.h \
     view/tabellatab.h
