@@ -2,6 +2,8 @@
 
 #include <QApplication>
 #include "util/telefono.h"
+#include "util/orelavorative.h"
+#include <QDate>
 #include <QUuid>
 #include <iostream>
 
@@ -15,6 +17,18 @@ int main(int argc, char *argv[])
 
     QUuid uuid = QUuid::createUuid();
     std::cout << uuid.toString().toStdString() << std::endl;
+    std::cout << uuid.toString().toStdString().substr(1,8) << std::endl;
+
+    OreLavorative o (40);
+    OreLavorative o1 (40);
+    std::cout << o.getOre() << std::endl;
+    o1.aggiungiOre(2);
+    o1.aggiungiMinuti(15);
+    std::cout << o1 << std::endl;
+    o.aggiungiOre(-50);
+    std::cout << o << std::endl;
+    std::cout << (o<o1) << std::endl;
+
     return 0;*/
 
     MainWindow w;
