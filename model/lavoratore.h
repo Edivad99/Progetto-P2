@@ -14,17 +14,17 @@ public:
     //TODO: Impostare se è a tempo determinato o no
     //TODO: Permettere di cambiare la paga e le ore
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               float pagaPerOra, float orePreviste, float oreFerie, float orePermesso, QUuid IDAziendale = QUuid::createUuid());
+               float pagaPerOra, int orePreviste, int oreFerie, int orePermesso, QUuid IDAziendale = QUuid::createUuid());
 
     string getReparto() const;
 
-    float getOrePreviste() const;
-
-    float getOreFerie() const;
-
-    float getOrePermesso() const;
-
     float getPagaPerOra() const;
+
+    int getOrePreviste() const;
+
+    int getOreFerie() const;
+
+    int getOrePermesso() const;
 
     QUuid getID() const;
 
@@ -33,9 +33,9 @@ public:
 protected:
     string _reparto;
     float _pagaPerOra;
-    float _orePreviste;//come sopra
-    float _oreFerie;//come sopra
-    float _orePermesso;//come sopra
+    int _orePreviste;//come sopra
+    int _oreFerie;//come sopra
+    int _orePermesso;//come sopra
     const QUuid _IDAziendale;
 };
 
