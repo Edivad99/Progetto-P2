@@ -28,6 +28,31 @@ OreLavorative Lavoratore::getOrePermesso() const
     return _orePermesso;
 }
 
+void Lavoratore::setReparto(string nuovoReparto)
+{
+    _reparto = nuovoReparto;
+}
+
+void Lavoratore::setPagaPerOra(float nuovaPagaPerOra)
+{
+    _pagaPerOra = nuovaPagaPerOra;
+}
+
+void Lavoratore::setOrePreviste(OreLavorative o)
+{
+    _orePreviste = o;
+}
+
+void Lavoratore::setOreFerie(OreLavorative o)
+{
+    _oreFerie = o;
+}
+
+void Lavoratore::setOrePermesso(OreLavorative o)
+{
+    _orePermesso = o;
+}
+
 string Lavoratore::getStringID(bool complete) const
 {
     if(complete)

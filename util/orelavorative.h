@@ -29,5 +29,5 @@ private:
     int _sec;
 };
 
-std::ostream& operator<<(std::ostream& os, const OreLavorative& ore);
+std::ostream& operator<<(std::ostream& os, const OreLavorative& o);
 #endif // ORELAVORATIVE_H

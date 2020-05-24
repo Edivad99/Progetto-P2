@@ -75,8 +75,8 @@ bool OreLavorative::operator>=(OreLavorative o)
     return _sec >= o._sec;
 }
 
-std::ostream& operator<<(std::ostream& os, const OreLavorative& ore)
+std::ostream& operator<<(std::ostream& os, const OreLavorative& o)
 {
-    os << ore.getOre() << ":" << ore.getMinuti();
+    os << o.getOre() << ":" << o.getMinuti();
     return os;
 }

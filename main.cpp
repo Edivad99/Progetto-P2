@@ -15,10 +15,6 @@ int main(int argc, char *argv[])
     Telefono t1 ("971456", "0444");
     std::cout << "Il mio numero di telefono e' " << t << " quello di casa e' " << t1 << std::endl;
 
-    QUuid uuid = QUuid::createUuid();
-    std::cout << uuid.toString().toStdString() << std::endl;
-    std::cout << uuid.toString().toStdString().substr(1,8) << std::endl;
-
     OreLavorative o (40);
     OreLavorative o1 (40);
     std::cout << o.getOre() << std::endl;
