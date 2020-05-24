@@ -7,13 +7,13 @@
 using std::string;
 
 enum Occupazione{Superiori, Universita};
-
-class Studente : public Persona
+//ho messo public, non ricordo se va o no, ma così non mi da errori
+class Studente : virtual public Persona
 {
 public:
     Studente(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, enum Occupazione occupazione);
 
-    ~Studente();//magari metterlo vituale ?
+    virtual ~Studente();
 
 private:
     Occupazione Occupazione;

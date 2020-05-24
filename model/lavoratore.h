@@ -9,8 +9,8 @@
 using std::string;
 
 enum Contratto{Determinato, Indeterminato};
-
-class Lavoratore : public Persona
+//ho messo public, non ricordo se va o no, ma così non mi da errori
+class Lavoratore : virtual public Persona
 {
 public:
     //TODO: Impostare se è a tempo determinato o no
@@ -20,6 +20,8 @@ public:
 
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale = QUuid::createUuid());
+
+    virtual ~Lavoratore();
 
     string getReparto() const;
 
