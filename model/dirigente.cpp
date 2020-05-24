@@ -3,7 +3,7 @@
 Dirigente::Dirigente(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere,
                      Telefono numeroTelefono, std::string reparto, float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float baseFissa,
                      QUuid IDAziendale):
-    Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, pagaPerOra, orePreviste, oreFerie, orePermesso, QDate(0,0,0), IDAziendale),
+    Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, pagaPerOra, orePreviste, oreFerie, orePermesso, IDAziendale),
     _baseFissa(baseFissa)
 {
 

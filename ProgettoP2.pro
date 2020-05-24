@@ -19,9 +19,11 @@ SOURCES += \
     MainWindow.cpp \
     main.cpp \
     model/dirigente.cpp \
+    model/impiegato.cpp \
     model/lavoratore.cpp \
     model/operaio.cpp \
     model/persona.cpp \
+    model/rappresentante.cpp \
     model/studente.cpp \
     util/orelavorative.cpp \
     util/telefono.cpp \
@@ -32,9 +34,11 @@ SOURCES += \
 HEADERS += \
     MainWindow.h \
     model/dirigente.h \
+    model/impiegato.h \
     model/lavoratore.h \
     model/operaio.h \
     model/persona.h \
+    model/rappresentante.h \
     model/studente.h \
     util/orelavorative.h \
     util/telefono.h \
