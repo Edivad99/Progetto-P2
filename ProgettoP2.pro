@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     MainWindow.cpp \
     main.cpp \
+    model/dirigente.cpp \
     model/lavoratore.cpp \
     model/operaio.cpp \
     model/persona.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 
 HEADERS += \
     MainWindow.h \
+    model/dirigente.h \
     model/lavoratore.h \
     model/operaio.h \
     model/persona.h \
