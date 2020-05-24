@@ -1,9 +1,16 @@
 #include "lavoratore.h"
 
 Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono, std::string reparto,
-                       float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale):
+                       float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale):
     Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono), _reparto(reparto), _pagaPerOra(pagaPerOra), _orePreviste(orePreviste), _oreFerie(oreFerie),
-    _orePermesso(orePermesso), _IDAziendale(IDAziendale)
+    _orePermesso(orePermesso), _contratto(dataScadenza.isNull()? Indeterminato : Determinato), _dataScadenza(dataScadenza), _IDAziendale(IDAziendale)
+{
+
+}
+
+Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono, std::string reparto,
+                       float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale)
+    : Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, pagaPerOra, orePreviste, oreFerie, orePermesso, QDate(0,0,0), IDAziendale)
 {
 
 }
@@ -26,6 +33,11 @@ OreLavorative Lavoratore::getOreFerie() const
 OreLavorative Lavoratore::getOrePermesso() const
 {
     return _orePermesso;
+}
+
+Contratto Lavoratore::getTipologiaContratto() const
+{
+    return _contratto;
 }
 
 void Lavoratore::setReparto(string nuovoReparto)
@@ -51,6 +63,18 @@ void Lavoratore::setOreFerie(OreLavorative o)
 void Lavoratore::setOrePermesso(OreLavorative o)
 {
     _orePermesso = o;
+}
+
+void Lavoratore::setContrattoIndeterminato()
+{
+    _contratto = Indeterminato;
+    _dataScadenza = QDate(0,0,0);
+}
+
+void Lavoratore::setContrattoDeterminato(QDate dataScadenza)
+{
+    _contratto = Determinato;
+    _dataScadenza = dataScadenza;
 }
 
 string Lavoratore::getStringID(bool complete) const
