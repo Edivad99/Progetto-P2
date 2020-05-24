@@ -48,7 +48,8 @@ public:
     //Se impostato su false restituisce i primi 8 caratteri, che è abbastanza per distinguere i lavoratori
     string getStringID(bool complete = false) const;
 
-    virtual float Stipendio() const;
+    //Possibilità di aggiungere un bonus da sommare al calcolo dello stipendio
+    virtual float Stipendio(float bonus = 0) const = 0;
 
 private:
     string _reparto;

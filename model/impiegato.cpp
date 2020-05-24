@@ -15,6 +15,13 @@ Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codi
 
 }
 
+float Impiegato::Stipendio(float bonus) const
+{
+    float pagaOra = _pagaPerOra * getOrePreviste().getOre();
+    float pagaMinuti = _pagaPerOra/60 * getOrePreviste().getMinuti();
+    return pagaOra + pagaMinuti + bonus;
+}
+
 float Impiegato::getPagaPerOra() const
 {
     return _pagaPerOra;
@@ -23,9 +30,4 @@ float Impiegato::getPagaPerOra() const
 void Impiegato::setPagaPerOra(float pagaPerOra)
 {
     _pagaPerOra = pagaPerOra;
-}
-
-float Impiegato::Stipendio() const
-{
-    return 0;
 }

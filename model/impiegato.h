@@ -12,7 +12,7 @@ public:
     Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
 
-    virtual float Stipendio() const;
+    virtual float Stipendio(float bonus) const;
 
     float getPagaPerOra() const;
 

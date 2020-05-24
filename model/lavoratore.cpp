@@ -84,8 +84,3 @@ QUuid Lavoratore::getID() const
 {
     return _IDAziendale;
 }
-
-float Lavoratore::Stipendio() const
-{
-    return 0;
-}

@@ -16,7 +16,7 @@ public:
 
     void setLivello(Livello livello);
 
-    virtual float Stipendio() const;
+    virtual float Stipendio(float bonus) const;
 
 private:
     Livello _livello;

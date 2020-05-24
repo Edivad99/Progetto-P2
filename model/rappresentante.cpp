@@ -14,9 +14,9 @@ Rappresentante::Rappresentante(string nome, string cognome, QDate dataNascita, s
 
 }
 
-float Rappresentante::Stipendio() const
+float Rappresentante::Stipendio(float bonus) const
 {
-    return 0;
+    return Impiegato::Stipendio(bonus) + (_venditeEffettuate * guadagnoPerMerce);
 }
 
 float Rappresentante::venditeEffettuate() const
@@ -28,3 +28,5 @@ void Rappresentante::setVenditeEffettuate(float venditeEffettuate)
 {
     _venditeEffettuate = venditeEffettuate;
 }
+
+const float Rappresentante::guadagnoPerMerce = 25;

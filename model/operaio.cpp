@@ -17,10 +17,10 @@ void Operaio::setLivello(Livello livello)
     _livello = livello;
 }
 
-float Operaio::Stipendio() const
+float Operaio::Stipendio(float bonus) const
 {
     //TODO: decidere se va bene così
-    return _salarioMensile[_livello];
+    return _salarioMensile[_livello] + bonus;
 }
 
 const float Operaio::_salarioMensile[] = {1000, 1350, 1575, 1825, 2100};
