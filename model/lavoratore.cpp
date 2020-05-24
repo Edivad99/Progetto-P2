@@ -1,21 +1,21 @@
 #include "lavoratore.h"
 
-Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono, std::string reparto,
-                       float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale):
-    Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono), _reparto(reparto), _pagaPerOra(pagaPerOra), _orePreviste(orePreviste), _oreFerie(oreFerie),
+Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
+                       OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale):
+    Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono), _reparto(reparto), _orePreviste(orePreviste), _oreFerie(oreFerie),
     _orePermesso(orePermesso), _contratto(dataScadenza.isNull()? Indeterminato : Determinato), _dataScadenza(dataScadenza), _IDAziendale(IDAziendale)
 {
 
 }
 
-Lavoratore::Lavoratore(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono, std::string reparto,
-                       float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale)
-    : Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, pagaPerOra, orePreviste, oreFerie, orePermesso, QDate(0,0,0), IDAziendale)
+Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
+                       OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale)
+    : Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, QDate(0,0,0), IDAziendale)
 {
 
 }
 
-std::string Lavoratore::getReparto() const
+string Lavoratore::getReparto() const
 {
     return _reparto;
 }
@@ -43,11 +43,6 @@ Contratto Lavoratore::getTipologiaContratto() const
 void Lavoratore::setReparto(string nuovoReparto)
 {
     _reparto = nuovoReparto;
-}
-
-void Lavoratore::setPagaPerOra(float nuovaPagaPerOra)
-{
-    _pagaPerOra = nuovaPagaPerOra;
 }
 
 void Lavoratore::setOrePreviste(OreLavorative o)
@@ -83,11 +78,6 @@ string Lavoratore::getStringID(bool complete) const
         return _IDAziendale.toString().toStdString();//{fec984fc-82b4-44e1-90cd-3366f44d4ac6}
     else
         return _IDAziendale.toString().toStdString().substr(1,8);//fec984fc
-}
-
-float Lavoratore::getPagaPerOra() const
-{
-    return _pagaPerOra;
 }
 
 QUuid Lavoratore::getID() const

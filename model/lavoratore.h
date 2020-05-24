@@ -14,15 +14,14 @@ class Lavoratore : public Persona
 {
 public:
     //TODO: Impostare se è a tempo determinato o no
+    //TODO: Vedere se al momento della lettura del file questi costruttori possono essere ragruppati in uno solo
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
+               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
 
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale = QUuid::createUuid());
+               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale = QUuid::createUuid());
 
     string getReparto() const;
-
-    float getPagaPerOra() const;
 
     OreLavorative getOrePreviste() const;
 
@@ -33,8 +32,6 @@ public:
     Contratto getTipologiaContratto() const;
 
     void setReparto(string nuovoReparto);
-
-    void setPagaPerOra(float nuovaPagaPerOra);
 
     void setOrePreviste(OreLavorative o);
 
@@ -55,7 +52,6 @@ public:
 
 private:
     string _reparto;
-    float _pagaPerOra;
     OreLavorative _orePreviste;//Le ore previste da contratto
     OreLavorative _oreFerie;//Le ore di ferie da contratto
     OreLavorative _orePermesso;//Le ore di permesso da contratto

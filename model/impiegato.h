@@ -5,21 +5,21 @@
 
 class Impiegato :  public Lavoratore
 {
-public:// PER IL MOMENTO PAGAPERORA su impiegato è pagaPerOra2 perchè dobbiamo toglierlo da lavoratore
+public:
     Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra2, QUuid IDAziendale = QUuid::createUuid());
+               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, QUuid IDAziendale = QUuid::createUuid());
 
     Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, float pagaPerOra2, QUuid IDAziendale = QUuid::createUuid());
+               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
 
     virtual float Stipendio() const;
 
-    float pagaPerOra2() const;
+    float getPagaPerOra() const;
 
-    void setPagaPerOra2(float pagaPerOra2);
+    void setPagaPerOra(float pagaPerOra);
 
 private:
-    float _pagaPerOra2;
+    float _pagaPerOra;
 };
 
 #endif // IMPIEGATO_H

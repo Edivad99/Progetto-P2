@@ -10,7 +10,7 @@ class Operaio : public Lavoratore
 public:
 
     Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, Livello livello, QUuid IDAziendale = QUuid::createUuid());
+               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, Livello livello, QUuid IDAziendale = QUuid::createUuid());
 
     Livello getLivello() const;
 

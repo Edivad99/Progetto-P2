@@ -1,33 +1,28 @@
 #include "impiegato.h"
 
-//RICORDARE DI CAMBIARE PAGAPERORA2
-
-Impiegato::Impiegato(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono,
-                     std::string reparto, float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie,
-                     OreLavorative orePermesso, float pagaPerOra2, QUuid IDAziendale): Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere,
-                                                                                                  numeroTelefono, reparto, pagaPerOra, orePreviste,
-                                                                                                  oreFerie, orePermesso, IDAziendale), _pagaPerOra2(pagaPerOra2)
+Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
+                     OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, QUuid IDAziendale):
+    Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, IDAziendale), _pagaPerOra(pagaPerOra)
 {
 
 }
 
-Impiegato::Impiegato(std::string nome, std::string cognome, QDate dataNascita, std::string codiceFiscale, Genere genere, Telefono numeroTelefono,
-                     std::string reparto, float pagaPerOra, OreLavorative orePreviste, OreLavorative oreFerie,
-                     OreLavorative orePermesso, QDate dataScadenza, float pagaPerOra2, QUuid IDAziendale): Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere,
-                                                                                                                      numeroTelefono, reparto, pagaPerOra, orePreviste,
-                                                                                                                      oreFerie, orePermesso, dataScadenza, IDAziendale), _pagaPerOra2(pagaPerOra2)
+Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
+                     OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, QDate dataScadenza, QUuid IDAziendale):
+    Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, dataScadenza, IDAziendale),
+    _pagaPerOra(pagaPerOra)
 {
 
 }
 
-float Impiegato::pagaPerOra2() const
+float Impiegato::getPagaPerOra() const
 {
-    return _pagaPerOra2;
+    return _pagaPerOra;
 }
 
-void Impiegato::setPagaPerOra2(float pagaPerOra2)
+void Impiegato::setPagaPerOra(float pagaPerOra)
 {
-    _pagaPerOra2 = pagaPerOra2;
+    _pagaPerOra = pagaPerOra;
 }
 
 float Impiegato::Stipendio() const
