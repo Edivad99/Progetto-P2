@@ -16,14 +16,14 @@ public:
 
     void aggiungiMinuti(int minuti);
 
-    OreLavorative operator+(OreLavorative o);
-    OreLavorative operator-(OreLavorative o);
-    bool operator==(OreLavorative o);
-    bool operator!=(OreLavorative o);
-    bool operator<(OreLavorative o);
-    bool operator<=(OreLavorative o);
-    bool operator>(OreLavorative o);
-    bool operator>=(OreLavorative o);
+    OreLavorative operator+(const OreLavorative& o) const;
+    OreLavorative operator-(const OreLavorative& o) const;
+    bool operator==(const OreLavorative& o) const;
+    bool operator!=(const OreLavorative& o) const;
+    bool operator<(const OreLavorative& o) const;
+    bool operator<=(const OreLavorative& o) const;
+    bool operator>(const OreLavorative& o) const;
+    bool operator>=(const OreLavorative& o) const;
 
 private:
     int _sec;

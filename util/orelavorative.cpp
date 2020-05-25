@@ -31,46 +31,46 @@ void OreLavorative::aggiungiMinuti(int minuti)
     _sec = std::max(supp, 0);
 }
 
-OreLavorative OreLavorative::operator+(OreLavorative o)
+OreLavorative OreLavorative::operator+(const OreLavorative& o) const
 {
     OreLavorative result;
     result._sec = _sec + o._sec;
     return result;
 }
 
-OreLavorative OreLavorative::operator-(OreLavorative o)
+OreLavorative OreLavorative::operator-(const OreLavorative& o) const
 {
     OreLavorative result;
     result._sec = std::max(_sec - o._sec, 0);
     return result;
 }
 
-bool OreLavorative::operator==(OreLavorative o)
+bool OreLavorative::operator==(const OreLavorative& o) const
 {
     return _sec == o._sec;
 }
 
-bool OreLavorative::operator!=(OreLavorative o)
+bool OreLavorative::operator!=(const OreLavorative& o) const
 {
     return _sec != o._sec;
 }
 
-bool OreLavorative::operator<(OreLavorative o)
+bool OreLavorative::operator<(const OreLavorative& o) const
 {
     return _sec < o._sec;
 }
 
-bool OreLavorative::operator<=(OreLavorative o)
+bool OreLavorative::operator<=(const OreLavorative& o) const
 {
     return _sec <= o._sec;
 }
 
-bool OreLavorative::operator>(OreLavorative o)
+bool OreLavorative::operator>(const OreLavorative& o) const
 {
     return _sec > o._sec;
 }
 
-bool OreLavorative::operator>=(OreLavorative o)
+bool OreLavorative::operator>=(const OreLavorative& o) const
 {
     return _sec >= o._sec;
 }
