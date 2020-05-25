@@ -11,9 +11,6 @@ public:
 
     Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, Livello livello, QUuid IDAziendale = QUuid::createUuid());
-    //Ho aggiunto il costruttere per determinato e indeterminato
-    Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, Livello livello, QUuid IDAziendale = QUuid::createUuid());
 
     Livello getLivello() const;
 

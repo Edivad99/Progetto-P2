@@ -9,13 +9,6 @@ Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string co
 
 }
 
-Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                       OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale)
-    : Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, QDate(0,0,0), IDAziendale)
-{
-
-}
-
 Lavoratore::~Lavoratore()
 {
 

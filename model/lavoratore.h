@@ -9,7 +9,7 @@
 using std::string;
 
 enum Contratto{Determinato, Indeterminato};
-//ho messo public, non ricordo se va o no, ma così non mi da errori
+
 class Lavoratore : virtual public Persona
 {
 public:
@@ -18,8 +18,7 @@ public:
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
 
-    Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale = QUuid::createUuid());
+    //Se la data è invalida allora significa che il lavoro è indeterminato, deve essere l'utente che lo inserisce
 
     virtual ~Lavoratore();
 

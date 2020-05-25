@@ -9,13 +9,6 @@ Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codi
 
 }
 
-Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                     OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, QUuid IDAziendale):
-    Impiegato(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, pagaPerOra, QDate(0,0,0), IDAziendale)
-{
-
-}
-
 float Impiegato::Stipendio(float bonus) const
 {
     float pagaOra = _pagaPerOra * getOrePreviste().getOre();

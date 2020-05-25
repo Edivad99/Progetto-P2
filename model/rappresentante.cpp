@@ -10,14 +10,6 @@ Rappresentante::Rappresentante(string nome, string cognome, QDate dataNascita, s
 
 }
 
-Rappresentante::Rappresentante(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, float venditeEffettuate, QUuid IDAziendale):
-
-    Rappresentante(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, pagaPerOra, venditeEffettuate, QDate(0,0,0),
-                   IDAziendale)
-{
-
-}
 
 float Rappresentante::Stipendio(float bonus) const
 {

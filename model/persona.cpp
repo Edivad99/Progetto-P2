@@ -6,7 +6,7 @@ Persona::Persona(string nome, string cognome, QDate dataNascita, string codiceFi
 
 };
 
-Persona::~Persona()//quello di base per ora, magari poi lo tolgo se non verrà usato
+Persona::~Persona()
 {
 
 }

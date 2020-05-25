@@ -8,10 +8,3 @@ StudenteLavoratore::StudenteLavoratore(string nome, string cognome, QDate dataNa
 {
 
 }
-
-StudenteLavoratore::StudenteLavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, Occupazione occupazione,
-                                       string reparto, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale):
-    StudenteLavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, occupazione, reparto, orePreviste, oreFerie, orePermesso, QDate(0,0,0), IDAziendale)
-{
-
-}

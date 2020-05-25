@@ -9,14 +9,6 @@ Operaio::Operaio(string nome, string cognome, QDate dataNascita, string codiceFi
 
 }
 
-Operaio::Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono,
-                 string reparto, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, Livello livello, QUuid IDAziendale):
-    Operaio(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, QDate(0,0,0), livello, IDAziendale)
-
-{
-
-}
-
 Livello Operaio::getLivello() const
 {
     return _livello;
