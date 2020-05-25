@@ -1,18 +1,15 @@
 #include "rappresentante.h"
 
 Rappresentante::Rappresentante(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, float venditeEffettuate, QUuid IDAziendale)
-    :Impiegato(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, pagaPerOra, IDAziendale), _venditeEffettuate(venditeEffettuate)
+                               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, float venditeEffettuate,
+                               QDate dataScadenza, QUuid IDAziendale):
+    Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono),
+    Impiegato(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, pagaPerOra, dataScadenza, IDAziendale),
+    _venditeEffettuate(venditeEffettuate)
 {
 
 }
 
-Rappresentante::Rappresentante(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float venditeEffettuate, float pagaPerOra, QDate dataScadenza, QUuid IDAziendale)
-    :Impiegato(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, pagaPerOra, dataScadenza, IDAziendale), _venditeEffettuate(venditeEffettuate)
-{
-
-}
 
 float Rappresentante::Stipendio(float bonus) const
 {

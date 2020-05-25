@@ -24,6 +24,7 @@ SOURCES += \
     model/persona.cpp \
     model/rappresentante.cpp \
     model/studente.cpp \
+    model/studente_lavoratore.cpp \
     util/orelavorative.cpp \
     util/telefono.cpp \
     util/lista.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     model/persona.h \
     model/rappresentante.h \
     model/studente.h \
+    model/studente_lavoratore.h \
     util/orelavorative.h \
     util/telefono.h \
     util/lista.h \

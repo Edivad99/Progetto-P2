@@ -11,9 +11,10 @@ enum Genere{M, F};
 class Persona
 {
 public:
+
     Persona(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono);
 
-    ~Persona();
+    virtual ~Persona();
 
     string getNome() const;
 

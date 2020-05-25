@@ -2,15 +2,14 @@
 
 Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                        OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale):
-    Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono), _reparto(reparto), _orePreviste(orePreviste), _oreFerie(oreFerie),
-    _orePermesso(orePermesso), _contratto(dataScadenza.isNull()? Indeterminato : Determinato), _dataScadenza(dataScadenza), _IDAziendale(IDAziendale)
+    Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono),
+    _reparto(reparto), _orePreviste(orePreviste), _oreFerie(oreFerie),_orePermesso(orePermesso), _contratto(dataScadenza.isNull()? Indeterminato : Determinato),
+    _dataScadenza(dataScadenza), _IDAziendale(IDAziendale)
 {
 
 }
 
-Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                       OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale)
-    : Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, QDate(0,0,0), IDAziendale)
+Lavoratore::~Lavoratore()
 {
 
 }

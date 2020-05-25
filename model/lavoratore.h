@@ -10,7 +10,7 @@ using std::string;
 
 enum Contratto{Determinato, Indeterminato};
 
-class Lavoratore : public Persona
+class Lavoratore : virtual public Persona
 {
 public:
     //TODO: Impostare se è a tempo determinato o no
@@ -18,8 +18,9 @@ public:
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
 
-    Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QUuid IDAziendale = QUuid::createUuid());
+    //Se la data è invalida allora significa che il lavoro è indeterminato, deve essere l'utente che lo inserisce
+
+    virtual ~Lavoratore();
 
     string getReparto() const;
 

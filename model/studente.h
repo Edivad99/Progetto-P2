@@ -8,15 +8,15 @@ using std::string;
 
 enum Occupazione{Superiori, Universita};
 
-class Studente : public Persona
+class Studente : virtual public Persona
 {
 public:
     Studente(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, enum Occupazione occupazione);
 
-    ~Studente();//magari metterlo vituale ?
+    virtual ~Studente();
 
 private:
-    Occupazione Occupazione;
+    Occupazione _occupazione;
 };
 
 #endif // STUDENTE_H
