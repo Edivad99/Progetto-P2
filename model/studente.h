@@ -15,7 +15,7 @@ public:
 
     virtual ~Studente();
 
-protected:
+private:
     Occupazione _occupazione;
 };
 
