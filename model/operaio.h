@@ -5,7 +5,7 @@
 
 enum Livello{ Livello1, Livello2, Livello3, Livello4, Livello5 };
 
-class Operaio : virtual public Lavoratore
+class Operaio : public Lavoratore
 {
 public:
 
@@ -14,8 +14,6 @@ public:
     //Ho aggiunto il costruttere per determinato e indeterminato
     Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, Livello livello, QUuid IDAziendale = QUuid::createUuid());
-
-    virtual ~Operaio();
 
     Livello getLivello() const;
 

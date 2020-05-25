@@ -3,7 +3,7 @@
 
 #include "model/lavoratore.h"
 
-class Impiegato : virtual public Lavoratore
+class Impiegato : public Lavoratore
 {
 public:
     Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
