@@ -15,6 +15,11 @@ Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string co
 
 }
 
+Lavoratore::~Lavoratore()
+{
+
+}
+
 string Lavoratore::getReparto() const
 {
     return _reparto;

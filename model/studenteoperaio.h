@@ -2,7 +2,6 @@
 #define STUDENTEOPERAIO_H
 
 #include "model/studente.h"
-
 #include "model/operaio.h"
 
 class StudenteOperaio : public Studente, public Operaio
