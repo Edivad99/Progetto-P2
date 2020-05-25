@@ -9,4 +9,9 @@ Studente::Studente(string nome, string cognome, QDate dataNascita, string codice
 Studente::~Studente()
 {
 
+}
+
+Occupazione Studente::getOccupazione() const
+{
+    return _occupazione;
 };

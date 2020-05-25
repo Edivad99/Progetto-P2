@@ -24,6 +24,16 @@ string Telefono::getPrefisso() const
     return _prefisso;
 }
 
+bool Telefono::operator==(const Telefono &t) const
+{
+    return _prefisso == t._prefisso && _numeroTelefono == t._numeroTelefono;
+}
+
+bool Telefono::operator!=(const Telefono &t) const
+{
+    return !operator==(t);
+}
+
 std::ostream& operator<<(std::ostream& os, const Telefono& telefono)
 {
     if(telefono.getNumeroTelefono() == "0")

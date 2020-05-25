@@ -8,3 +8,23 @@ StudenteLavoratore::StudenteLavoratore(string nome, string cognome, QDate dataNa
 {
 
 }
+
+StudenteLavoratore::~StudenteLavoratore()
+{
+
+}
+
+float StudenteLavoratore::Stipendio(float bonus) const
+{
+    return (getOccupazione() == Superiori ? 250 : 1500);
+}
+
+bool StudenteLavoratore::operator==(const StudenteLavoratore &sl) const
+{
+    return Persona::operator==(sl) && Lavoratore::operator==(sl);
+}
+
+bool StudenteLavoratore::operator!=(const StudenteLavoratore &sl) const
+{
+    return !operator==(sl);
+}

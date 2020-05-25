@@ -79,6 +79,16 @@ string Lavoratore::getStringID(bool complete) const
         return _IDAziendale.toString().toStdString().substr(1,8);//fec984fc
 }
 
+bool Lavoratore::operator==(const Lavoratore &l) const
+{
+    return Persona::operator==(l) && _IDAziendale == l._IDAziendale;
+}
+
+bool Lavoratore::operator!=(const Lavoratore &l) const
+{
+    return !operator==(l);
+}
+
 QUuid Lavoratore::getID() const
 {
     return _IDAziendale;

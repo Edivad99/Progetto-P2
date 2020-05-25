@@ -28,6 +28,10 @@ public:
 
     void setNumeroTelefono(Telefono numeroTelefono);
 
+    bool operator==(const Persona &p) const;
+
+    bool operator!=(const Persona &p) const;
+
 private:
     const string _nome;
     const string _cognome;

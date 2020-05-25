@@ -40,3 +40,18 @@ void Persona::setNumeroTelefono(Telefono numeroTelefono)
 {
     _numeroTelefono = numeroTelefono;
 }
+
+bool Persona::operator==(const Persona &p) const
+{
+    return _nome == p._nome &&
+            _cognome == p._cognome &&
+            _dataNascita == p._dataNascita &&
+            _codiceFiscale == p._codiceFiscale &&
+            _genere == p._genere &&
+            _numeroTelefono == p._numeroTelefono;
+}
+
+bool Persona::operator!=(const Persona &p) const
+{
+    return !operator==(p);
+}

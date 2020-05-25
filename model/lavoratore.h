@@ -13,12 +13,9 @@ enum Contratto{Determinato, Indeterminato};
 class Lavoratore : virtual public Persona
 {
 public:
-    //TODO: Impostare se è a tempo determinato o no
-    //TODO: Vedere se al momento della lettura del file questi costruttori possono essere ragruppati in uno solo
+    //Se la data è invalida allora significa che il lavoro è indeterminato, deve essere l'utente che lo inserisce
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
-
-    //Se la data è invalida allora significa che il lavoro è indeterminato, deve essere l'utente che lo inserisce
 
     virtual ~Lavoratore();
 
@@ -51,6 +48,10 @@ public:
 
     //Possibilità di aggiungere un bonus da sommare al calcolo dello stipendio
     virtual float Stipendio(float bonus = 0) const = 0;
+
+    bool operator==(const Lavoratore &p) const;
+
+    bool operator!=(const Lavoratore &p) const;
 
 private:
     string _reparto;

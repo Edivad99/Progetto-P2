@@ -15,6 +15,8 @@ public:
 
     virtual ~Studente();
 
+    Occupazione getOccupazione() const;
+
 private:
     Occupazione _occupazione;
 };

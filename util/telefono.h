@@ -16,6 +16,9 @@ public:
     string getNumeroTelefono() const;
     string getPrefisso() const;
 
+    bool operator==(const Telefono& t) const;
+    bool operator!=(const Telefono& t) const;
+
 private:
     string _numeroTelefono;
     string _prefisso;

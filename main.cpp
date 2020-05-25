@@ -1,31 +1,32 @@
 #include "MainWindow.h"
 
 #include <QApplication>
-#include "util/telefono.h"
-#include "util/orelavorative.h"
 #include <QDate>
-#include <QUuid>
-#include <iostream>
+#include <model/operaio.h>
+#include <model/persona.h>
+#include <model/studente_lavoratore.h>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+/*
+    Persona p1("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"));
+    Persona p2("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"));
 
-    /*Telefono t ("3484367845");
-    Telefono t1 ("971456", "0444");
-    std::cout << "Il mio numero di telefono e' " << t << " quello di casa e' " << t1 << std::endl;
+    std::cout << ((p1 == p2) ? "Vero" : "Falso") << std::endl;
 
-    OreLavorative o (40);
-    OreLavorative o1 (40);
-    std::cout << o.getOre() << std::endl;
-    o1.aggiungiOre(2);
-    o1.aggiungiMinuti(15);
-    std::cout << o1 << std::endl;
-    o.aggiungiOre(-50);
-    std::cout << o << std::endl;
-    std::cout << (o<o1) << std::endl;
+    Operaio op1("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0), Livello1);
+    Operaio op2("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0), Livello1);
+    Operaio op3(op1);
+    std::cout << ((op1 == op2) ? "Vero" : "Falso") << std::endl;//Questo è false
+    std::cout << ((op1 == op3) ? "Vero" : "Falso") << std::endl;//Questo è true
 
-    return 0;*/
+    StudenteLavoratore sl1 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0));
+    StudenteLavoratore sl2 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0));
+    std::cout << ((sl1 != sl2) ? "Vero" : "Falso") << std::endl;
+
+    return 0;
+    */
 
     MainWindow w;
     w.show();
