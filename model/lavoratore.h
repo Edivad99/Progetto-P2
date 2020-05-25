@@ -59,10 +59,9 @@ private:
     Contratto _contratto;
     QDate _dataScadenza;
 
-    //const QUuid _IDAziendale;//Identificativo aziendale, usato per riconoscre il lavoratore
-    const size_t _IDAziendale;
+    const size_t _IDAziendale;//Identificativo aziendale, usato per riconoscre il lavoratore
 
-    size_t generateID(string cf);
+    static size_t generateID(string cf);
 };
 
 #endif // LAVORATORE_H
