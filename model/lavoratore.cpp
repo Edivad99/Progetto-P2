@@ -1,10 +1,10 @@
 #include "lavoratore.h"
 
 Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                       OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale):
+                       OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza):
     Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono),
     _reparto(reparto), _orePreviste(orePreviste), _oreFerie(oreFerie),_orePermesso(orePermesso), _contratto(dataScadenza.isNull()? Indeterminato : Determinato),
-    _dataScadenza(dataScadenza), _IDAziendale(IDAziendale)
+    _dataScadenza(dataScadenza), _IDAziendale(generateID(codiceFiscale))
 {
 
 }
@@ -71,12 +71,9 @@ void Lavoratore::setContrattoDeterminato(QDate dataScadenza)
     _dataScadenza = dataScadenza;
 }
 
-string Lavoratore::getStringID(bool complete) const
+size_t Lavoratore::getID() const
 {
-    if(complete)
-        return _IDAziendale.toString().toStdString();//{fec984fc-82b4-44e1-90cd-3366f44d4ac6}
-    else
-        return _IDAziendale.toString().toStdString().substr(1,8);//fec984fc
+    return _IDAziendale;
 }
 
 bool Lavoratore::operator==(const Lavoratore &l) const
@@ -89,7 +86,9 @@ bool Lavoratore::operator!=(const Lavoratore &l) const
     return !operator==(l);
 }
 
-QUuid Lavoratore::getID() const
+size_t Lavoratore::generateID(std::string cf)
 {
-    return _IDAziendale;
+    std::hash<std::string> hash_fn;
+    size_t str_hash = hash_fn(cf);
+    return str_hash;
 }

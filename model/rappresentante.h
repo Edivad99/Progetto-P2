@@ -9,7 +9,7 @@ class Rappresentante: public Impiegato
 public:
 
     Rappresentante(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, float venditeEffettuate, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
+                OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, float pagaPerOra, float venditeEffettuate, QDate dataScadenza);
 
     virtual float Stipendio(float bonus) const;
 

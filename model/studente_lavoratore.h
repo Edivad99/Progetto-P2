@@ -4,12 +4,12 @@
 #include "studente.h"
 #include "lavoratore.h"
 
-class StudenteLavoratore : public Studente, Lavoratore
+class StudenteLavoratore : public Studente, public Lavoratore
 {
 public:
     //Lo studente lavoratore forse dovrebbe avere sempre la data di scadenza
     StudenteLavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, enum Occupazione occupazione,
-                       string reparto, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
+                       string reparto, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza);
 
     virtual ~StudenteLavoratore();
 

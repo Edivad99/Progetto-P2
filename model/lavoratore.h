@@ -4,7 +4,6 @@
 #include "util/orelavorative.h"
 #include <string>
 #include <QDate>
-#include <QUuid>
 
 using std::string;
 
@@ -15,7 +14,7 @@ class Lavoratore : virtual public Persona
 public:
     //Se la data è invalida allora significa che il lavoro è indeterminato, deve essere l'utente che lo inserisce
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, QUuid IDAziendale = QUuid::createUuid());
+               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza);
 
     virtual ~Lavoratore();
 
@@ -41,10 +40,7 @@ public:
 
     void setContrattoDeterminato(QDate dataScadenza);
 
-    QUuid getID() const;
-
-    //Se impostato su false restituisce i primi 8 caratteri, che è abbastanza per distinguere i lavoratori
-    string getStringID(bool complete = false) const;
+    size_t getID() const;
 
     //Possibilità di aggiungere un bonus da sommare al calcolo dello stipendio
     virtual float Stipendio(float bonus = 0) const = 0;
@@ -63,7 +59,10 @@ private:
     Contratto _contratto;
     QDate _dataScadenza;
 
-    const QUuid _IDAziendale;//Identificativo aziendale, usato per riconoscre il lavoratore
+    //const QUuid _IDAziendale;//Identificativo aziendale, usato per riconoscre il lavoratore
+    const size_t _IDAziendale;
+
+    size_t generateID(string cf);
 };
 
 #endif // LAVORATORE_H
