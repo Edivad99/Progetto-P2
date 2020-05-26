@@ -14,10 +14,6 @@ public:
     virtual ~StudenteLavoratore();
 
     virtual float Stipendio(float bonus = 0) const;
-
-    bool operator==(const StudenteLavoratore &sl) const;
-
-    bool operator!=(const StudenteLavoratore &sl) const;
 };
 
 #endif // STUDENTELAVORATORE_H

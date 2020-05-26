@@ -18,13 +18,3 @@ float StudenteLavoratore::Stipendio(float bonus) const
 {
     return (getOccupazione() == Superiori ? 250 : 1500);
 }
-
-bool StudenteLavoratore::operator==(const StudenteLavoratore &sl) const
-{
-    return Persona::operator==(sl);
-}
-
-bool StudenteLavoratore::operator!=(const StudenteLavoratore &sl) const
-{
-    return !operator==(sl);
-}
