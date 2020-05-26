@@ -9,7 +9,7 @@ class StudenteLavoratore : public Studente, public Lavoratore
 public:
     //Lo studente lavoratore forse dovrebbe avere sempre la data di scadenza
     StudenteLavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, enum Occupazione occupazione,
-                       string reparto, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza);
+                       string reparto, OreLavorative orePreviste, QDate dataScadenza);
 
     virtual ~StudenteLavoratore();
 
