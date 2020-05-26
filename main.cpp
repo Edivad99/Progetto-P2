@@ -13,32 +13,18 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    /*Persona p1("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"));
-    Persona p2("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"));
-
-    std::cout << ((p1 == p2) ? "Vero" : "Falso") << std::endl;
-
-    Operaio op1("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), "ele", OreLavorative(40,0), QDate(0,0,0), Livello1);
-    Operaio op2("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), "ele", OreLavorative(40,0), QDate(0,0,0), Livello1);
-    Operaio op3(op1);
-    std::cout << ((op1 == op2) ? "Vero" : "Falso") << std::endl;//Questo è false
-    std::cout << ((op1 == op3) ? "Vero" : "Falso") << std::endl;//Questo è true
-
-    StudenteLavoratore sl1 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), QDate(0,0,0));
-    StudenteLavoratore sl2 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), QDate(0,0,0));
-    std::cout << ((sl1 != sl2) ? "Vero" : "Falso") << std::endl;
-    std::cout << sl1.getID() << std::endl;
-
-    Lavoratore* p5 = &sl1;
-    std::cout <<p5->Stipendio() << std::endl;
-
-    lista<int> l;
+    /*lista<int> l;
+    std::cout << "La lista e' vuota: " << (l.isEmpty() ? "Si" : "No") << std::endl;
     for(int i=0; i < 10; i++)
-        l.insertBack(i);
+        l.insertBack(i+1);
     for(lista<int>::constiterator cit = l.begin(); cit != l.end(); ++cit)
-    {
-        std::cout<< *(cit) << std::endl;
-    }
+        std::cout<< *(cit) << " ";
+    std::cout << std::endl;//0 1 2 3 4 5 6 7 8 9
+    for(lista<int>::constiterator cit = --(l.end()); cit != --l.begin(); --cit)
+        std::cout<< *(cit) << " ";
+    std::cout << std::endl;//0 9 8 7 6 5 4 3 2 1
+
+    std::cout << "La lista e' vuota: " << (l.isEmpty() ? "Si" : "No") << std::endl;
 
 
     return 0;*/
