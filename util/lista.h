@@ -58,6 +58,14 @@ public:
 
     T back() const;
 
+    void remove(const constiterator& x);
+
+        void remove(const T& t);
+
+        bool contains(const T& t) const;
+
+        constiterator indexOf(const T& t) const;
+
 };
 
 template<class T>
@@ -216,5 +224,71 @@ bool lista<T>::constiterator::operator==(const typename lista<T>::constiterator&
 template<class T>
 bool lista<T>::constiterator::operator!=(const typename lista<T>::constiterator &x) const {
     return !(_ptr==x._ptr);
+}
+template<class T>
+bool lista<T>::contains(const T &t) const {
+    for(lista<T>::constiterator i = begin(); i != end(); i++)
+    {
+        if(*i == t)
+            return true;
+    }
+    return false;
+}
+
+template<class T>
+typename lista<T>::constiterator lista<T>::indexOf(const T &t) const {
+    for(constiterator i = begin(); i != end(); i++)
+    {
+        if(*i == t)
+            return i;
+    }
+    return nullptr;
+}
+
+template<class T>
+void lista<T>::remove(const constiterator &x) { //il remove non funziona nei cicli for perché da problemi con gli iteratori
+    //converto constiterator in int?
+    if(!this->isEmpty())
+    {
+        if(x==this->begin())
+        {
+            if(_first==_end)
+                _first = _end = nullptr;
+            else
+            {
+                nodo<T> *f=_first;
+                _first=_first->_next;
+                f->_next= nullptr;
+                delete f;
+            }
+        }
+        else if(x==this->end())
+        {
+            if(_first==_end)
+                _first = _end = nullptr;
+            else
+            {
+                nodo<T> *e=_end;
+                _end=_end->_prev;
+                _end->_next= nullptr;
+                delete e;
+            }
+        }
+        else
+        {
+            nodo<T>* p=x._ptr->_prev;
+            nodo<T>* s=x._ptr->_next;
+            p->_next=s;
+            s->_prev=p;
+            //da valutare se vanno messe o meno
+            //x._ptr->_prev=x._ptr->_next=nullptr;  //senza queste funziona fuori i for e circa anche dentro
+            //delete x._ptr;                        //con queste funziona fuori
+        }
+    }
+}
+
+template<class T>
+void lista<T>::remove(const T &t) {
+    lista<T>::remove(lista<T>::indexOf(t));
 }
 #endif //LISTA_H
