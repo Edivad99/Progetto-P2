@@ -45,10 +45,6 @@ public:
     //Possibilità di aggiungere un bonus da sommare al calcolo dello stipendio
     virtual float Stipendio(float bonus = 0) const = 0;
 
-    bool operator==(const Lavoratore &p) const;
-
-    bool operator!=(const Lavoratore &p) const;
-
 private:
     string _reparto;
     OreLavorative _orePreviste;//Le ore previste da contratto

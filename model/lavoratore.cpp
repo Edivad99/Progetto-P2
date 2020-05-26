@@ -76,16 +76,6 @@ size_t Lavoratore::getID() const
     return _IDAziendale;
 }
 
-bool Lavoratore::operator==(const Lavoratore &l) const
-{
-    return Persona::operator==(l) && _IDAziendale == l._IDAziendale;
-}
-
-bool Lavoratore::operator!=(const Lavoratore &l) const
-{
-    return !operator==(l);
-}
-
 size_t Lavoratore::generateID(std::string cf)
 {
     std::hash<std::string> hash_fn;

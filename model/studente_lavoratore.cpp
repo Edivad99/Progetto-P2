@@ -21,7 +21,7 @@ float StudenteLavoratore::Stipendio(float bonus) const
 
 bool StudenteLavoratore::operator==(const StudenteLavoratore &sl) const
 {
-    return Persona::operator==(sl) && Lavoratore::operator==(sl);
+    return Persona::operator==(sl);
 }
 
 bool StudenteLavoratore::operator!=(const StudenteLavoratore &sl) const
