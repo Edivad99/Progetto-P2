@@ -16,11 +16,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    MainWindow.cpp \
     main.cpp \
-    widget.cpp
+    model/impiegato.cpp \
+    model/lavoratore.cpp \
+    model/operaio.cpp \
+    model/persona.cpp \
+    model/rappresentante.cpp \
+    model/studente.cpp \
+    model/studente_lavoratore.cpp \
+    util/orelavorative.cpp \
+    util/telefono.cpp \
+    util/lista.cpp \
+    view/hometab.cpp \
+    view/tabellatab.cpp
 
 HEADERS += \
-    widget.h
+    MainWindow.h \
+    model/impiegato.h \
+    model/lavoratore.h \
+    model/operaio.h \
+    model/persona.h \
+    model/rappresentante.h \
+    model/studente.h \
+    model/studente_lavoratore.h \
+    util/orelavorative.h \
+    util/telefono.h \
+    util/lista.h \
+    view/hometab.h \
+    view/tabellatab.h
 
 FORMS +=
 
