@@ -41,7 +41,7 @@ HEADERS += \
     model/studente.h \
     model/studente_lavoratore.h \
     util/orelavorative.h \
-    util/telefono.h \
+    util/telefono.h \d
     util/lista.h \
     view/hometab.h \
     view/tabellatab.h
