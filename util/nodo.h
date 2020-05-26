@@ -11,7 +11,6 @@ class nodo
 private:
     T _info;
     nodo *_prev, *_next;
-public:
     nodo();
     nodo(const T& t, nodo *prev=nullptr, nodo *next=nullptr);
     ~nodo();
