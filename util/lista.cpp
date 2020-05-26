@@ -5,11 +5,11 @@ nodo<T> *lista<T>::copia(nodo<T> *f, nodo<T> *&l)
 {
     if(f==nullptr) return l=nullptr; //this._end == nullptr => lista vuota
     //la lista che sto copiando non è vuota
-    nodo<T>* prec=new nodo(f->info,nullptr,nullptr); //primo nodo
+    nodo<T>* prec=new nodo<T>(f->info,nullptr,nullptr); //primo nodo
     nodo<T>* succ=prec;
     nodo<T>* start=prec; //nodo da cui si parte
     while(f->next!=nullptr) { //se il next non è nullo significa che ci sono almeno 2 nodi
-        succ = new nodo(f->next->info,prec,nullptr);
+        succ = new nodo<T>(f->next->info,prec,nullptr);
         prec->next=succ;
         f=f->next;
         prec=prec->next;
@@ -45,7 +45,7 @@ bool lista<T>::isEmpty() const
 template<class T>
 void lista<T>::insertFront(const T &t)
 {
-    nodo<T> *first=new nodo(t,nullptr, _first);
+    nodo<T> *first=new nodo<T>(t,nullptr, _first);
     if(this->isEmpty()) //lista vuota
         _end=first;
     else //lista non vuota
@@ -58,7 +58,7 @@ void lista<T>::insertFront(const T &t)
 template<class T>
 void lista<T>::insertBack(const T &t)
 {
-    nodo<T> *last=new nodo(t,_end,nullptr);
+    nodo<T> *last=new nodo<T>(t,_end,nullptr);
     if(this->isEmpty()) //lista vuota
         _first=last;
     else
