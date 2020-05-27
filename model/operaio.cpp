@@ -1,9 +1,9 @@
 #include "operaio.h"
 
 Operaio::Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono,
-                 string reparto, OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, Livello livello):
+                 string reparto, OreLavorative orePreviste, QDate dataScadenza, Livello livello):
     Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono),
-    Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, oreFerie, orePermesso, dataScadenza),
+    Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, dataScadenza),
     _livello(livello)
 {
 

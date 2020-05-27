@@ -10,7 +10,7 @@ class Operaio : public Lavoratore
 public:
 
     Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               OreLavorative orePreviste, OreLavorative oreFerie, OreLavorative orePermesso, QDate dataScadenza, Livello livello);
+               OreLavorative orePreviste, QDate dataScadenza, Livello livello);
 
     Livello getLivello() const;
 
