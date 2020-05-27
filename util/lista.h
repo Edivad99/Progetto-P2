@@ -60,11 +60,11 @@ public:
 
     void remove(const constiterator& x);
 
-        void remove(const T& t);
+    void remove(const T& t);
 
-        bool contains(const T& t) const;
+    bool contains(const T& t) const;
 
-        constiterator indexOf(const T& t) const;
+    constiterator indexOf(const T& t) const;
 
 };
 
