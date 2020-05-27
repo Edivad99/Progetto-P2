@@ -36,12 +36,23 @@ private:
     QSpinBox *oreDiLavoro, *livello, *venditeEffettuate;
     QDoubleSpinBox *pagaPerOra;
 
+    //QWidget per mostrare/nascondere alcuni campi
+    QWidget *Qlivello, *Qpaga, *Qvendite, *Qoccupazione;
+
     void Aggiungi();
     void Modifica();
     void Rimuovi();
 
+    void VisualizzaOperaio();
+    void VisualizzaImpiegato();
+    void VisualizzaRappresentante();
+    void VisualizzaStudente();
+
     //Test
     void aggiungiTestoEsempio();
+
+private slots:
+    void tipologiaIndexChanged(int);
 
 };
 

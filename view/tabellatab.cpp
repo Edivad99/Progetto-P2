@@ -26,8 +26,6 @@ TabellaTab::TabellaTab(QWidget *parent): QWidget(parent)
     table->setSizePolicy(tablePolicy);*/
     aggiungiTestoEsempio();
 
-    //Imposto le dimensioni della parte dei controlli
-
     Aggiungi();
     Modifica();
     Rimuovi();
@@ -44,6 +42,10 @@ TabellaTab::TabellaTab(QWidget *parent): QWidget(parent)
 
     mainLayout->setMargin(0);
     setLayout(mainLayout);
+
+    //Visualizzo di default l'operaio
+    VisualizzaOperaio();
+    connect(tipologia, SIGNAL(currentIndexChanged(int)), this, SLOT(tipologiaIndexChanged(int)));
 }
 
 void TabellaTab::Aggiungi()
@@ -170,31 +172,35 @@ void TabellaTab::Aggiungi()
     layoutAggiungi->addLayout(contrattoLayout, 0, 1);
 
     //LIVELLO
-    QVBoxLayout *livelloLayout = new QVBoxLayout();
+    Qlivello = new QWidget();
+    QVBoxLayout *livelloLayout = new QVBoxLayout(Qlivello);
     livelloLayout->setSpacing(0);
     livelloLayout->addWidget(new QLabel("Livello"));
     livello->setRange(1, 5);
     livelloLayout->addWidget(livello);
-    layoutAggiungi->addLayout(livelloLayout, 1, 1);
+    layoutAggiungi->addWidget(Qlivello, 1, 1);
 
     //PAGA PER ORA
-    QVBoxLayout *pagaLayout = new QVBoxLayout();
+    Qpaga = new QWidget();
+    QVBoxLayout *pagaLayout = new QVBoxLayout(Qpaga);
     pagaLayout->setSpacing(0);
     pagaLayout->addWidget(new QLabel("Paga per ora"));
     pagaPerOra->setRange(0, 10000);
     pagaLayout->addWidget(pagaPerOra);
-    layoutAggiungi->addLayout(pagaLayout, 2, 1);
+    layoutAggiungi->addWidget(Qpaga, 2, 1);
 
     //VENDITE EFFETTUATE
-    QVBoxLayout *venditeLayout = new QVBoxLayout();
+    Qvendite = new QWidget();
+    QVBoxLayout *venditeLayout = new QVBoxLayout(Qvendite);
     venditeLayout->setSpacing(0);
     venditeLayout->addWidget(new QLabel("Vendite effettuate"));
     venditeEffettuate->setRange(0, 1000);
     venditeLayout->addWidget(venditeEffettuate);
-    layoutAggiungi->addLayout(venditeLayout, 3, 1);
+    layoutAggiungi->addWidget(Qvendite, 3, 1);
 
     //OCCUPAZIONE
-    QVBoxLayout * occupazioneLayout = new QVBoxLayout();
+    Qoccupazione = new QWidget();
+    QVBoxLayout *occupazioneLayout = new QVBoxLayout(Qoccupazione);
     occupazioneLayout->setSpacing(0);
     occupazioneLayout->addWidget(new QLabel("Occupazione"));
     QStringList occupazioneItems;
@@ -202,7 +208,7 @@ void TabellaTab::Aggiungi()
     occupazioneItems.push_back("Università");
     occupazione->addItems(occupazioneItems);
     occupazioneLayout->addWidget(occupazione);
-    layoutAggiungi->addLayout(occupazioneLayout, 4, 1);
+    layoutAggiungi->addWidget(Qoccupazione, 4, 1);
 
 
     aggiungi->setLayout(layoutAggiungi);
@@ -228,7 +234,53 @@ void TabellaTab::Rimuovi()
     rimuovi->setLayout(layoutRimuovi);
 }
 
+void TabellaTab::VisualizzaOperaio()
+{
+    //Livello
+    Qlivello->setVisible(true);
+    //Paga per ora
+    Qpaga->setVisible(false);
+    //Vendite effettuate
+    Qvendite->setVisible(false);
+    //Occupazione
+    Qoccupazione->setVisible(false);
+}
 
+void TabellaTab::VisualizzaImpiegato()
+{
+    //Livello
+    Qlivello->setVisible(false);
+    //Paga per ora
+    Qpaga->setVisible(true);
+    //Vendite effettuate
+    Qvendite->setVisible(false);
+    //Occupazione
+    Qoccupazione->setVisible(false);
+}
+
+void TabellaTab::VisualizzaRappresentante()
+{
+    //Livello
+    Qlivello->setVisible(false);
+    //Paga per ora
+    Qpaga->setVisible(true);
+    //Vendite effettuate
+    Qvendite->setVisible(true);
+    //Occupazione
+    Qoccupazione->setVisible(false);
+}
+
+void TabellaTab::VisualizzaStudente()
+{
+    //Livello
+    Qlivello->setVisible(false);
+    //Paga per ora
+    Qpaga->setVisible(false);
+    //Vendite effettuate
+    Qvendite->setVisible(false);
+    //Occupazione
+    Qoccupazione->setVisible(true);
+}
 
 void TabellaTab::aggiungiTestoEsempio()
 {
@@ -247,4 +299,16 @@ void TabellaTab::aggiungiTestoEsempio()
             pCell->setText(QString::fromStdString(text.str()));
         }
     }
+}
+
+void TabellaTab::tipologiaIndexChanged(int index)
+{
+    if(index==0)
+        VisualizzaOperaio();
+    else if (index == 1)
+        VisualizzaImpiegato();
+    else if (index == 2)
+        VisualizzaRappresentante();
+    else if (index == 3)
+        VisualizzaStudente();
 }
