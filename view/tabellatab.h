@@ -1,4 +1,4 @@
-#ifndef TABELLATAB_H
+﻿#ifndef TABELLATAB_H
 #define TABELLATAB_H
 
 #include <QVBoxLayout>
@@ -6,7 +6,13 @@
 #include <QWidget>
 #include <QLabel>
 #include <QTableWidget>
+#include <QGroupBox>
+#include <QComboBox>
+#include <QLineEdit>
+#include <QDateEdit>
 #include <sstream>
+#include <QRadioButton>
+#include <QSpinBox>
 
 class TabellaTab : public QWidget
 {
@@ -15,11 +21,28 @@ public:
     TabellaTab(QWidget *parent = 0);
 private:
     QHBoxLayout *mainLayout;
-    QVBoxLayout *actionTable;
     QTableWidget* table;
 
+    QVBoxLayout *layoutOpzioni;
+    QGroupBox *aggiungi, *modifica, *rimuovi;
 
+    QGridLayout *layoutAggiungi, *layoutModifica, *layoutRimuovi;
+
+    //Input
+    QComboBox *tipologia, *genere, *occupazione;
+    QLineEdit *nome, *cognome, *cf, *reparto, *numeroTelefono;
+    QDateEdit *dataNascita, *scadenzaContratto;
+    QRadioButton *determinato, *indeterminato;
+    QSpinBox *oreDiLavoro, *livello, *venditeEffettuate;
+    QDoubleSpinBox *pagaPerOra;
+
+    void Aggiungi();
+    void Modifica();
+    void Rimuovi();
+
+    //Test
     void aggiungiTestoEsempio();
+
 };
 
 #endif // TABELLATAB_H
