@@ -33,14 +33,14 @@ TabellaTab::TabellaTab(QWidget *parent): QWidget(parent)
     Rimuovi();
 
     //Aggiunta layout
-    mainLayout->addWidget(table);
+    mainLayout->addWidget(table, 66);
 
     layoutOpzioni->addWidget(aggiungi);
     layoutOpzioni->addWidget(modifica);
     layoutOpzioni->addWidget(rimuovi);
 
 
-    mainLayout->addLayout(layoutOpzioni);
+    mainLayout->addLayout(layoutOpzioni, 33);
 
     mainLayout->setMargin(0);
     setLayout(mainLayout);
@@ -67,6 +67,27 @@ void TabellaTab::Aggiungi()
     venditeEffettuate = new QSpinBox();
     determinato = new QRadioButton();
     indeterminato = new QRadioButton();
+
+    //HorizontalPolicy Fixed
+    //Bisogna decidere se tenere questa parte
+    /*QSizePolicy general(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    tipologia->setSizePolicy(general);
+    genere->setSizePolicy(general);
+    occupazione->setSizePolicy(general);
+    nome->setSizePolicy(general);
+    cognome->setSizePolicy(general);
+    reparto->setSizePolicy(general);
+    numeroTelefono->setSizePolicy(general);
+    cf->setSizePolicy(general);
+    dataNascita->setSizePolicy(general);
+    scadenzaContratto->setSizePolicy(general);
+    oreDiLavoro->setSizePolicy(general);
+    livello->setSizePolicy(general);
+    pagaPerOra->setSizePolicy(general);
+    venditeEffettuate->setSizePolicy(general);
+    determinato->setSizePolicy(general);
+    indeterminato->setSizePolicy(general);*/
+
 
 
     //TIPOLOGIA
