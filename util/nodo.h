@@ -4,23 +4,33 @@
 template<class T>
 class lista;
 
-/*template<class T>
-class constiterator;*/
-
 template<class T>
 class nodo
 {
     friend class lista<T>;
-    //friend class constiterator<T>;
 private:
     T _info;
     nodo *_prev, *_next;
-public:
-    //manca il costruttore di default di T, quindi che succede al nodo se invoco questo?
-    //nodo();
+    nodo();
     nodo(const T& t, nodo *prev=nullptr, nodo *next=nullptr);
     ~nodo();
     T getInfo() const;
 };
+template<class T>
+nodo<T>::nodo():_next(nullptr), _prev(nullptr) {}
 
-#endif // NODO_H
+template<class T>
+nodo<T>::nodo(const T &t, nodo *prev, nodo *next):_info(t), _prev(prev), _next(next) {}
+
+template<class T>
+nodo<T>::~nodo()
+{
+    delete _next;
+}
+
+template<class T>
+T nodo<T>::getInfo() const
+{
+    return _info;
+}
+#endif //NODO_H
