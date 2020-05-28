@@ -10,6 +10,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QDateEdit>
+#include <QDialog>
 #include <sstream>
 #include <QRadioButton>
 #include <QSpinBox>
@@ -59,6 +60,9 @@ private:
     void VisualizzaImpiegato();
     void VisualizzaRappresentante();
     void VisualizzaStudente();
+
+    //Controllo sull'input
+    bool convalidaInput(string, string, string, string, string, string);
 
     //Test
     void aggiungiTestoEsempio();

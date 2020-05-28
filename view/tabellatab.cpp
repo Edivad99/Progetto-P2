@@ -268,6 +268,19 @@ void TabellaTab::VisualizzaStudente()
     Qoccupazione->setVisible(true);
 }
 
+bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string reparto)
+{
+    //TODO:Forse da aggiungere controlli sulle date
+    bool accettabile = true;
+    if(tipologia.empty()) accettabile = false;
+    else if(accettabile && nome.empty()) accettabile = false;
+    else if(accettabile && cognome.empty()) accettabile = false;
+    else if(accettabile && cf.empty() && cf.length() != 16) accettabile = false;
+    else if(accettabile && telefono.empty()) accettabile = false;
+    else if(accettabile && reparto.empty()) accettabile = false;
+    return  accettabile;
+}
+
 void TabellaTab::aggiungiTestoEsempio()
 {
     for(int i=0; i<table->rowCount(); i++)
@@ -325,21 +338,33 @@ void TabellaTab::btnAggiungiClicked()
     //Studente
     Occupazione OccupazioneEnum = (occupazione->currentText().toStdString() == "Superiori" ? Occupazione::Superiori : Occupazione::Universita);
 
-    Lavoratore *nuovo;
-    if(Tipologia == "Operaio")
+    if(!convalidaInput(Tipologia, Nome, Cognome, CF, NumeroTelefono, Reparto))
     {
-        nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
+        //Mostra un messaggio di errore
+        QDialog* dialog = new QDialog(this);
+        QVBoxLayout* layout = new QVBoxLayout(dialog);
+        layout->addWidget(new QLabel("Controlla i dati!",dialog));
+        dialog->show();
+
     }
-    else if (Tipologia == "Impiegato")
+    else
     {
-        nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra);
-    }
-    else if (Tipologia == "Rappresentante")
-    {
-        nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra, VenditeEffettuate);
-    }
-    else if (Tipologia == "Studente")
-    {
-        nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
+        Lavoratore *nuovo;
+        if(Tipologia == "Operaio")
+        {
+            nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
+        }
+        else if (Tipologia == "Impiegato")
+        {
+            nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra);
+        }
+        else if (Tipologia == "Rappresentante")
+        {
+            nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra, VenditeEffettuate);
+        }
+        else if (Tipologia == "Studente")
+        {
+            nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
+        }
     }
 }
