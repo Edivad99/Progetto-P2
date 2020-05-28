@@ -4,9 +4,11 @@
 #include <QDate>
 #include <iostream>
 #include <model/operaio.h>
+#include <model/lavoratore.h>
+#include <model/impiegato.h>
+#include <model/rappresentante.h>
 #include <model/persona.h>
 #include <model/studente_lavoratore.h>
-
 int main(int argc, char *argv[])
 {
 
@@ -26,10 +28,10 @@ int main(int argc, char *argv[])
     StudenteLavoratore sl1 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0));
     StudenteLavoratore sl2 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0));
     std::cout << ((sl1 != sl2) ? "Vero" : "Falso") << std::endl;
-    std::cout << sl1.getID() << std::endl;
+    std::cout << sl1.getID() << std::endl;*/
 
     return 0;
-    */
+
 
     MainWindow w;
     w.show();
