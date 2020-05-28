@@ -70,28 +70,6 @@ void TabellaTab::Aggiungi()
     determinato = new QRadioButton();
     indeterminato = new QRadioButton();
 
-    //HorizontalPolicy Fixed
-    //Bisogna decidere se tenere questa parte
-    /*QSizePolicy general(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    tipologia->setSizePolicy(general);
-    genere->setSizePolicy(general);
-    occupazione->setSizePolicy(general);
-    nome->setSizePolicy(general);
-    cognome->setSizePolicy(general);
-    reparto->setSizePolicy(general);
-    numeroTelefono->setSizePolicy(general);
-    cf->setSizePolicy(general);
-    dataNascita->setSizePolicy(general);
-    scadenzaContratto->setSizePolicy(general);
-    oreDiLavoro->setSizePolicy(general);
-    livello->setSizePolicy(general);
-    pagaPerOra->setSizePolicy(general);
-    venditeEffettuate->setSizePolicy(general);
-    determinato->setSizePolicy(general);
-    indeterminato->setSizePolicy(general);*/
-
-
-
     //TIPOLOGIA
     //Questa parte bisogna spostarla sul modello
     QVBoxLayout *tipologiaLayout = new QVBoxLayout();
