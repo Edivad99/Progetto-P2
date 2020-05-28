@@ -27,6 +27,26 @@ int main(int argc, char *argv[])
     std::cout << "La lista e' vuota: " << (l.isEmpty() ? "Si" : "No") << std::endl;
 
 
+    lista<int> l;
+    for (int i = 0; i < 10; i++)
+        l.insertBack(i + 1);
+    for (lista<int>::constiterator cit = l.begin(); cit != l.end(); ++cit)
+        cout << *(cit) << " ";
+    cout << endl;//1 2 3 4 5 6 7 8 9 10
+
+    for (lista<int>::constiterator cit = l.begin(); cit != l.end();)
+    {
+        if (*cit == 1)
+        {
+            cit = l.erase(cit);
+        }
+        else
+        {
+            cout << *(cit) << " ";
+            ++cit;
+        }
+    }
+
     return 0;*/
 
 

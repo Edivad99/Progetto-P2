@@ -58,7 +58,7 @@ public:
 
     T back() const;
 
-    void remove(const constiterator& x);
+    constiterator erase(constiterator x);
 
     void remove(const T& t);
 
@@ -246,49 +246,66 @@ typename lista<T>::constiterator lista<T>::indexOf(const T &t) const {
 }
 
 template<class T>
-void lista<T>::remove(const constiterator &x) { //il remove non funziona nei cicli for perché da problemi con gli iteratori
-    //converto constiterator in int?
-    if(!this->isEmpty())
+typename lista<T>::constiterator lista<T>::erase(constiterator x) {
+
+    if (_first == _end && x == begin())//ho solo un elemento
     {
-        if(x==this->begin())
+        delete _first;
+        _first = _end = nullptr;
+        return end();
+    }
+    else
+    {
+        if (x == begin())
         {
-            if(_first==_end)
-                _first = _end = nullptr;
-            else
-            {
-                nodo<T> *f=_first;
-                _first=_first->_next;
-                f->_next= nullptr;
-                delete f;
-            }
+            nodo<T>* f = _first;
+
+            _first = _first->_next;
+            _first->_prev = nullptr;
+            ++x;
+
+            f->_next = nullptr;
+            delete f;
+            return x;
         }
-        else if(x==this->end())
+        else if (x == --end())
         {
-            if(_first==_end)
-                _first = _end = nullptr;
-            else
-            {
-                nodo<T> *e=_end;
-                _end=_end->_prev;
-                _end->_next= nullptr;
-                delete e;
-            }
+            nodo<T>* e = _end;
+            _end = _end->_prev;
+            _end->_next = nullptr;
+            delete e;
+            return end();
         }
         else
         {
-            nodo<T>* p=x._ptr->_prev;
-            nodo<T>* s=x._ptr->_next;
-            p->_next=s;
-            s->_prev=p;
-            //da valutare se vanno messe o meno
-            //x._ptr->_prev=x._ptr->_next=nullptr;  //senza queste funziona fuori i for e circa anche dentro
-            //delete x._ptr;                        //con queste funziona fuori
+            nodo<T>* p = x._ptr->_prev;
+            nodo<T>* s = x._ptr->_next;
+            p->_next = s;
+            s->_prev = p;
+
+
+            x._ptr->_prev = nullptr;
+            x._ptr->_next = nullptr;
+
+            delete x._ptr;
+            return constiterator(s, false);
         }
     }
+    return x;
 }
 
 template<class T>
-void lista<T>::remove(const T &t) {
-    lista<T>::remove(lista<T>::indexOf(t));
+void lista<T>::remove(const T& t) {
+    for (lista<T>::constiterator cit = begin(); cit !=end();)
+    {
+        if (*cit == t)
+        {
+            cit = erase(cit);
+        }
+        else
+        {
+            ++cit;
+        }
+    }
 }
 #endif //LISTA_H
