@@ -10,7 +10,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QDateEdit>
-#include <QDialog>
+#include <QMessageBox>
 #include <sstream>
 #include <QRadioButton>
 #include <QSpinBox>

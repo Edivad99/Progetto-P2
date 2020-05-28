@@ -340,16 +340,12 @@ void TabellaTab::btnAggiungiClicked()
 
     if(!convalidaInput(Tipologia, Nome, Cognome, CF, NumeroTelefono, Reparto))
     {
-        //Mostra un messaggio di errore
-        QDialog* dialog = new QDialog(this);
-        QVBoxLayout* layout = new QVBoxLayout(dialog);
-        layout->addWidget(new QLabel("Controlla i dati!", dialog));
-        dialog->show();
-
+        QMessageBox *message = new QMessageBox(QMessageBox::Information, "Errore dati inseriti", "I dati inseriti non sono corretti o sono mancanti!", QMessageBox::Ok);
+        message->show();
     }
     else
     {
-        Lavoratore *nuovo;
+        Lavoratore *nuovo = nullptr;
         if(Tipologia == "Operaio")
         {
             nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
@@ -366,5 +362,7 @@ void TabellaTab::btnAggiungiClicked()
         {
             nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
         }
+        if(nuovo != nullptr)
+            _model->aggiungiLavoratore(nuovo);
     }
 }
