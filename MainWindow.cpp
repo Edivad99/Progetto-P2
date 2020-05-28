@@ -1,14 +1,18 @@
 #include "MainWindow.h"
 
+#include <model/tabellamodel.h>
+
 MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 {
     mainLayout = new QVBoxLayout(this);
     tabWidget = new QTabWidget();
     //La barra dei menu va per prima
     addMenuButtons();
-    tabWidget->setMovable(true);
+
+    TabellaModel *tabellaModel = new TabellaModel();
+
     tabWidget->addTab(new HomeTab(), "Home");
-    tabWidget->addTab(new TabellaTab(), "Tabella");
+    tabWidget->addTab(new TabellaTab(tabellaModel), "Tabella");
 
     mainLayout->addWidget(tabWidget);
     setApplicationStyle();

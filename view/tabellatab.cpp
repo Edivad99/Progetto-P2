@@ -1,6 +1,6 @@
 #include "tabellatab.h"
 
-TabellaTab::TabellaTab(QWidget *parent): QWidget(parent)
+TabellaTab::TabellaTab(TabellaModel *model, QWidget *parent): QWidget(parent), _model(model)
 {
     mainLayout = new QHBoxLayout(this);
     layoutOpzioni = new QVBoxLayout();

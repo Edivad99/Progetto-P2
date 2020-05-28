@@ -15,6 +15,7 @@
 #include <QRadioButton>
 #include <QSpinBox>
 #include <QPushButton>
+#include <model/tabellamodel.h>
 #include "data/lavoratore.h"
 #include "data/operaio.h"
 #include "data/impiegato.h"
@@ -28,8 +29,12 @@ class TabellaTab : public QWidget
 {
     Q_OBJECT
 public:
-    TabellaTab(QWidget *parent = 0);
+    TabellaTab(TabellaModel *model, QWidget *parent = 0);
 private:
+    //Modello
+    TabellaModel *_model;
+
+    //GUI
     QHBoxLayout *mainLayout;
     QTableWidget* table;
 
