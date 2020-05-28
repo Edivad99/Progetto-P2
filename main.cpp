@@ -3,9 +3,9 @@
 #include <QApplication>
 #include <QDate>
 #include <iostream>
-#include <model/operaio.h>
-#include <model/persona.h>
-#include <model/studente_lavoratore.h>
+#include <data/operaio.h>
+#include <data/persona.h>
+#include <data/studente_lavoratore.h>
 #include <util/lista.h>
 
 int main(int argc, char *argv[])

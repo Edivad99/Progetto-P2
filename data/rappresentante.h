@@ -1,7 +1,7 @@
 #ifndef RAPPRESENTANTE_H
 #define RAPPRESENTANTE_H
 
-#include "model/impiegato.h"
+#include "impiegato.h"
 
 class Rappresentante: public Impiegato
 {

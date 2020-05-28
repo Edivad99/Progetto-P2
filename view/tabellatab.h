@@ -15,11 +15,11 @@
 #include <QRadioButton>
 #include <QSpinBox>
 #include <QPushButton>
-#include "model/lavoratore.h"
-#include "model/operaio.h"
-#include "model/impiegato.h"
-#include "model/rappresentante.h"
-#include "model/studente_lavoratore.h"
+#include "data/lavoratore.h"
+#include "data/operaio.h"
+#include "data/impiegato.h"
+#include "data/rappresentante.h"
+#include "data/studente_lavoratore.h"
 
 
 using std::string;

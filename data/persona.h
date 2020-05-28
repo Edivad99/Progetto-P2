@@ -1,5 +1,6 @@
 #ifndef PERSONA_H
 #define PERSONA_H
+
 #include <string>
 #include <QDate>
 #include "util/telefono.h"

@@ -278,7 +278,7 @@ bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, s
     else if(accettabile && cf.empty() && cf.length() != 16) accettabile = false;
     else if(accettabile && telefono.empty()) accettabile = false;
     else if(accettabile && reparto.empty()) accettabile = false;
-    return  accettabile;
+    return accettabile;
 }
 
 void TabellaTab::aggiungiTestoEsempio()
@@ -343,7 +343,7 @@ void TabellaTab::btnAggiungiClicked()
         //Mostra un messaggio di errore
         QDialog* dialog = new QDialog(this);
         QVBoxLayout* layout = new QVBoxLayout(dialog);
-        layout->addWidget(new QLabel("Controlla i dati!",dialog));
+        layout->addWidget(new QLabel("Controlla i dati!", dialog));
         dialog->show();
 
     }
