@@ -1,7 +1,7 @@
 #include "impiegato.h"
 
 Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                     OreLavorative orePreviste, float pagaPerOra, QDate dataScadenza):
+                     OreLavorative orePreviste, QDate dataScadenza, float pagaPerOra):
     Persona(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono),
     Lavoratore(nome, cognome, dataNascita, codiceFiscale, genere, numeroTelefono, reparto, orePreviste, dataScadenza),
     _pagaPerOra(pagaPerOra)

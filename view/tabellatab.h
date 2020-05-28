@@ -13,6 +13,15 @@
 #include <sstream>
 #include <QRadioButton>
 #include <QSpinBox>
+#include <QPushButton>
+#include "model/lavoratore.h"
+#include "model/operaio.h"
+#include "model/impiegato.h"
+#include "model/rappresentante.h"
+#include "model/studente_lavoratore.h"
+
+
+using std::string;
 
 class TabellaTab : public QWidget
 {
@@ -36,6 +45,9 @@ private:
     QSpinBox *oreDiLavoro, *livello, *venditeEffettuate;
     QDoubleSpinBox *pagaPerOra;
 
+    //Azioni
+    QPushButton *btnAggiungi, *btnModifica, *btnRimuovi;
+
     //QWidget per mostrare/nascondere alcuni campi
     QWidget *Qlivello, *Qpaga, *Qvendite, *Qoccupazione;
 
@@ -53,6 +65,7 @@ private:
 
 private slots:
     void tipologiaIndexChanged(int);
+    void btnAggiungiClicked();
 
 };
 

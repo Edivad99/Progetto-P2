@@ -9,19 +9,19 @@ class Rappresentante: public Impiegato
 public:
 
     Rappresentante(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-                OreLavorative orePreviste, float pagaPerOra, float venditeEffettuate, QDate dataScadenza);
+                OreLavorative orePreviste, QDate dataScadenza, float pagaPerOra, int venditeEffettuate);
 
     virtual float Stipendio(float bonus) const;
 
-    float venditeEffettuate() const;
+    int venditeEffettuate() const;
 
-    void setVenditeEffettuate(float venditeEffettuate);
+    void setVenditeEffettuate(int venditeEffettuate);
 
     static const float guadagnoPerMerce;
 
 private:
 
-    float _venditeEffettuate;
+    int _venditeEffettuate;
 };
 
 #endif // RAPPRESENTANTE_H

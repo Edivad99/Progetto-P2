@@ -46,6 +46,7 @@ TabellaTab::TabellaTab(QWidget *parent): QWidget(parent)
     //Visualizzo di default l'operaio
     VisualizzaOperaio();
     connect(tipologia, SIGNAL(currentIndexChanged(int)), this, SLOT(tipologiaIndexChanged(int)));
+    connect(btnAggiungi, SIGNAL(clicked()), this, SLOT(btnAggiungiClicked()));
 }
 
 void TabellaTab::Aggiungi()
@@ -70,27 +71,8 @@ void TabellaTab::Aggiungi()
     determinato = new QRadioButton();
     indeterminato = new QRadioButton();
 
-    //HorizontalPolicy Fixed
-    //Bisogna decidere se tenere questa parte
-    /*QSizePolicy general(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    tipologia->setSizePolicy(general);
-    genere->setSizePolicy(general);
-    occupazione->setSizePolicy(general);
-    nome->setSizePolicy(general);
-    cognome->setSizePolicy(general);
-    reparto->setSizePolicy(general);
-    numeroTelefono->setSizePolicy(general);
-    cf->setSizePolicy(general);
-    dataNascita->setSizePolicy(general);
-    scadenzaContratto->setSizePolicy(general);
-    oreDiLavoro->setSizePolicy(general);
-    livello->setSizePolicy(general);
-    pagaPerOra->setSizePolicy(general);
-    venditeEffettuate->setSizePolicy(general);
-    determinato->setSizePolicy(general);
-    indeterminato->setSizePolicy(general);*/
-
-
+    //Azioni
+    btnAggiungi = new QPushButton();
 
     //TIPOLOGIA
     //Questa parte bisogna spostarla sul modello
@@ -210,6 +192,10 @@ void TabellaTab::Aggiungi()
     occupazioneLayout->addWidget(occupazione);
     layoutAggiungi->addWidget(Qoccupazione, 4, 1);
 
+    //BOTTONE AGGIUNGI
+    btnAggiungi->setText("Aggiungi");
+    layoutAggiungi->addWidget(btnAggiungi, 5, 1);
+
 
     aggiungi->setLayout(layoutAggiungi);
 }
@@ -311,4 +297,49 @@ void TabellaTab::tipologiaIndexChanged(int index)
         VisualizzaRappresentante();
     else if (index == 3)
         VisualizzaStudente();
+}
+
+void TabellaTab::btnAggiungiClicked()
+{
+    //Generali
+    string Tipologia = tipologia->currentText().toStdString();
+    string Nome = nome->text().toStdString();
+    string Cognome = cognome->text().toStdString();
+    QDate DataNascita = dataNascita->date();
+    Genere GenereEnum = (genere->currentText().toStdString() == "M" ? Genere::M : Genere::F);
+    string CF = cf->text().toStdString();
+    string NumeroTelefono = numeroTelefono->text().trimmed().toStdString();
+    string Reparto = reparto->text().toStdString();
+    int OreDiLavoro = oreDiLavoro->value();
+    bool Determinato = determinato->isChecked();
+    QDate ScadenzaContratto = scadenzaContratto->date();
+    if(!Determinato)
+        ScadenzaContratto = QDate(0,0,0);
+
+    //Operaio
+    int Livello = livello->value();
+    //Impiegato
+    float PagaPerOra = pagaPerOra->value();
+    //+Rappresentante
+    int VenditeEffettuate = venditeEffettuate->value();
+    //Studente
+    Occupazione OccupazioneEnum = (occupazione->currentText().toStdString() == "Superiori" ? Occupazione::Superiori : Occupazione::Universita);
+
+    Lavoratore *nuovo;
+    if(Tipologia == "Operaio")
+    {
+        nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
+    }
+    else if (Tipologia == "Impiegato")
+    {
+        nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra);
+    }
+    else if (Tipologia == "Rappresentante")
+    {
+        nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra, VenditeEffettuate);
+    }
+    else if (Tipologia == "Studente")
+    {
+        nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
+    }
 }

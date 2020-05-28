@@ -8,7 +8,7 @@ class Impiegato : public Lavoratore
 public:
 
     Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
-               OreLavorative orePreviste, float pagaPerOra, QDate dataScadenza);
+               OreLavorative orePreviste, QDate dataScadenza, float pagaPerOra);
 
     virtual float Stipendio(float bonus) const;
 

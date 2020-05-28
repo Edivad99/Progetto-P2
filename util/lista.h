@@ -8,6 +8,7 @@ class lista
 private:
     nodo<T> *_first, *_end;//_end punta all'ultimo nodo, non alla "cella" successiva
     static nodo<T> *copia(nodo<T>* f, nodo<T>*& l);
+    unsigned int _size;
 
 public:
     //costruttore lista
@@ -18,6 +19,8 @@ public:
     ~lista();
     //operatore di assegnazione
     lista& operator=(const lista& d);
+    //metodo della size
+    unsigned int getSize() const;
     //lista vuota
     bool isEmpty() const;
     //inserimento in testa
@@ -54,11 +57,15 @@ public:
 
     constiterator end() const;
 
-    T front() const;
+    T& front();
 
-    T back() const;
+    const T& front() const;
 
-    void remove(const constiterator& x);
+    T& back();
+
+    const T& back() const;
+
+    constiterator erase(constiterator x);
 
     void remove(const T& t);
 
@@ -87,10 +94,10 @@ nodo<T> *lista<T>::copia(nodo<T> *f, nodo<T> *&l)
 }
 
 template<class T>
-lista<T>::lista():_first(nullptr), _end(nullptr) {}
+lista<T>::lista():_first(nullptr), _end(nullptr), _size(0) {}
 
 template<class T>
-lista<T>::lista(const lista &l):_first(copia(l._first,_end)) {}
+lista<T>::lista(const lista &l):_first(copia(l._first,_end)), _size(l._size) {}
 
 template<class T>
 lista<T>::~lista() { delete _first; }
@@ -100,8 +107,14 @@ lista<T>& lista<T>::operator=(const lista &d) {
     if(this != &d) {
         delete _first;
         _first=copia(d._first,_end);
+        _size=d._size;
     }
     return *this;
+}
+
+template<class T>
+unsigned int lista<T>::getSize() const {
+    return _size;
 }
 
 template<class T>
@@ -122,6 +135,7 @@ void lista<T>::insertFront(const T &t)
         _first->_prev=first;
         _first=first;
     }
+    _size++;
 }
 
 template<class T>
@@ -130,12 +144,12 @@ void lista<T>::insertBack(const T &t)
     nodo<T> *last=new nodo<T>(t);
     if(this->isEmpty()) //lista vuota
         _first=_end=last;
-    else
-    {
+    else {
         last->_prev=_end;
         _end->_next=last;
         _end=last;
     }
+    _size++;
 }
 
 template<class T>
@@ -150,13 +164,23 @@ typename lista<T>::constiterator lista<T>::end() const {
 }
 
 template<class T>
-T lista<T>::front() const {
-    return _first->getInfo();
+T& lista<T>::front() {
+    return _first->_info;
 }
 
 template<class T>
-T lista<T>::back() const {
-    return _end->getInfo();
+const T& lista<T>::front() const {
+    return _first->_info;
+}
+
+template<class T>
+const T& lista<T>::back() const {
+    return _end->_info;
+}
+
+template<class T>
+T& lista<T>::back() {
+    return _end->_info;
 }
 
 template<class T>
@@ -200,7 +224,8 @@ typename lista<T>::constiterator& lista<T>::constiterator::operator--() {
     if(_ptr!=nullptr)
     {
         if(_pastTheEnd) {--_ptr; _pastTheEnd=false;}
-        else _ptr=_ptr->_prev;
+        else
+            _ptr=_ptr->_prev;
     }
     return *this;
 }
@@ -246,49 +271,58 @@ typename lista<T>::constiterator lista<T>::indexOf(const T &t) const {
 }
 
 template<class T>
-void lista<T>::remove(const constiterator &x) { //il remove non funziona nei cicli for perché da problemi con gli iteratori
-    //converto constiterator in int?
-    if(!this->isEmpty())
+typename lista<T>::constiterator lista<T>::erase(constiterator x) {
+
+    if (_first == _end && x == begin())//ho solo un elemento
     {
-        if(x==this->begin())
-        {
-            if(_first==_end)
-                _first = _end = nullptr;
-            else
-            {
-                nodo<T> *f=_first;
-                _first=_first->_next;
-                f->_next= nullptr;
-                delete f;
-            }
-        }
-        else if(x==this->end())
-        {
-            if(_first==_end)
-                _first = _end = nullptr;
-            else
-            {
-                nodo<T> *e=_end;
-                _end=_end->_prev;
-                _end->_next= nullptr;
-                delete e;
-            }
-        }
-        else
-        {
-            nodo<T>* p=x._ptr->_prev;
-            nodo<T>* s=x._ptr->_next;
-            p->_next=s;
-            s->_prev=p;
-            //da valutare se vanno messe o meno
-            //x._ptr->_prev=x._ptr->_next=nullptr;  //senza queste funziona fuori i for e circa anche dentro
-            //delete x._ptr;                        //con queste funziona fuori
+        delete _first;
+        _first = _end = nullptr;
+        _size--;
+        return end();
+    } else {
+        if (x == begin()) {
+            nodo<T>* f = _first;
+
+            _first = _first->_next;
+            _first->_prev = nullptr;
+            ++x;
+
+            f->_next = nullptr;
+            delete f;
+            _size--;
+            return x;
+        } else if (x == --end()) {
+            nodo<T>* e = _end;
+            _end = _end->_prev;
+            _end->_next = nullptr;
+            delete e;
+            _size--;
+            return end();
+        } else {
+            nodo<T>* p = x._ptr->_prev;
+            nodo<T>* s = x._ptr->_next;
+            p->_next = s;
+            s->_prev = p;
+
+            x._ptr->_prev = nullptr;
+            x._ptr->_next = nullptr;
+
+            delete x._ptr;
+            _size--;
+            return constiterator(s, false);
         }
     }
 }
 
 template<class T>
-void lista<T>::remove(const T &t) {
-    lista<T>::remove(lista<T>::indexOf(t));
+void lista<T>::remove(const T& t) {
+    for (lista<T>::constiterator cit = begin(); cit !=end();)
+    {
+        if (*cit == t) {
+            cit = erase(cit);
+        } else {
+            ++cit;
+        }
+    }
 }
 #endif //LISTA_H
