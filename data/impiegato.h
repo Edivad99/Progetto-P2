@@ -14,6 +14,8 @@ public:
 
     float getPagaPerOra() const;
 
+    virtual QDomElement XmlSerialize(QDomDocument doc);
+
     void setPagaPerOra(float pagaPerOra);
 
 private:

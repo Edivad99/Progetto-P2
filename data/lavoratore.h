@@ -38,6 +38,8 @@ public:
     //Possibilità di aggiungere un bonus da sommare al calcolo dello stipendio
     virtual float Stipendio(float bonus = 0) const = 0;
 
+    virtual QDomElement XmlSerialize(QDomDocument doc);
+
 private:
     string _reparto;
     OreLavorative _orePreviste;//Le ore previste da contratto

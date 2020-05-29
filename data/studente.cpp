@@ -19,21 +19,6 @@ QDomElement Studente::XmlSerialize(QDomDocument doc)
     return studente;
 }
 
-/*QDomDocument Studente::XmlSerialize(QDomDocument doc)
-{
-    QDomElement root = doc.createElement("Studente");
-    doc.appendChild(root);
-    QDomDocument a = Persona::XmlSerialize(doc);
-    root.appendChild();
-
-    /*QDomElement occup = doc.createElement("Occupazione");
-    QString g=(_occupazione == 0) ? "Superiori" : "Universita'";
-    root.appendChild(occup);
-    occup.appendChild(doc.createTextNode(g));
-
-    return doc;
-}*/
-
 Occupazione Studente::getOccupazione() const
 {
     return _occupazione;

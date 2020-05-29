@@ -25,4 +25,14 @@ void Rappresentante::setVenditeEffettuate(int venditeEffettuate)
     _venditeEffettuate = venditeEffettuate;
 }
 
+QDomElement Rappresentante::XmlSerialize(QDomDocument doc)
+{
+    QDomElement rappre = doc.createElement("Impiegato");;
+    rappre.appendChild(Impiegato::XmlSerialize(doc));
+    std::stringstream text;
+    text << _venditeEffettuate;
+    rappre.setAttribute("Vendite", "€"+QString::fromStdString(text.str()));
+    return rappre;
+}
+
 const float Rappresentante::guadagnoPerMerce = 25;

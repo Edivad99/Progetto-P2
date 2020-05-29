@@ -18,3 +18,11 @@ float StudenteLavoratore::Stipendio(float bonus) const
 {
     return (getOccupazione() == Superiori ? 250 : 1500);
 }
+
+QDomElement StudenteLavoratore::XmlSerialize(QDomDocument doc)
+{
+    QDomElement studlav = doc.createElement("Lavoratore");
+    studlav.appendChild(Studente::XmlSerialize(doc));
+    studlav.appendChild(Lavoratore::XmlSerialize(doc));
+    return studlav;
+}

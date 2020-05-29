@@ -149,11 +149,21 @@ int main(int argc, char *argv[])
     }
     std::cout << dipendenti.front()->getNome() <<" "<< dipendenti.front()->getDataNascita().toString("dd/MM/yyyy").toStdString()<< std::endl;*/
 
-    Studente p("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),Occupazione::Universita);
+    Persona p("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"));
+    Studente s("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),Occupazione::Universita);
+    Impiegato im("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),"Montaggio",OreLavorative(120),QDate(2020,11,21),10.50);
+    Operaio op("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),"Montaggio",OreLavorative(120),QDate(2020,11,21),Livello::Livello5);
+    Rappresentante ra("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),"Montaggio",OreLavorative(120),QDate(2020,11,21),8.00,15);
+    StudenteLavoratore sl("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"), Occupazione::Universita,"Montaggio",50,QDate(2020,12,25));
 
     QDomDocument doc("Dipendenti");
     QDomElement root = doc.createElement("Dipendenti");;
     root.appendChild(p.XmlSerialize(doc));
+    root.appendChild(s.XmlSerialize(doc));
+    root.appendChild(im.XmlSerialize(doc));
+    /*root.appendChild(op.XmlSerialize(doc));
+    root.appendChild(ra.XmlSerialize(doc));
+    root.appendChild(sl.XmlSerialize(doc));*/
     doc.appendChild(root);
 
     QFile file2("C:\\Users\\Matteo\\Desktop\\doc.xml");

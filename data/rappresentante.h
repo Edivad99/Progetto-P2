@@ -13,6 +13,8 @@ public:
 
     virtual float Stipendio(float bonus) const;
 
+    virtual QDomElement XmlSerialize(QDomDocument doc);
+
     int venditeEffettuate() const;
 
     void setVenditeEffettuate(int venditeEffettuate);

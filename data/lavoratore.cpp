@@ -62,3 +62,17 @@ size_t Lavoratore::generateID(std::string cf)
     size_t str_hash = hash_fn(cf);
     return str_hash;
 }
+
+QDomElement Lavoratore::XmlSerialize(QDomDocument doc)
+{
+    QDomElement lavoratore = doc.createElement("Lavoratore");;
+    lavoratore.appendChild(Persona::XmlSerialize(doc));
+    lavoratore.setAttribute("Reparto",QString::fromStdString(_reparto));
+    std::stringstream ss;
+    ss << _orePreviste.getOre()<<":"<<_orePreviste.getMinuti();
+    lavoratore.setAttribute("OrePreviste",QString::fromStdString(ss.str()));
+    lavoratore.setAttribute("Contratto", QString::fromStdString((_contratto == 0) ? "Determinato" : "Indeterminato"));
+    lavoratore.setAttribute("DataScadenza",_dataScadenza.toString("dd/MM/yyyy"));
+    lavoratore.setAttribute("IDAziendale",Lavoratore::getID());
+    return lavoratore;
+}
