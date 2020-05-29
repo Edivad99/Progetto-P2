@@ -161,9 +161,9 @@ int main(int argc, char *argv[])
     root.appendChild(p.XmlSerialize(doc));
     root.appendChild(s.XmlSerialize(doc));
     root.appendChild(im.XmlSerialize(doc));
-    /*root.appendChild(op.XmlSerialize(doc));
+    root.appendChild(op.XmlSerialize(doc));
     root.appendChild(ra.XmlSerialize(doc));
-    root.appendChild(sl.XmlSerialize(doc));*/
+    root.appendChild(sl.XmlSerialize(doc));
     doc.appendChild(root);
 
     QFile file2("C:\\Users\\Matteo\\Desktop\\doc.xml");

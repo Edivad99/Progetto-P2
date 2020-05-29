@@ -30,8 +30,6 @@ QDomElement Impiegato::XmlSerialize(QDomDocument doc)
 {
     QDomElement impiegato = doc.createElement("Impiegato");;
     impiegato.appendChild(Lavoratore::XmlSerialize(doc));
-    std::stringstream text;
-    text << _pagaPerOra;
-    impiegato.setAttribute("PagaOra", "€"+QString::fromStdString(text.str()));
+    impiegato.setAttribute("PagaOra", _pagaPerOra);
     return impiegato;
 }
