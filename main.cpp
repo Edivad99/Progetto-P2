@@ -9,11 +9,15 @@
 #include <util/lista.h>
 #include <util/telefono.h>
 #include <util/orelavorative.h>
+#include <data/impiegato.h>
+#include <data/rappresentante.h>
 #include <QFile>
 #include <QStringList>
 #include <QString>
 #include <QTextStream>
 #include <QDebug>
+#include <QtXml/QDomDocument>
+#include <QtXml/QDomElement>
 
 int main(int argc, char *argv[])
 {
@@ -36,7 +40,7 @@ int main(int argc, char *argv[])
     StudenteLavoratore sl1 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0));
     StudenteLavoratore sl2 ("davide", "albiero", QDate(29,10,1999), "eojrwijw", M, Telefono("3288686776"), Universita, "ele", OreLavorative(40,0), OreLavorative(20,0), OreLavorative(20,0), QDate(0,0,0));
     std::cout << ((sl1 != sl2) ? "Vero" : "Falso") << std::endl;
-    std::cout << sl1.getID() << std::endl;*/
+    std::cout << sl1.getID() << std::endl;
 
     lista<int> l;
     for (int i = 0; i < 10; i++)
@@ -62,7 +66,7 @@ int main(int argc, char *argv[])
 
     /*Letture da csv*/
 
-    QFile file("..\\Progetto-P2\\dipendenti.csv");
+   /*QFile file("..\\Progetto-P2\\dipendenti.csv");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << file.errorString();
         return 1;
@@ -82,13 +86,13 @@ int main(int argc, char *argv[])
             {
                 dipendenti.insertBack(new Operaio(wordlist[0].toUtf8().constData(),
                                       wordlist[1].toUtf8().constData(),
-                        QDate(wordlist[2].split("/")[0].toInt(),wordlist[2].split("/")[1].toInt(),wordlist[2].split("/")[2].toInt()),
+                        QDate::fromString(wordlist[2],"dd/MM/yyyy"),
                         wordlist[3].toUtf8().constData(),
                         Genere(wordlist[4].toInt()),
                         Telefono(wordlist[5].toUtf8().constData()),
                         wordlist[7].toUtf8().constData(),
                         OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                        QDate(wordlist[9].split("/")[0].toInt(),wordlist[9].split("/")[1].toInt(),wordlist[9].split("/")[2].toInt()),
+                        QDate::fromString(wordlist[9],"dd/MM/yyyy"),
                         Livello(wordlist[10].toInt())));
             }
             else
@@ -97,14 +101,14 @@ int main(int argc, char *argv[])
                 {
                     dipendenti.insertBack(new Impiegato(wordlist[0].toUtf8().constData(),
                                           wordlist[1].toUtf8().constData(),
-                            QDate(wordlist[2].split("/")[0].toInt(),wordlist[2].split("/")[1].toInt(),wordlist[2].split("/")[2].toInt()),
+                            QDate::fromString(wordlist[2],"dd/MM/yyyy"),
                             wordlist[3].toUtf8().constData(),
                             Genere(wordlist[4].toInt()),
                             Telefono(wordlist[5].toUtf8().constData()),
                             wordlist[7].toUtf8().constData(),
                             OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                            wordlist[11].toFloat(),
-                            QDate(wordlist[9].split("/")[0].toInt(),wordlist[9].split("/")[1].toInt(),wordlist[9].split("/")[2].toInt())));
+                            QDate::fromString(wordlist[9],"dd/MM/yyyy"),
+                            wordlist[11].toFloat()));
                 }
                 else
                 {
@@ -112,15 +116,15 @@ int main(int argc, char *argv[])
                     {
                         dipendenti.insertBack(new Rappresentante(wordlist[0].toUtf8().constData(),
                                               wordlist[1].toUtf8().constData(),
-                                QDate(wordlist[2].split("/")[0].toInt(),wordlist[2].split("/")[1].toInt(),wordlist[2].split("/")[2].toInt()),
+                                QDate::fromString(wordlist[2],"dd/MM/yyyy"),
                                 wordlist[3].toUtf8().constData(),
                                 Genere(wordlist[4].toInt()),
                                 Telefono(wordlist[5].toUtf8().constData()),
                                 wordlist[7].toUtf8().constData(),
                                 OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                                wordlist[11].toFloat(),wordlist[12].toFloat(),
-                                QDate(wordlist[9].split("/")[0].toInt(),wordlist[9].split("/")[1].toInt(),
-                                wordlist[9].split("/")[2].toInt())));
+                                QDate::fromString(wordlist[9],"dd/MM/yyyy"),
+                                wordlist[11].toFloat(),
+                                wordlist[12].toFloat()));
                     }
                     else
                     {
@@ -128,14 +132,14 @@ int main(int argc, char *argv[])
                         {
                             dipendenti.insertBack(new StudenteLavoratore(wordlist[0].toUtf8().constData(),
                                                   wordlist[1].toUtf8().constData(),
-                                    QDate(wordlist[2].split("/")[0].toInt(), wordlist[2].split("/")[1].toInt(),wordlist[2].split("/")[2].toInt()),
+                                    QDate::fromString(wordlist[2],"dd/MM/yyyy"),
                                     wordlist[3].toUtf8().constData(),
                                     Genere(wordlist[4].toInt()),
                                     Telefono(wordlist[5].toUtf8().constData()),
                                     Occupazione(wordlist[6].toInt()),
                                     wordlist[7].toUtf8().constData(),
                                     OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                                    QDate(wordlist[9].split("/")[0].toInt(), wordlist[9].split("/")[1].toInt(), wordlist[9].split("/")[2].toInt())));
+                                    QDate::fromString(wordlist[9],"dd/MM/yyyy")));
                         }
                     }
                 }
@@ -143,8 +147,29 @@ int main(int argc, char *argv[])
             wordlist.clear();
         }
     }
+    std::cout << dipendenti.front()->getNome() <<" "<< dipendenti.front()->getDataNascita().toString("dd/MM/yyyy").toStdString()<< std::endl;*/
 
+    Studente p("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),Occupazione::Universita);
+
+    QDomDocument doc("Dipendenti");
+    doc=p.XmlSerialize(doc);
+
+
+
+    QFile file2("C:\\Users\\Matteo\\Desktop\\doc.xml");
+    if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug()<<"Filed to open file";
+        return -1;
+    }
+    else
+    {
+        QTextStream stream(&file2);
+        stream<<doc.toString();
+        file2.close();
+    }
+    return 0;/*
     MainWindow w;
     w.show();
-    return a.exec();
+    return a.exec();*/
 }
