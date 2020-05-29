@@ -1,7 +1,7 @@
 #ifndef IMPIEGATO_H
 #define IMPIEGATO_H
 
-#include "model/lavoratore.h"
+#include "lavoratore.h"
 
 class Impiegato : public Lavoratore
 {

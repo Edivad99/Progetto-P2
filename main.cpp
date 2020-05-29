@@ -3,12 +3,9 @@
 #include <QApplication>
 #include <QDate>
 #include <iostream>
-#include <model/operaio.h>
-#include <model/lavoratore.h>
-#include <model/impiegato.h>
-#include <model/rappresentante.h>
-#include <model/persona.h>
-#include <model/studente_lavoratore.h>
+#include <data/operaio.h>
+#include <data/persona.h>
+#include <data/studente_lavoratore.h>
 #include <util/lista.h>
 #include <util/telefono.h>
 #include <util/orelavorative.h>

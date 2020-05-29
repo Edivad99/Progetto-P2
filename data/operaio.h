@@ -1,7 +1,7 @@
 #ifndef OPERAIO_H
 #define OPERAIO_H
 
-#include "model/lavoratore.h"
+#include "lavoratore.h"
 
 enum Livello{ Livello1, Livello2, Livello3, Livello4, Livello5 };
 

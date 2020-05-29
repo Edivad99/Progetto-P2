@@ -1,6 +1,7 @@
 #ifndef STUDENTE_H
 #define STUDENTE_H
-#include "model/persona.h"
+
+#include "persona.h"
 #include <string.h>
 #include <QDate>
 

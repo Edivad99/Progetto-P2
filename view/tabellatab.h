@@ -10,15 +10,17 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QDateEdit>
+#include <QMessageBox>
 #include <sstream>
 #include <QRadioButton>
 #include <QSpinBox>
 #include <QPushButton>
-#include "model/lavoratore.h"
-#include "model/operaio.h"
-#include "model/impiegato.h"
-#include "model/rappresentante.h"
-#include "model/studente_lavoratore.h"
+#include <model/tabellamodel.h>
+#include "data/lavoratore.h"
+#include "data/operaio.h"
+#include "data/impiegato.h"
+#include "data/rappresentante.h"
+#include "data/studente_lavoratore.h"
 
 
 using std::string;
@@ -27,8 +29,12 @@ class TabellaTab : public QWidget
 {
     Q_OBJECT
 public:
-    TabellaTab(QWidget *parent = 0);
+    TabellaTab(TabellaModel *model, QWidget *parent = 0);
 private:
+    //Modello
+    TabellaModel *_model;
+
+    //GUI
     QHBoxLayout *mainLayout;
     QTableWidget* table;
 
@@ -59,6 +65,9 @@ private:
     void VisualizzaImpiegato();
     void VisualizzaRappresentante();
     void VisualizzaStudente();
+
+    //Controllo sull'input
+    bool convalidaInput(string, string, string, string, string, string);
 
     //Test
     void aggiungiTestoEsempio();

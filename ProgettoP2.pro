@@ -17,14 +17,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     MainWindow.cpp \
+    data/impiegato.cpp \
+    data/lavoratore.cpp \
+    data/operaio.cpp \
+    data/persona.cpp \
+    data/rappresentante.cpp \
+    data/studente.cpp \
+    data/studente_lavoratore.cpp \
     main.cpp \
-    model/impiegato.cpp \
-    model/lavoratore.cpp \
-    model/operaio.cpp \
-    model/persona.cpp \
-    model/rappresentante.cpp \
-    model/studente.cpp \
-    model/studente_lavoratore.cpp \
+    model/tabellamodel.cpp \
     util/orelavorative.cpp \
     util/telefono.cpp \
     util/lista.cpp \
@@ -34,13 +35,14 @@ SOURCES += \
 
 HEADERS += \
     MainWindow.h \
-    model/impiegato.h \
-    model/lavoratore.h \
-    model/operaio.h \
-    model/persona.h \
-    model/rappresentante.h \
-    model/studente.h \
-    model/studente_lavoratore.h \
+    data/impiegato.h \
+    data/lavoratore.h \
+    data/operaio.h \
+    data/persona.h \
+    data/rappresentante.h \
+    data/studente.h \
+    data/studente_lavoratore.h \
+    model/tabellamodel.h \
     util/orelavorative.h \
     util/telefono.h \
     util/lista.h \
