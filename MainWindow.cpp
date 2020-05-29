@@ -96,14 +96,20 @@ void MainWindow::salvaConNomeClicked()
     if(!fileName.isEmpty())
     {
         QFile file(fileName);
-        if(!file.open(QIODevice::ReadWrite))
+        if(!file.open(QIODevice::ReadWrite | QIODevice::Text))
         {
             QMessageBox::information(this, tr("Impossibile salvare nel file"), file.errorString());
             return;
         }
-        tabellaModel->saveFile();
-        //Se il salvataggio va a buon fine mi salvo file così posso usaro nel salva
-        tabellaModel->currentFile = &file;
+        if(fileName.endsWith(".xml"))
+        {
+            QDomDocument dipendenti = tabellaModel->saveFile();
+            QTextStream stream(&file);
+            stream << dipendenti.toString();
+            file.close();
+            //Se il salvataggio va a buon fine mi salvo file così posso usaro nel salva
+            tabellaModel->currentFile = &file;
+        }
     }
 }
 
