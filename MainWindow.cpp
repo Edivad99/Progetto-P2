@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent)
     //La barra dei menu va per prima
     addMenuButtons();
 
-    TabellaModel *tabellaModel = new TabellaModel();
+    tabellaModel = new TabellaModel();
 
     tabWidget->addTab(new HomeTab(), "Home");
     tabWidget->addTab(new TabellaTab(tabellaModel), "Tabella");
@@ -27,6 +27,12 @@ void MainWindow::addMenuButtons()
     QAction* imp = new QAction("Importa", file);
     QAction* exp = new QAction("Esporta", file);
     QAction* chiudi = new QAction("Chiudi", file);
+
+    //Actions
+    connect(imp, SIGNAL(triggered()), this, SLOT(importaClicked()));
+    connect(exp, SIGNAL(triggered()), this, SLOT(esportaClicked()));
+    connect(chiudi, SIGNAL(triggered()), this, SLOT(close()));
+
     file->addAction(imp);
     file->addAction(exp);
     file->addAction(chiudi);
@@ -48,5 +54,19 @@ void MainWindow::setApplicationStyle()
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     //TODO: Da rimuovere e mettere nel file css appena possibile
     mainLayout->setMargin(0);
+}
+
+void MainWindow::importaClicked()
+{
+    QString filter = "XML (*.xml) ;; CSV (*.csv)";
+    QString fileName = QFileDialog::getOpenFileName(this, "Seleziona un file da importare", QDir::homePath(), filter);
+    QFile *file = new QFile(fileName);
+
+    tabellaModel->readFromFile(file);
+}
+
+void MainWindow::esportaClicked()
+{
+
 }
 
