@@ -11,19 +11,28 @@ Studente::~Studente()
 
 }
 
-QDomDocument Studente::XmlSerialize(QDomDocument doc)
+QDomElement Studente::XmlSerialize(QDomDocument doc)
+{
+    QDomElement studente = doc.createElement("Studente");;
+    studente.appendChild(Persona::XmlSerialize(doc));
+    studente.setAttribute("Occupazione", QString::fromStdString((_occupazione == 0) ? "Superiori" : "Universita'"));
+    return studente;
+}
+
+/*QDomDocument Studente::XmlSerialize(QDomDocument doc)
 {
     QDomElement root = doc.createElement("Studente");
     doc.appendChild(root);
-    root.appendChild(Persona::XmlSerialize(doc));
+    QDomDocument a = Persona::XmlSerialize(doc);
+    root.appendChild();
 
     /*QDomElement occup = doc.createElement("Occupazione");
     QString g=(_occupazione == 0) ? "Superiori" : "Universita'";
     root.appendChild(occup);
-    occup.appendChild(doc.createTextNode(g));*/
+    occup.appendChild(doc.createTextNode(g));
 
     return doc;
-}
+}*/
 
 Occupazione Studente::getOccupazione() const
 {

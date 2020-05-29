@@ -33,7 +33,7 @@ public:
 
     Telefono getNumeroTelefono() const;
 
-    virtual QDomDocument XmlSerialize(QDomDocument doc);
+    virtual QDomElement XmlSerialize(QDomDocument doc);
 
     void setNumeroTelefono(Telefono numeroTelefono);
 

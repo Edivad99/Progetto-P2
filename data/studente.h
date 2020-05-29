@@ -16,7 +16,7 @@ public:
 
     virtual ~Studente();
 
-    virtual QDomDocument XmlSerialize(QDomDocument doc);
+    virtual QDomElement XmlSerialize(QDomDocument doc);
 
     Occupazione getOccupazione() const;
 

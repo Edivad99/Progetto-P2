@@ -152,9 +152,7 @@ int main(int argc, char *argv[])
     Studente p("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),Occupazione::Universita);
 
     QDomDocument doc("Dipendenti");
-    doc=p.XmlSerialize(doc);
-
-
+    doc.appendChild(p.XmlSerialize(doc));
 
     QFile file2("C:\\Users\\Matteo\\Desktop\\doc.xml");
     if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
