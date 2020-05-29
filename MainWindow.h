@@ -7,6 +7,8 @@
 #include <QAction>
 #include <QVBoxLayout>
 #include <QTabWidget>
+#include <QFileDialog>
+#include <QDir>
 #include "view/hometab.h"
 #include "view/tabellatab.h"
 
@@ -23,8 +25,14 @@ private:
     QVBoxLayout *mainLayout;
     QTabWidget *tabWidget;
 
+    TabellaModel *tabellaModel;
 
     void addMenuButtons();
     void setApplicationStyle();
+
+private slots:
+    void apriClicked();
+    void salvaClicked();
+    void salvaConNomeClicked();
 };
 #endif // MAINWINDOW_H
