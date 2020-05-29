@@ -74,7 +74,8 @@ int main(int argc, char *argv[])
 
     QStringList wordlist;
     lista<Lavoratore*> dipendenti;
-    while (!file.atEnd()) {
+    while (!file.atEnd())
+    {
         QTextStream in(&file);
         while (!in.atEnd())
         {
@@ -82,68 +83,26 @@ int main(int argc, char *argv[])
             wordlist=line.split(";");
             QString a=wordlist.first();
             wordlist.pop_front();
+
+            string nome = wordlist[0].toUtf8().constData();
+            string cognome = wordlist[1].toUtf8().constData();
+            QDate dataNascita = QDate::fromString(wordlist[2],"dd/MM/yyyy");
+            string cf = wordlist[3].toUtf8().constData();
+            Genere genere = Genere(wordlist[4].toInt());
+            //Bisogna fare dei controlli sul telefono per il prefisso
+            Telefono telefono(wordlist[5].toUtf8().constData());
+            string reparto = wordlist[7].toUtf8().constData();
+            OreLavorative oreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt());
+            QDate dataScadenza = QDate::fromString(wordlist[9],"dd/MM/yyyy");
+
             if(a=="Operaio")
-            {
-                dipendenti.insertBack(new Operaio(wordlist[0].toUtf8().constData(),
-                                      wordlist[1].toUtf8().constData(),
-                        QDate::fromString(wordlist[2],"dd/MM/yyyy"),
-                        wordlist[3].toUtf8().constData(),
-                        Genere(wordlist[4].toInt()),
-                        Telefono(wordlist[5].toUtf8().constData()),
-                        wordlist[7].toUtf8().constData(),
-                        OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                        QDate::fromString(wordlist[9],"dd/MM/yyyy"),
-                        Livello(wordlist[10].toInt())));
-            }
-            else
-            {
-                if(a=="Impiegato")
-                {
-                    dipendenti.insertBack(new Impiegato(wordlist[0].toUtf8().constData(),
-                                          wordlist[1].toUtf8().constData(),
-                            QDate::fromString(wordlist[2],"dd/MM/yyyy"),
-                            wordlist[3].toUtf8().constData(),
-                            Genere(wordlist[4].toInt()),
-                            Telefono(wordlist[5].toUtf8().constData()),
-                            wordlist[7].toUtf8().constData(),
-                            OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                            QDate::fromString(wordlist[9],"dd/MM/yyyy"),
-                            wordlist[11].toFloat()));
-                }
-                else
-                {
-                    if(a=="Rappresentante")
-                    {
-                        dipendenti.insertBack(new Rappresentante(wordlist[0].toUtf8().constData(),
-                                              wordlist[1].toUtf8().constData(),
-                                QDate::fromString(wordlist[2],"dd/MM/yyyy"),
-                                wordlist[3].toUtf8().constData(),
-                                Genere(wordlist[4].toInt()),
-                                Telefono(wordlist[5].toUtf8().constData()),
-                                wordlist[7].toUtf8().constData(),
-                                OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                                QDate::fromString(wordlist[9],"dd/MM/yyyy"),
-                                wordlist[11].toFloat(),
-                                wordlist[12].toFloat()));
-                    }
-                    else
-                    {
-                        if(a=="StudenteLavoratore")
-                        {
-                            dipendenti.insertBack(new StudenteLavoratore(wordlist[0].toUtf8().constData(),
-                                                  wordlist[1].toUtf8().constData(),
-                                    QDate::fromString(wordlist[2],"dd/MM/yyyy"),
-                                    wordlist[3].toUtf8().constData(),
-                                    Genere(wordlist[4].toInt()),
-                                    Telefono(wordlist[5].toUtf8().constData()),
-                                    Occupazione(wordlist[6].toInt()),
-                                    wordlist[7].toUtf8().constData(),
-                                    OreLavorative(wordlist[8].split(":")[0].toInt(),wordlist[8].split(":")[1].toInt()),
-                                    QDate::fromString(wordlist[9],"dd/MM/yyyy")));
-                        }
-                    }
-                }
-            }
+                dipendenti.insertBack(new Operaio(nome, cognome, dataNascita, cf, genere, telefono, reparto, oreLavorative, dataScadenza, Livello(wordlist[10].toInt())));
+            else if(a=="Impiegato")
+                dipendenti.insertBack(new Impiegato(nome, cognome, dataNascita ,cf, genere, telefono, reparto, oreLavorative, dataScadenza, wordlist[11].toFloat()));
+            else if(a=="Rappresentante")
+                dipendenti.insertBack(new Rappresentante(nome, cognome, dataNascita ,cf, genere, telefono, reparto, oreLavorative, dataScadenza, wordlist[11].toFloat(), wordlist[12].toFloat()));
+            else if(a=="StudenteLavoratore")
+                dipendenti.insertBack(new StudenteLavoratore(nome, cognome, dataNascita, cf, genere, telefono, Occupazione(wordlist[6].toInt()), reparto, oreLavorative, dataScadenza));
             wordlist.clear();
         }
     }
@@ -169,7 +128,7 @@ int main(int argc, char *argv[])
     QFile file2("C:\\Users\\Matteo\\Desktop\\doc.xml");
     if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        qDebug()<<"Filed to open file";
+        qDebug() << file2.errorString();
         return -1;
     }
     else
