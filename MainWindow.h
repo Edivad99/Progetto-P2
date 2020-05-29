@@ -31,7 +31,8 @@ private:
     void setApplicationStyle();
 
 private slots:
-    void importaClicked();
-    void esportaClicked();
+    void apriClicked();
+    void salvaClicked();
+    void salvaConNomeClicked();
 };
 #endif // MAINWINDOW_H

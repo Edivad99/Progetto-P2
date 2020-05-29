@@ -14,10 +14,13 @@ public:
     TabellaModel();
 
     void readFromFile(QFile *file);
-    QDomDocument safeFile();
+    QDomDocument saveFile();
 
     void aggiungiLavoratore(Lavoratore *nuovoLavoratore);
     lista<Lavoratore*> getLavoratori() const;
+
+    //Non sono sicuro di metterlo qui
+    QFile *currentFile;
 private:
     lista<Lavoratore*> lavoratori;
 };
