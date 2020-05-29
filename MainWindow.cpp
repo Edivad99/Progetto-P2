@@ -84,7 +84,18 @@ void MainWindow::salvaClicked()
     }
     else
     {
-        tabellaModel->saveFile();
+        if(!tabellaModel->currentFile->open(QIODevice::ReadWrite | QIODevice::Text))
+        {
+            QMessageBox::information(this, tr("Impossibile salvare nel file"), tabellaModel->currentFile->errorString());
+            return;
+        }
+        if(tabellaModel->currentFile->fileName().endsWith(".xml"))
+        {
+            QDomDocument dipendenti = tabellaModel->saveFile();
+            QTextStream stream(tabellaModel->currentFile);
+            stream << dipendenti.toString();
+            tabellaModel->currentFile->close();
+        }
     }
 }
 
