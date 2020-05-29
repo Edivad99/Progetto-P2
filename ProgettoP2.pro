@@ -33,7 +33,6 @@ SOURCES += \
     util/nodo.cpp \
     view/hometab.cpp \
     view/tabellatab.cpp
-    QT += xml
 HEADERS += \
     MainWindow.h \
     data/impiegato.h \
