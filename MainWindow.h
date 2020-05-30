@@ -25,6 +25,8 @@ private:
     QVBoxLayout *mainLayout;
     QTabWidget *tabWidget;
 
+    QFile* fileAperto;
+
     TabellaModel *tabellaModel;
 
     void addMenuButtons();
