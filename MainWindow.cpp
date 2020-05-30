@@ -62,7 +62,7 @@ void MainWindow::setApplicationStyle()
 
 void MainWindow::apriClicked()
 {
-    QString filter = "XML File (*.xml) ;; CSV File (*.csv)";
+    QString filter = "XML File (*.xml)";
     QString fileName = QFileDialog::getOpenFileName(this, "Seleziona un file da importare", QDir::homePath(), filter);
 
     if(!fileName.isEmpty())
@@ -103,7 +103,7 @@ void MainWindow::salvaClicked()
 
 void MainWindow::salvaConNomeClicked()
 {
-    QString filter = "XML File (*.xml) ;; CSV File (*.csv)";
+    QString filter = "XML File (*.xml)";
     QString fileName = QFileDialog::getSaveFileName(this, "Salva con nome", QDir::homePath(), filter);
 
     if(!fileName.isEmpty())
