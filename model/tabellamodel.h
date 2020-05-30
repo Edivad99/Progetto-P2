@@ -19,8 +19,6 @@ public:
     void aggiungiLavoratore(Lavoratore *nuovoLavoratore);
     lista<Lavoratore*> getLavoratori() const;
 
-    //Non sono sicuro di metterlo qui
-    QFile *currentFile;
 private:
     lista<Lavoratore*> lavoratori;
 };

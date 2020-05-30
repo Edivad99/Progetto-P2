@@ -30,7 +30,6 @@ QDomElement Operaio::XmlSerialize(QDomDocument doc)
     QDomElement operaio = doc.createElement("Operaio");;
     operaio.appendChild(Lavoratore::XmlSerialize(doc));
     operaio.setAttribute("Livello", _livello + 1);
-    operaio.setAttribute("SalarioBase", _salarioMensile[_livello]);
     return operaio;
 }
 
