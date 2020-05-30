@@ -22,7 +22,8 @@ float StudenteLavoratore::Stipendio(float bonus) const
 QDomElement StudenteLavoratore::XmlSerialize(QDomDocument doc)
 {
     QDomElement studlav = doc.createElement("StudenteLavoratore");
-    studlav.appendChild(Studente::XmlSerialize(doc));
+    studlav.setAttribute("Occupazione", QString::fromStdString((getOccupazione() == 0) ? "Superiori" : "Universita'"));
+    //studlav.appendChild(Studente::XmlSerialize(doc));
     studlav.appendChild(Lavoratore::XmlSerialize(doc));
     return studlav;
 }
