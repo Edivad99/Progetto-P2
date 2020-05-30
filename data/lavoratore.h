@@ -40,6 +40,8 @@ public:
 
     virtual QDomElement XmlSerialize(QDomDocument doc);
 
+    QDate getDataScadenza() const;
+
 private:
     string _reparto;
     OreLavorative _orePreviste;//Le ore previste da contratto

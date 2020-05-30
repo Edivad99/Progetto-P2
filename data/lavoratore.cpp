@@ -76,3 +76,8 @@ QDomElement Lavoratore::XmlSerialize(QDomDocument doc)
     lavoratore.setAttribute("IDAziendale", Lavoratore::getID());
     return lavoratore;
 }
+
+QDate Lavoratore::getDataScadenza() const
+{
+    return _dataScadenza;
+}
