@@ -108,7 +108,9 @@ int main(int argc, char *argv[])
     }
     std::cout << dipendenti.front()->getNome() <<" "<< dipendenti.front()->getDataNascita().toString("dd/MM/yyyy").toStdString()<< std::endl;*/
 
-    Persona p("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"));
+
+    //SCRITTURA XML
+    /*Persona p("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"));
     Studente s("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),Occupazione::Universita);
     Impiegato im("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),"Montaggio",OreLavorative(120),QDate(2020,11,21),10.50);
     Operaio op("Matteoo","Vignagaa",QDate(1998,07,26),"VGNMTT23389025",Genere(0),Telefono("3926146576"),"Montaggio",OreLavorative(120),QDate(2020,11,21),Livello::Livello5);
@@ -136,9 +138,73 @@ int main(int argc, char *argv[])
         QTextStream stream(&file2);
         stream<<doc.toString();
         file2.close();
+    }*/
+
+    //LETTURA XML
+
+    QDomDocument documentoletto("Docum");
+    QFile filelett("C:\\Users\\Matteo\\Desktop\\doc2.xml");
+    if(!filelett.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Errore nell'apertura del file";
+        return -1;
     }
-    return 0;/*
-    MainWindow w;
+    else
+    {
+        if(!documentoletto.setContent(&filelett))
+        {
+            qDebug() <<  "Errore nel caricare il documento";
+            return -1;
+        }
+        filelett.close();
+    }
+
+    //prendi l'elemento root
+    QDomElement root = documentoletto.firstChildElement();
+    qDebug() <<root.tagName();
+    qDebug() <<root.childNodes().size();
+    if(root.childNodes().at(0).nodeName()=="Operaio")
+    {
+        QDomElement oper=root.childNodes().at(0).toElement();
+        QDomElement lavor=oper.childNodes().at(0).toElement();
+        QDomElement pers=lavor.childNodes().at(0).toElement();
+        string nome=pers.attribute("Nome").toStdString();
+        string cognome=pers.attribute("Cognome").toStdString();
+        QDate datanasc=QDate::fromString(pers.attribute("DataNascita"),"dd/MM/yyyy");
+        string codfisc=pers.attribute("CodiceFiscale").toStdString();
+        Genere gener=Genere(pers.attribute("Genere").toInt());
+        Telefono numtelef(pers.attribute("Telefono").split(" ")[1].toStdString(),pers.attribute("Telefono").split(" ")[0].toStdString());
+        string repart=lavor.attribute("Reparto").toStdString();
+        OreLavorative orelav(lavor.attribute("OrePreviste").split(":")[0].toInt(),lavor.attribute("OrePreviste").split(":")[1].toInt());
+        QDate datascad = QDate::fromString(oper.attribute("DataScadenza"),"dd/MM/yyyy");
+        Livello livell=Livello(oper.attribute("Livello").toInt());
+        qDebug() <<QString::fromStdString(nome);
+        qDebug() <<QString::fromStdString(cognome);
+        qDebug() <<datanasc.toString();
+        qDebug() <<QString::fromStdString(codfisc);
+        qDebug() <<QString::fromStdString((gener == 0) ? "M" : "F");
+        qDebug() <<QString::fromStdString(numtelef.getNumeroTelefono());
+        qDebug() <<QString::fromStdString(repart);
+        qDebug() <<orelav.getOre()<<":"<<orelav.getMinuti();
+        qDebug() <<datascad.toString();
+        qDebug() <<livell;
+        Operaio opdaxml(nome, cognome, datanasc, codfisc, gener, numtelef, repart, orelav, datascad, livell);
+        qDebug() <<"\n"<<QString::fromStdString(opdaxml.getNome());
+        qDebug() <<QString::fromStdString(opdaxml.getCognome());
+        qDebug() <<opdaxml.getDataNascita().toString("dd/MM/yyyy");
+        qDebug() <<QString::fromStdString(opdaxml.getCodiceFiscale());
+        qDebug() <<opdaxml.getGenere();
+        qDebug() <<QString::fromStdString(opdaxml.getNumeroTelefono().getNumeroTelefono());
+        qDebug() <<QString::fromStdString(opdaxml.getReparto());
+        qDebug() <<opdaxml.getOrePreviste().getOre()<<":"<<opdaxml.getOrePreviste().getMinuti();
+        qDebug() <<opdaxml.getDataScadenza().toString("dd/MM/yyyy");
+        qDebug() <<opdaxml.getLivello();
+
+    }
+
+    qDebug() <<  "documento caricato";
+    return 0;
+    /*MainWindow w;
     w.show();
     return a.exec();*/
 }
