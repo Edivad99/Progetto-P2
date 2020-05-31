@@ -30,6 +30,9 @@ class TabellaTab : public QWidget
     Q_OBJECT
 public:
     TabellaTab(TabellaModel *model, QWidget *parent = 0);
+
+    void updateTabella();
+
 private:
     //Modello
     TabellaModel *_model;
@@ -70,7 +73,6 @@ private:
     bool convalidaInput(string, string, string, string, string, string) const;
 
     //Test
-    void setTabella();
     void setText(QString text, int row, int column);
 
 private slots:

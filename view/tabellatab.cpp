@@ -21,7 +21,7 @@ TabellaTab::TabellaTab(TabellaModel *model, QWidget *parent): QWidget(parent), _
 
     //Imposto le dimensioni della tabella
     table = new QTableWidget();
-    setTabella();
+    updateTabella();
 
     Aggiungi();
     Modifica();
@@ -289,7 +289,7 @@ void TabellaTab::setText(QString text, int row, int column)
     pCell->setText(text);
 }
 
-void TabellaTab::setTabella()
+void TabellaTab::updateTabella()
 {
     QStringList intestazioneColonna;
     intestazioneColonna.push_back("ID");

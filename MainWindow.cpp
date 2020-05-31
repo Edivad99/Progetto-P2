@@ -12,8 +12,11 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 
     tabellaModel = new TabellaModel();
 
-    tabWidget->addTab(new HomeTab(), "Home");
-    tabWidget->addTab(new TabellaTab(tabellaModel), "Tabella");
+    homeTab = new HomeTab();
+    tabellaTab = new TabellaTab(tabellaModel);
+
+    tabWidget->addTab(homeTab, "Home");
+    tabWidget->addTab(tabellaTab, "Tabella");
 
     mainLayout->addWidget(tabWidget);
     setApplicationStyle();
@@ -76,6 +79,7 @@ void MainWindow::apriClicked()
         }
         fileAperto->close();
         tabellaModel->readFromFile(documentoLetto);
+        tabellaTab->updateTabella();
     }
 }
 

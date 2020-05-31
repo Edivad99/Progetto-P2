@@ -28,6 +28,9 @@ private:
 
     QFile* fileAperto;
 
+    HomeTab* homeTab;
+    TabellaTab* tabellaTab;
+
     TabellaModel *tabellaModel;
 
     void addMenuButtons();
