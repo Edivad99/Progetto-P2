@@ -8,26 +8,24 @@ TabellaModel::TabellaModel()
 void TabellaModel::readFromFile(QDomDocument doc)
 {
     QDomElement root = doc.firstChildElement();
-    for (int i=0;i<root.childNodes().size();++i) {
+    for (int i=0;i<root.childNodes().size();++i)
+    {
         if(root.childNodes().at(i).nodeName()=="Operaio")
         {
             QDomElement oper=root.childNodes().at(i).toElement();
             lavoratori->insertBack(new Operaio(oper));
-
         }
-        if(root.childNodes().at(i).nodeName()=="Impiegato")
+        else if(root.childNodes().at(i).nodeName()=="Impiegato")
         {
             QDomElement impie=root.childNodes().at(i).toElement();
             lavoratori->insertBack(new Impiegato(impie));
-
         }
-        if(root.childNodes().at(i).nodeName()=="Rappresentante")
+        else if(root.childNodes().at(i).nodeName()=="Rappresentante")
         {
             QDomElement rappr=root.childNodes().at(i).toElement();
             lavoratori->insertBack(new Rappresentante(rappr));
-
         }
-        if(root.childNodes().at(i).nodeName()=="StudenteLavoratore")
+        else if(root.childNodes().at(i).nodeName()=="StudenteLavoratore")
         {
             QDomElement studlav=root.childNodes().at(i).toElement();
             lavoratori->insertBack(new StudenteLavoratore(studlav));

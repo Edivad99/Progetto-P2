@@ -68,13 +68,14 @@ void MainWindow::apriClicked()
     if(!fileName.isEmpty())
     {
         fileAperto = new QFile(fileName);
-        if(!fileAperto->open(QIODevice::ReadWrite | QIODevice::Text))
+        QDomDocument documentoLetto("Documento");
+        if(!fileAperto->open(QIODevice::ReadWrite | QIODevice::Text) || !documentoLetto.setContent(fileAperto))
         {
             QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
             return;
         }
-        tabellaModel->readFromFile(fileAperto);
         fileAperto->close();
+        tabellaModel->readFromFile(documentoLetto);
     }
 }
 
