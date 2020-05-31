@@ -21,7 +21,7 @@
 #include "data/impiegato.h"
 #include "data/rappresentante.h"
 #include "data/studente_lavoratore.h"
-
+#include <iostream>
 
 using std::string;
 
@@ -67,10 +67,11 @@ private:
     void VisualizzaStudente();
 
     //Controllo sull'input
-    bool convalidaInput(string, string, string, string, string, string);
+    bool convalidaInput(string, string, string, string, string, string) const;
 
     //Test
-    void aggiungiTestoEsempio();
+    void setTabella();
+    void setText(QString text, int row, int column);
 
 private slots:
     void tipologiaIndexChanged(int);

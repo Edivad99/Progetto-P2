@@ -2,7 +2,7 @@
 
 TabellaModel::TabellaModel()
 {
-
+    lavoratori = new lista<Lavoratore*>();
 }
 
 void TabellaModel::readFromFile(QFile *file)
@@ -15,7 +15,7 @@ QDomDocument TabellaModel::saveFile()
     QDomDocument doc("Dipendenti");
     QDomElement root = doc.createElement("Dipendenti");
 
-    for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
+    for (lista<Lavoratore*>::constiterator cit = lavoratori->begin(); cit != lavoratori->end(); ++cit)
     {
         root.appendChild((*cit)->XmlSerialize(doc));
     }
@@ -25,10 +25,10 @@ QDomDocument TabellaModel::saveFile()
 
 void TabellaModel::aggiungiLavoratore(Lavoratore *nuovoLavoratore)
 {
-    lavoratori.insertBack(nuovoLavoratore);
+    lavoratori->insertBack(nuovoLavoratore);
 }
 
-lista<Lavoratore*> TabellaModel::getLavoratori() const
+lista<Lavoratore*>* TabellaModel::getLavoratori() const
 {
     return lavoratori;
 }

@@ -15,7 +15,7 @@ float Rappresentante::Stipendio(float bonus) const
     return Impiegato::Stipendio(bonus) + (_venditeEffettuate * guadagnoPerMerce);
 }
 
-int Rappresentante::venditeEffettuate() const
+int Rappresentante::getVenditeEffettuate() const
 {
     return _venditeEffettuate;
 }

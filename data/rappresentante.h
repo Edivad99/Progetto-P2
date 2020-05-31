@@ -15,7 +15,7 @@ public:
 
     virtual QDomElement XmlSerialize(QDomDocument doc);
 
-    int venditeEffettuate() const;
+    int getVenditeEffettuate() const;
 
     void setVenditeEffettuate(int venditeEffettuate);
 

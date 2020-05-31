@@ -20,11 +20,8 @@ TabellaTab::TabellaTab(TabellaModel *model, QWidget *parent): QWidget(parent), _
 
 
     //Imposto le dimensioni della tabella
-    table = new QTableWidget(5,6);
-    /*QSizePolicy tablePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    tablePolicy.setHorizontalStretch(1);
-    table->setSizePolicy(tablePolicy);*/
-    aggiungiTestoEsempio();
+    table = new QTableWidget();
+    setTabella();
 
     Aggiungi();
     Modifica();
@@ -268,7 +265,7 @@ void TabellaTab::VisualizzaStudente()
     Qoccupazione->setVisible(true);
 }
 
-bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string reparto)
+bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string reparto) const
 {
     //TODO:Forse da aggiungere controlli sulle date
     bool accettabile = true;
@@ -281,22 +278,108 @@ bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, s
     return accettabile;
 }
 
-void TabellaTab::aggiungiTestoEsempio()
+void TabellaTab::setText(QString text, int row, int column)
 {
-    for(int i=0; i<table->rowCount(); i++)
+    QTableWidgetItem *pCell = table->item(row, column);
+    if(!pCell)
     {
-        for(int j=0; j<table->columnCount(); j++)
+        pCell = new QTableWidgetItem();
+        table->setItem(row, column, pCell);
+    }
+    pCell->setText(text);
+}
+
+void TabellaTab::setTabella()
+{
+    QStringList intestazioneColonna;
+    intestazioneColonna.push_back("ID");
+    intestazioneColonna.push_back("Tipologia");
+    intestazioneColonna.push_back("Nome");
+    intestazioneColonna.push_back("Cognome");
+    intestazioneColonna.push_back("Data di nascita");
+    intestazioneColonna.push_back("CF");
+    intestazioneColonna.push_back("Genere");
+    intestazioneColonna.push_back("Telefono");
+    intestazioneColonna.push_back("Occupazione");
+    intestazioneColonna.push_back("Reparto");
+    intestazioneColonna.push_back("Ore di lavoro");
+    intestazioneColonna.push_back("Contratto");//DETERMINATO INDETERMINATO
+    intestazioneColonna.push_back("Data scadenza");
+    intestazioneColonna.push_back("Livello");
+    intestazioneColonna.push_back("Paga per ora");
+    intestazioneColonna.push_back("Vendite effettuate");
+
+
+    table->setRowCount(_model->getLavoratori()->getSize());
+    table->setColumnCount(intestazioneColonna.size());
+    table->setHorizontalHeaderLabels(intestazioneColonna);
+
+    int rowCount = 0;
+    for(lista<Lavoratore*>::constiterator cit = _model->getLavoratori()->begin(); cit != _model->getLavoratori()->end(); cit++)
+    {
+        QString nome = QString::fromStdString((*cit)->getNome());
+        QString cognome = QString::fromStdString((*cit)->getCognome());
+        QString dataNascita = QString((*cit)->getDataNascita().toString("dd/MM/yyyy"));
+        QString cf = QString::fromStdString((*cit)->getCodiceFiscale());
+        QString genere = QString(QString::fromStdString(((*cit)->getGenere() == 0) ? "M" : "F"));
+
+        std::stringstream textNumeroTelefono;
+        textNumeroTelefono << (*cit)->getNumeroTelefono();
+        QString numeroTelefono = QString::fromStdString(textNumeroTelefono.str());//Telefono
+        QString reparto = QString::fromStdString((*cit)->getReparto());//Reparto
+
+        std::stringstream textOrePreviste;
+        textOrePreviste << (*cit)->getOrePreviste();
+        QString orePreviste = QString::fromStdString(textOrePreviste.str());//Ore di lavoro
+        QString contratto = QString::fromStdString(((*cit)->getTipologiaContratto() == 0 ? "Determinato" : "Indeterminato"));//Contratto
+        QString dataScadenza = QString((*cit)->getDataScadenza().toString("dd/MM/yyyy"));//Data scadenza
+
+        setText(QString::fromStdString(std::to_string((*cit)->getID())), rowCount, 0);//ID
+        setText(nome, rowCount, 2);//Nome
+        setText(cognome, rowCount, 3);//Cognome
+        setText(dataNascita, rowCount, 4);//DataNascita
+        setText(cf, rowCount, 5);//CF
+        setText(genere, rowCount, 6);//Genere
+        setText(numeroTelefono, rowCount, 7);//Telefono
+        setText(reparto, rowCount, 9);//Reparto
+        setText(orePreviste, rowCount, 10);//Ore di lavoro
+        setText(contratto, rowCount, 11);//Contratto
+        setText(dataScadenza, rowCount, 12);//Data scadenza
+
+        Operaio* operaio =dynamic_cast<Operaio*>(*cit);
+        Impiegato* impiegato =dynamic_cast<Impiegato*>(*cit);
+        Rappresentante* rappresentante =dynamic_cast<Rappresentante*>(*cit);
+        StudenteLavoratore* studlav =dynamic_cast<StudenteLavoratore*>(*cit);
+
+        QString tipologia;
+        if(operaio)
         {
-            QTableWidgetItem *pCell = table->item(i, j);
-            if(!pCell)
-            {
-                pCell = new QTableWidgetItem;
-                table->setItem(i, j, pCell);
-            }
-            std::stringstream text;
-            text << "(" << i << "," << j << ")";
-            pCell->setText(QString::fromStdString(text.str()));
+            tipologia = QString("Operaio");
+            string livello = std::to_string(operaio->getLivello() + 1);
+            setText(QString::fromStdString(livello), rowCount, 13);//Livello
         }
+        else if(impiegato)
+        {
+            tipologia = QString("Impiegato");
+            string pagaPerOra = std::to_string(impiegato->getPagaPerOra());
+            setText(QString::fromStdString(pagaPerOra), rowCount, 14);//Paga per ora
+
+            if (rappresentante)
+            {
+                tipologia = QString("Rappresentante");
+                string venditeEffettuate = std::to_string(rappresentante->getVenditeEffettuate());
+                setText(QString::fromStdString(venditeEffettuate), rowCount, 15);//Vendite effettuate
+            }
+        }
+        else if(studlav)
+        {
+            tipologia = QString("StudenteLavoratore");
+            string occupazione = studlav->getOccupazione() == 0 ? "Superiori" : "Universita'";
+            setText(QString::fromStdString(occupazione), rowCount, 8);//Occupazione
+        }
+
+        setText(tipologia, rowCount, 1);//Tipologia
+        rowCount++;
     }
 }
 

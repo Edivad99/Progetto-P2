@@ -17,10 +17,10 @@ public:
     QDomDocument saveFile();
 
     void aggiungiLavoratore(Lavoratore *nuovoLavoratore);
-    lista<Lavoratore*> getLavoratori() const;
+    lista<Lavoratore*>* getLavoratori() const;
 
 private:
-    lista<Lavoratore*> lavoratori;
+    lista<Lavoratore*> *lavoratori;
 };
 
 #endif // TABELLAMODEL_H
