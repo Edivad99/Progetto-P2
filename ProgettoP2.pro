@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     MainWindow.cpp \
+    classetestxml.cpp \
     data/impiegato.cpp \
     data/lavoratore.cpp \
     data/operaio.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     view/tabellatab.cpp
 HEADERS += \
     MainWindow.h \
+    classetestxml.h \
     data/impiegato.h \
     data/lavoratore.h \
     data/operaio.h \
