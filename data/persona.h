@@ -3,7 +3,11 @@
 
 #include <string>
 #include <QDate>
+#include <QString>
 #include "util/telefono.h"
+#include <QtXml/QDomDocument>
+#include <QtXml/QDomElement>
+#include <sstream>
 
 using std::string;
 
@@ -14,6 +18,8 @@ class Persona
 public:
 
     Persona(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono);
+
+    Persona(QDomElement pers);
 
     virtual ~Persona();
 
@@ -27,11 +33,15 @@ public:
 
     Telefono getNumeroTelefono() const;
 
+    virtual QDomElement XmlSerialize(QDomDocument doc) const;
+
     void setNumeroTelefono(Telefono numeroTelefono);
 
     bool operator==(const Persona &p) const;
 
     bool operator!=(const Persona &p) const;
+
+    QDate getDataNascita() const;
 
 private:
     const string _nome;

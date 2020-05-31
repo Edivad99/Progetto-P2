@@ -16,6 +16,7 @@ public:
     //Se la data è invalida allora significa che il lavoro è indeterminato, deve essere l'utente che lo inserisce
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, QDate dataScadenza);
+    Lavoratore(QDomElement lavorat);
 
     virtual ~Lavoratore();
 
@@ -37,6 +38,10 @@ public:
 
     //Possibilità di aggiungere un bonus da sommare al calcolo dello stipendio
     virtual float Stipendio(float bonus = 0) const = 0;
+
+    virtual QDomElement XmlSerialize(QDomDocument doc) const;
+
+    QDate getDataScadenza() const;
 
 private:
     string _reparto;

@@ -9,6 +9,15 @@ Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string co
 
 }
 
+Lavoratore::Lavoratore(QDomElement lavorat):
+    Persona(lavorat.childNodes().at(0).toElement()),
+    _reparto(lavorat.attribute("Reparto").toStdString()), _orePreviste(lavorat.attribute("OrePreviste").split(":")[0].toInt(),lavorat.attribute("OrePreviste").split(":")[1].toInt()),
+    _contratto(QDate::fromString(lavorat.attribute("DataScadenza"),"dd/MM/yyyy").isNull()? Indeterminato : Determinato),
+    _dataScadenza(QDate::fromString(lavorat.attribute("DataScadenza"),"dd/MM/yyyy")), _IDAziendale(generateID(lavorat.childNodes().at(0).toElement().attribute("CodiceFiscale").toStdString()))
+{
+
+}
+
 Lavoratore::~Lavoratore()
 {
 
@@ -61,4 +70,23 @@ size_t Lavoratore::generateID(std::string cf)
     std::hash<std::string> hash_fn;
     size_t str_hash = hash_fn(cf);
     return str_hash;
+}
+
+QDomElement Lavoratore::XmlSerialize(QDomDocument doc) const
+{
+    QDomElement lavoratore = doc.createElement("Lavoratore");;
+    lavoratore.appendChild(Persona::XmlSerialize(doc));
+    lavoratore.setAttribute("Reparto", QString::fromStdString(_reparto));
+    std::stringstream ss;
+    ss << _orePreviste;
+    lavoratore.setAttribute("OrePreviste", QString::fromStdString(ss.str()));
+    lavoratore.setAttribute("Contratto", QString::fromStdString((_contratto == 0) ? "Determinato" : "Indeterminato"));
+    lavoratore.setAttribute("DataScadenza", _dataScadenza.toString("dd/MM/yyyy"));
+    lavoratore.setAttribute("IDAziendale", Lavoratore::getID());
+    return lavoratore;
+}
+
+QDate Lavoratore::getDataScadenza() const
+{
+    return _dataScadenza;
 }

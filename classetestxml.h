@@ -1,6 +1,6 @@
-#include "MainWindow.h"
+#ifndef CLASSETESTXML_H
+#define CLASSETESTXML_H
 
-#include <QApplication>
 #include <QDate>
 #include <iostream>
 #include <data/operaio.h>
@@ -18,17 +18,12 @@
 #include <QDebug>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
-#include "classetestxml.h"
 
-int main(int argc, char *argv[])
+
+class ClasseTestXML
 {
+public:
+    static void TestXML();
+};
 
-    QApplication a(argc, argv);
-
-    //ClasseTestXML::TestXML();
-    //return 0;
-
-    MainWindow w;
-    w.show();
-    return a.exec();
-}
+#endif // CLASSETESTXML_H

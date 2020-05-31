@@ -21,7 +21,7 @@
 #include "data/impiegato.h"
 #include "data/rappresentante.h"
 #include "data/studente_lavoratore.h"
-
+#include <iostream>
 
 using std::string;
 
@@ -30,6 +30,9 @@ class TabellaTab : public QWidget
     Q_OBJECT
 public:
     TabellaTab(TabellaModel *model, QWidget *parent = 0);
+
+    void updateTabella();
+
 private:
     //Modello
     TabellaModel *_model;
@@ -67,10 +70,10 @@ private:
     void VisualizzaStudente();
 
     //Controllo sull'input
-    bool convalidaInput(string, string, string, string, string, string);
+    bool convalidaInput(string, string, string, string, string, string) const;
 
     //Test
-    void aggiungiTestoEsempio();
+    void setText(QString text, int row, int column);
 
 private slots:
     void tipologiaIndexChanged(int);

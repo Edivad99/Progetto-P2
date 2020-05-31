@@ -9,6 +9,7 @@
 #include <QTabWidget>
 #include <QFileDialog>
 #include <QDir>
+#include <QTextStream>
 #include "view/hometab.h"
 #include "view/tabellatab.h"
 
@@ -24,6 +25,11 @@ private:
 
     QVBoxLayout *mainLayout;
     QTabWidget *tabWidget;
+
+    QFile* fileAperto;
+
+    HomeTab* homeTab;
+    TabellaTab* tabellaTab;
 
     TabellaModel *tabellaModel;
 

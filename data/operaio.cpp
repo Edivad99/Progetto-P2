@@ -9,6 +9,14 @@ Operaio::Operaio(string nome, string cognome, QDate dataNascita, string codiceFi
 
 }
 
+Operaio::Operaio(QDomElement operaio):
+    Persona(operaio.childNodes().at(0).toElement().childNodes().at(0).toElement()),
+    Lavoratore(operaio.childNodes().at(0).toElement()),
+    _livello(Livello(operaio.attribute("Livello").toInt()-1))
+{
+
+}
+
 Livello Operaio::getLivello() const
 {
     return _livello;
@@ -23,6 +31,14 @@ float Operaio::Stipendio(float bonus) const
 {
     //TODO: decidere se va bene così
     return _salarioMensile[_livello] + bonus;
+}
+
+QDomElement Operaio::XmlSerialize(QDomDocument doc) const
+{
+    QDomElement operaio = doc.createElement("Operaio");;
+    operaio.appendChild(Lavoratore::XmlSerialize(doc));
+    operaio.setAttribute("Livello", _livello + 1);
+    return operaio;
 }
 
 const float Operaio::_salarioMensile[] = {1000, 1350, 1575, 1825, 2100};

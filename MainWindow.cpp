@@ -8,11 +8,15 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent)
     tabWidget = new QTabWidget();
     //La barra dei menu va per prima
     addMenuButtons();
+    fileAperto = nullptr;
 
     tabellaModel = new TabellaModel();
 
-    tabWidget->addTab(new HomeTab(), "Home");
-    tabWidget->addTab(new TabellaTab(tabellaModel), "Tabella");
+    homeTab = new HomeTab();
+    tabellaTab = new TabellaTab(tabellaModel);
+
+    tabWidget->addTab(homeTab, "Home");
+    tabWidget->addTab(tabellaTab, "Tabella");
 
     mainLayout->addWidget(tabWidget);
     setApplicationStyle();
@@ -61,49 +65,68 @@ void MainWindow::setApplicationStyle()
 
 void MainWindow::apriClicked()
 {
-    QString filter = "XML File (*.xml) ;; CSV File (*.csv)";
+    QString filter = "XML File (*.xml)";
     QString fileName = QFileDialog::getOpenFileName(this, "Seleziona un file da importare", QDir::homePath(), filter);
 
     if(!fileName.isEmpty())
     {
-        QFile *file = new QFile(fileName);
-        if(!file->open(QIODevice::ReadWrite))
+        fileAperto = new QFile(fileName);
+        QDomDocument documentoLetto("Documento");
+        if(!fileAperto->open(QIODevice::ReadWrite | QIODevice::Text) || !documentoLetto.setContent(fileAperto))
         {
-            QMessageBox::information(this, "Impossibile aprire il file", file->errorString());
+            QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
             return;
         }
-        tabellaModel->readFromFile(file);
+        fileAperto->close();
+        tabellaModel->readFromFile(documentoLetto);
+        tabellaTab->updateTabella();
     }
 }
 
 void MainWindow::salvaClicked()
 {
-    if (tabellaModel->currentFile == nullptr)
+    if (fileAperto != nullptr)
     {
-        MainWindow::salvaConNomeClicked();
+        if(!fileAperto->open(QIODevice::ReadWrite | QIODevice::Text))
+        {
+            QMessageBox::information(this, "Impossibile salvare nel file", fileAperto->errorString());
+            return;
+        }
+        if(fileAperto->fileName().endsWith(".xml"))
+        {
+            QDomDocument dipendenti = tabellaModel->saveFile();
+            QTextStream stream(fileAperto);
+            stream << dipendenti.toString();
+            fileAperto->close();
+        }
     }
     else
     {
-        tabellaModel->saveFile();
+        MainWindow::salvaConNomeClicked();
     }
 }
 
 void MainWindow::salvaConNomeClicked()
 {
-    QString filter = "XML File (*.xml) ;; CSV File (*.csv)";
+    QString filter = "XML File (*.xml)";
     QString fileName = QFileDialog::getSaveFileName(this, "Salva con nome", QDir::homePath(), filter);
 
     if(!fileName.isEmpty())
     {
-        QFile file(fileName);
-        if(!file.open(QIODevice::ReadWrite))
+        delete fileAperto;
+        fileAperto = new QFile(fileName);
+        if(!fileAperto->open(QIODevice::ReadWrite | QIODevice::Text))
         {
-            QMessageBox::information(this, tr("Impossibile salvare nel file"), file.errorString());
+            QMessageBox::information(this, "Impossibile salvare nel file", fileAperto->errorString());
             return;
         }
-        tabellaModel->saveFile();
-        //Se il salvataggio va a buon fine mi salvo file così posso usaro nel salva
-        tabellaModel->currentFile = &file;
+        if(fileName.endsWith(".xml"))
+        {
+            QDomDocument dipendenti = tabellaModel->saveFile();
+            QTextStream stream(fileAperto);
+            stream << dipendenti.toString();
+            fileAperto->close();
+        }
     }
 }
 

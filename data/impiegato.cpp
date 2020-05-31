@@ -9,6 +9,14 @@ Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codi
 
 }
 
+Impiegato::Impiegato(QDomElement impie):
+    Persona(impie.childNodes().at(0).toElement().childNodes().at(0).toElement()),
+    Lavoratore(impie.childNodes().at(0).toElement()),
+    _pagaPerOra(impie.attribute("PagaOra").toFloat())
+{
+
+}
+
 float Impiegato::Stipendio(float bonus) const
 {
     float pagaOra = _pagaPerOra * getOrePreviste().getOre();
@@ -24,4 +32,12 @@ float Impiegato::getPagaPerOra() const
 void Impiegato::setPagaPerOra(float pagaPerOra)
 {
     _pagaPerOra = pagaPerOra;
+}
+
+QDomElement Impiegato::XmlSerialize(QDomDocument doc) const
+{
+    QDomElement impiegato = doc.createElement("Impiegato");;
+    impiegato.appendChild(Lavoratore::XmlSerialize(doc));
+    impiegato.setAttribute("PagaOra", _pagaPerOra);
+    return impiegato;
 }

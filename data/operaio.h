@@ -11,12 +11,15 @@ public:
 
     Operaio(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, QDate dataScadenza, Livello livello);
+    Operaio(QDomElement operaio);
 
     Livello getLivello() const;
 
     void setLivello(Livello livello);
 
     virtual float Stipendio(float bonus) const;
+
+    virtual QDomElement XmlSerialize(QDomDocument doc) const;
 
 private:
     Livello _livello;

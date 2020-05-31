@@ -10,10 +10,13 @@ public:
     //Lo studente lavoratore forse dovrebbe avere sempre la data di scadenza
     StudenteLavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, enum Occupazione occupazione,
                        string reparto, OreLavorative orePreviste, QDate dataScadenza);
+    StudenteLavoratore(QDomElement studlavor);
 
     virtual ~StudenteLavoratore();
 
     virtual float Stipendio(float bonus = 0) const;
+
+    virtual QDomElement XmlSerialize(QDomDocument doc) const;
 };
 
 #endif // STUDENTELAVORATORE_H
