@@ -4,8 +4,6 @@
 #include <string>
 #include <QDate>
 #include <QString>
-#include <QDebug>
-#include <QtCore>
 #include "util/telefono.h"
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>

@@ -9,6 +9,7 @@
 #include <QTabWidget>
 #include <QFileDialog>
 #include <QDir>
+#include <QTextStream>
 #include "view/hometab.h"
 #include "view/tabellatab.h"
 
