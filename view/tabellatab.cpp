@@ -60,7 +60,7 @@ void TabellaTab::Aggiungi()
     numeroTelefono = new QLineEdit();
     cf = new QLineEdit();
     dataNascita = new QDateEdit();
-    scadenzaContratto = new QDateEdit();
+    scadenzaContratto = new QDateEdit(QDate::currentDate().addMonths(1));
     oreDiLavoro = new QSpinBox();
     livello = new QSpinBox();
     pagaPerOra = new QDoubleSpinBox();
