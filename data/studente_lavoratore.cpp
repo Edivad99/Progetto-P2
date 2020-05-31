@@ -9,6 +9,14 @@ StudenteLavoratore::StudenteLavoratore(string nome, string cognome, QDate dataNa
 
 }
 
+StudenteLavoratore::StudenteLavoratore(QDomElement studlavor):
+    Persona(studlavor.childNodes().at(0).toElement().childNodes().at(0).toElement()),//persona di studente
+    Studente(studlavor.childNodes().at(0).toElement()),//studente
+    Lavoratore(studlavor.childNodes().at(1).toElement())//lavoratore
+{
+
+}
+
 StudenteLavoratore::~StudenteLavoratore()
 {
 

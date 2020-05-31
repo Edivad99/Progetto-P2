@@ -9,6 +9,15 @@ Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string co
 
 }
 
+Lavoratore::Lavoratore(QDomElement lavorat):
+    Persona(lavorat.childNodes().at(0).toElement()),
+    _reparto(lavorat.attribute("Reparto").toStdString()), _orePreviste(lavorat.attribute("OrePreviste").split(":")[0].toInt(),lavorat.attribute("OrePreviste").split(":")[1].toInt()),
+    _contratto(QDate::fromString(lavorat.attribute("DataScadenza"),"dd/MM/yyyy").isNull()? Indeterminato : Determinato),
+    _dataScadenza(QDate::fromString(lavorat.attribute("DataScadenza"),"dd/MM/yyyy")), _IDAziendale(generateID(lavorat.childNodes().at(0).toElement().attribute("CodiceFiscale").toStdString()))
+{
+
+}
+
 Lavoratore::~Lavoratore()
 {
 

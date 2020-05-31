@@ -11,6 +11,8 @@ public:
     Rappresentante(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                 OreLavorative orePreviste, QDate dataScadenza, float pagaPerOra, int venditeEffettuate);
 
+    Rappresentante(QDomElement rappr);
+
     virtual float Stipendio(float bonus) const;
 
     virtual QDomElement XmlSerialize(QDomDocument doc) const;

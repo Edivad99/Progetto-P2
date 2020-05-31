@@ -4,6 +4,13 @@ Persona::Persona(string nome, string cognome, QDate dataNascita, string codiceFi
     :_nome(nome), _cognome(cognome), _dataNascita(dataNascita), _codiceFiscale(codiceFiscale), _genere(genere), _numeroTelefono(numeroTelefono)
 {
 
+}
+
+Persona::Persona(QDomElement pers):_nome(pers.attribute("Nome").toStdString()), _cognome(pers.attribute("Cognome").toStdString()),
+    _dataNascita(QDate::fromString(pers.attribute("DataNascita"),"dd/MM/yyyy")), _codiceFiscale(pers.attribute("CodiceFiscale").toStdString()),
+    _genere(Genere(pers.attribute("Genere").toInt())), _numeroTelefono(pers.attribute("Telefono").split(" ")[1].toStdString(),pers.attribute("Telefono").split(" ")[0].toStdString())
+{
+
 };
 
 Persona::~Persona()

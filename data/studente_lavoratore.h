@@ -10,6 +10,7 @@ public:
     //Lo studente lavoratore forse dovrebbe avere sempre la data di scadenza
     StudenteLavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, enum Occupazione occupazione,
                        string reparto, OreLavorative orePreviste, QDate dataScadenza);
+    StudenteLavoratore(QDomElement studlavor);
 
     virtual ~StudenteLavoratore();
 

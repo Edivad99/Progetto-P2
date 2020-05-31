@@ -9,6 +9,14 @@ Operaio::Operaio(string nome, string cognome, QDate dataNascita, string codiceFi
 
 }
 
+Operaio::Operaio(QDomElement operaio):
+    Persona(operaio.childNodes().at(0).toElement().childNodes().at(0).toElement()),
+    Lavoratore(operaio.childNodes().at(0).toElement()),
+    _livello(Livello(operaio.attribute("Livello").toInt()))
+{
+
+}
+
 Livello Operaio::getLivello() const
 {
     return _livello;

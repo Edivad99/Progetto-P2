@@ -10,6 +10,8 @@ public:
     Impiegato(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, QDate dataScadenza, float pagaPerOra);
 
+    Impiegato(QDomElement impie);
+
     virtual float Stipendio(float bonus) const;
 
     float getPagaPerOra() const;

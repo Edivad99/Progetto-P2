@@ -9,6 +9,14 @@ Rappresentante::Rappresentante(string nome, string cognome, QDate dataNascita, s
 
 }
 
+Rappresentante::Rappresentante(QDomElement rappr):
+    Persona(rappr.childNodes().at(0).toElement().childNodes().at(0).toElement().childNodes().at(0).toElement()),
+    Impiegato(rappr.childNodes().at(0).toElement()),
+    _venditeEffettuate(rappr.attribute("Vendite").toInt())
+{
+
+}
+
 
 float Rappresentante::Stipendio(float bonus) const
 {

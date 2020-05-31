@@ -16,6 +16,7 @@ public:
     //Se la data è invalida allora significa che il lavoro è indeterminato, deve essere l'utente che lo inserisce
     Lavoratore(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono, string reparto,
                OreLavorative orePreviste, QDate dataScadenza);
+    Lavoratore(QDomElement lavorat);
 
     virtual ~Lavoratore();
 

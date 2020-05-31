@@ -9,6 +9,14 @@ Impiegato::Impiegato(string nome, string cognome, QDate dataNascita, string codi
 
 }
 
+Impiegato::Impiegato(QDomElement impie):
+    Persona(impie.childNodes().at(0).toElement().childNodes().at(0).toElement()),
+    Lavoratore(impie.childNodes().at(0).toElement()),
+    _pagaPerOra(impie.attribute("PagaOra").toFloat())
+{
+
+}
+
 float Impiegato::Stipendio(float bonus) const
 {
     float pagaOra = _pagaPerOra * getOrePreviste().getOre();

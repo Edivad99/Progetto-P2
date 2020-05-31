@@ -21,6 +21,8 @@ public:
 
     Persona(string nome, string cognome, QDate dataNascita, string codiceFiscale, Genere genere, Telefono numeroTelefono);
 
+    Persona(QDomElement pers);
+
     virtual ~Persona();
 
     string getNome() const;
