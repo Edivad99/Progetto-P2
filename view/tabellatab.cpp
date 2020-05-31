@@ -272,7 +272,7 @@ bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, s
     if(tipologia.empty()) accettabile = false;
     else if(accettabile && nome.empty()) accettabile = false;
     else if(accettabile && cognome.empty()) accettabile = false;
-    else if(accettabile && cf.empty() && cf.length() != 16) accettabile = false;
+    else if(accettabile && (cf.empty() || cf.length() != 16)) accettabile = false;
     else if(accettabile && telefono.empty()) accettabile = false;
     else if(accettabile && reparto.empty()) accettabile = false;
     return accettabile;
@@ -351,7 +351,7 @@ void TabellaTab::updateTabella()
         Rappresentante* rappresentante =dynamic_cast<Rappresentante*>(*cit);
         StudenteLavoratore* studlav =dynamic_cast<StudenteLavoratore*>(*cit);
 
-        QString tipologia;
+        QString tipologia = "";
         if(operaio)
         {
             tipologia = QString("Operaio");
@@ -446,6 +446,9 @@ void TabellaTab::btnAggiungiClicked()
             nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
         }
         if(nuovo != nullptr)
+        {
             _model->aggiungiLavoratore(nuovo);
+            updateTabella();
+        }
     }
 }
