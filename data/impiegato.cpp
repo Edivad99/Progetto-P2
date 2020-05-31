@@ -26,7 +26,7 @@ void Impiegato::setPagaPerOra(float pagaPerOra)
     _pagaPerOra = pagaPerOra;
 }
 
-QDomElement Impiegato::XmlSerialize(QDomDocument doc)
+QDomElement Impiegato::XmlSerialize(QDomDocument doc) const
 {
     QDomElement impiegato = doc.createElement("Impiegato");;
     impiegato.appendChild(Lavoratore::XmlSerialize(doc));

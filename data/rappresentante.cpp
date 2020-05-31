@@ -25,7 +25,7 @@ void Rappresentante::setVenditeEffettuate(int venditeEffettuate)
     _venditeEffettuate = venditeEffettuate;
 }
 
-QDomElement Rappresentante::XmlSerialize(QDomDocument doc)
+QDomElement Rappresentante::XmlSerialize(QDomDocument doc) const
 {
     QDomElement rappre = doc.createElement("Rappresentante");;
     rappre.appendChild(Impiegato::XmlSerialize(doc));

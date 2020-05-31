@@ -21,7 +21,7 @@ Telefono Persona::getNumeroTelefono() const
     return _numeroTelefono;
 }
 
-QDomElement Persona::XmlSerialize(QDomDocument doc)
+QDomElement Persona::XmlSerialize(QDomDocument doc) const
 {
     QDomElement persona = doc.createElement("Persona");
     persona.setAttribute("Nome", QString::fromStdString(_nome));

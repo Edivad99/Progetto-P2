@@ -63,7 +63,7 @@ size_t Lavoratore::generateID(std::string cf)
     return str_hash;
 }
 
-QDomElement Lavoratore::XmlSerialize(QDomDocument doc)
+QDomElement Lavoratore::XmlSerialize(QDomDocument doc) const
 {
     QDomElement lavoratore = doc.createElement("Lavoratore");;
     lavoratore.appendChild(Persona::XmlSerialize(doc));

@@ -11,7 +11,7 @@ Studente::~Studente()
 
 }
 
-QDomElement Studente::XmlSerialize(QDomDocument doc)
+QDomElement Studente::XmlSerialize(QDomDocument doc) const
 {
     QDomElement studente = doc.createElement("Studente");;
     studente.appendChild(Persona::XmlSerialize(doc));

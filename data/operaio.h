@@ -18,7 +18,7 @@ public:
 
     virtual float Stipendio(float bonus) const;
 
-    virtual QDomElement XmlSerialize(QDomDocument doc);
+    virtual QDomElement XmlSerialize(QDomDocument doc) const;
 
 private:
     Livello _livello;
