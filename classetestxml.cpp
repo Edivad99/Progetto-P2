@@ -69,7 +69,6 @@ void ClasseTestXML::TestXML()
     if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qDebug() << file2.errorString();
-        return -1;
     }
     else
     {
@@ -81,7 +80,7 @@ void ClasseTestXML::TestXML()
     //LETTURA XML
 
     QDomDocument documentoletto("Docum");
-    QFile filelett("C:\\Users\\david\\Desktop\\doc.xml");
+    QFile filelett("C:\\Users\\Matteo\\Desktop\\doc2.xml");
     if(!filelett.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug() << "Errore nell'apertura del file";
@@ -96,48 +95,106 @@ void ClasseTestXML::TestXML()
         }
         filelett.close();
     }
-
+    lista<Lavoratore*> dipendenti2;
     //prendi l'elemento root
-    QDomElement root = documentoletto.firstChildElement();
-    qDebug() <<root.tagName();
-    qDebug() <<root.childNodes().size();
-    if(root.childNodes().at(0).nodeName()=="Operaio")
-    {
-        QDomElement oper=root.childNodes().at(0).toElement();
-        QDomElement lavor=oper.childNodes().at(0).toElement();
-        QDomElement pers=lavor.childNodes().at(0).toElement();
-        string nome=pers.attribute("Nome").toStdString();
-        string cognome=pers.attribute("Cognome").toStdString();
-        QDate datanasc=QDate::fromString(pers.attribute("DataNascita"),"dd/MM/yyyy");
-        string codfisc=pers.attribute("CodiceFiscale").toStdString();
-        Genere gener=Genere(pers.attribute("Genere").toInt());
-        Telefono numtelef(pers.attribute("Telefono").split(" ")[1].toStdString(),pers.attribute("Telefono").split(" ")[0].toStdString());
-        string repart=lavor.attribute("Reparto").toStdString();
-        OreLavorative orelav(lavor.attribute("OrePreviste").split(":")[0].toInt(),lavor.attribute("OrePreviste").split(":")[1].toInt());
-        QDate datascad = QDate::fromString(oper.attribute("DataScadenza"),"dd/MM/yyyy");
-        Livello livell=Livello(oper.attribute("Livello").toInt());
-        qDebug() <<QString::fromStdString(nome);
-        qDebug() <<QString::fromStdString(cognome);
-        qDebug() <<datanasc.toString();
-        qDebug() <<QString::fromStdString(codfisc);
-        qDebug() <<QString::fromStdString((gener == 0) ? "M" : "F");
-        qDebug() <<QString::fromStdString(numtelef.getNumeroTelefono());
-        qDebug() <<QString::fromStdString(repart);
-        qDebug() <<orelav.getOre()<<":"<<orelav.getMinuti();
-        qDebug() <<datascad.toString();
-        qDebug() <<livell;
-        Operaio opdaxml(nome, cognome, datanasc, codfisc, gener, numtelef, repart, orelav, datascad, livell);
-        qDebug() <<"\n"<<QString::fromStdString(opdaxml.getNome());
-        qDebug() <<QString::fromStdString(opdaxml.getCognome());
-        qDebug() <<opdaxml.getDataNascita().toString("dd/MM/yyyy");
-        qDebug() <<QString::fromStdString(opdaxml.getCodiceFiscale());
-        qDebug() <<opdaxml.getGenere();
-        qDebug() <<QString::fromStdString(opdaxml.getNumeroTelefono().getNumeroTelefono());
-        qDebug() <<QString::fromStdString(opdaxml.getReparto());
-        qDebug() <<opdaxml.getOrePreviste().getOre()<<":"<<opdaxml.getOrePreviste().getMinuti();
-        qDebug() <<opdaxml.getDataScadenza().toString("dd/MM/yyyy");
-        qDebug() <<opdaxml.getLivello();
 
+    QDomElement root = documentoletto.firstChildElement();
+    for (int i=0;i<root.childNodes().size();++i) {
+        if(root.childNodes().at(i).nodeName()=="Operaio")
+        {
+            QDomElement oper=root.childNodes().at(i).toElement();
+            /*QDomElement lavor=oper.childNodes().at(0).toElement();
+            QDomElement pers=lavor.childNodes().at(0).toElement();
+            string nome=pers.attribute("Nome").toStdString();
+            string cognome=pers.attribute("Cognome").toStdString();
+            QDate datanasc=QDate::fromString(pers.attribute("DataNascita"),"dd/MM/yyyy");
+            string codfisc=pers.attribute("CodiceFiscale").toStdString();
+            Genere gener=Genere(pers.attribute("Genere").toInt());
+            Telefono numtelef(pers.attribute("Telefono").split(" ")[1].toStdString(),pers.attribute("Telefono").split(" ")[0].toStdString());
+            string repart=lavor.attribute("Reparto").toStdString();
+            OreLavorative orelav(lavor.attribute("OrePreviste").split(":")[0].toInt(),lavor.attribute("OrePreviste").split(":")[1].toInt());
+            QDate datascad = QDate::fromString(lavor.attribute("DataScadenza"),"dd/MM/yyyy");
+            Livello livell=Livello(oper.attribute("Livello").toInt());
+            qDebug() <<QString::fromStdString(nome);
+            qDebug() <<QString::fromStdString(cognome);
+            qDebug() <<datanasc.toString("dd/MM/yyyy");
+            qDebug() <<QString::fromStdString(codfisc);
+            qDebug() <<QString::fromStdString((gener == 0) ? "M" : "F");
+            qDebug() <<QString::fromStdString(numtelef.getNumeroTelefono());
+            qDebug() <<QString::fromStdString(repart);
+            qDebug() <<orelav.getOre()<<":"<<orelav.getMinuti();
+            qDebug() <<datascad.toString();
+            qDebug() <<livell;*/
+            dipendenti2.insertBack(new Operaio(oper));
+            /*qDebug() <<"Operaio----------------------------- "<<i;
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNome());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCognome());
+            qDebug() <<dipendenti2.back()->getDataNascita().toString("dd/MM/yyyy");
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCodiceFiscale());
+            qDebug() <<dipendenti2.back()->getGenere();
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNumeroTelefono().getNumeroTelefono());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getReparto());
+            qDebug() <<dipendenti2.back()->getOrePreviste().getOre()<<":"<<dipendenti2.back()->getOrePreviste().getMinuti();
+            qDebug() <<dipendenti2.back()->getDataScadenza().toString("dd/MM/yyyy");
+            qDebug() <<dynamic_cast<Operaio*>(dipendenti2.back())->getLivello();
+            qDebug() <<dipendenti2.back()->getID();
+            qDebug() <<"Operaio-------------------------fine "<<i;*/
+        }
+        if(root.childNodes().at(i).nodeName()=="Impiegato")
+        {
+            QDomElement impie=root.childNodes().at(i).toElement();
+            dipendenti2.insertBack(new Impiegato(impie));
+            /*qDebug() <<"Impiegato----------------------------- "<<i;
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNome());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCognome());
+            qDebug() <<dipendenti2.back()->getDataNascita().toString("dd/MM/yyyy");
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCodiceFiscale());
+            qDebug() <<dipendenti2.back()->getGenere();
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNumeroTelefono().getNumeroTelefono());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getReparto());
+            qDebug() <<dipendenti2.back()->getOrePreviste().getOre()<<":"<<dipendenti2.back()->getOrePreviste().getMinuti();
+            qDebug() <<dipendenti2.back()->getDataScadenza().toString("dd/MM/yyyy");
+            qDebug() <<dynamic_cast<Impiegato*>(dipendenti2.back())->getPagaPerOra();
+            qDebug() <<dipendenti2.back()->getID();
+            qDebug() <<"Impiegato-------------------------fine "<<i;*/
+        }
+        if(root.childNodes().at(i).nodeName()=="Rappresentante")
+        {
+            QDomElement rappr=root.childNodes().at(i).toElement();
+            dipendenti2.insertBack(new Rappresentante(rappr));
+            /*qDebug() <<"Rappresentante----------------------------- "<<i;
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNome());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCognome());
+            qDebug() <<dipendenti2.back()->getDataNascita().toString("dd/MM/yyyy");
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCodiceFiscale());
+            qDebug() <<dipendenti2.back()->getGenere();
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNumeroTelefono().getNumeroTelefono());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getReparto());
+            qDebug() <<dipendenti2.back()->getOrePreviste().getOre()<<":"<<dipendenti2.back()->getOrePreviste().getMinuti();
+            qDebug() <<dipendenti2.back()->getDataScadenza().toString("dd/MM/yyyy");
+            qDebug() <<dynamic_cast<Impiegato*>(dipendenti2.back())->getPagaPerOra();
+            qDebug() <<dynamic_cast<Rappresentante*>(dipendenti2.back())->getVenditeEffettuate();
+            qDebug() <<dipendenti2.back()->getID();
+            qDebug() <<"Rappresentante-------------------------fine "<<i;*/
+        }
+        if(root.childNodes().at(i).nodeName()=="StudenteLavoratore")
+        {
+            QDomElement studlav=root.childNodes().at(i).toElement();
+            dipendenti2.insertBack(new StudenteLavoratore(studlav));
+            /*qDebug() <<"StudenteLavoratore----------------------------- "<<i;
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNome());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCognome());
+            qDebug() <<dipendenti2.back()->getDataNascita().toString("dd/MM/yyyy");
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getCodiceFiscale());
+            qDebug() <<dipendenti2.back()->getGenere();
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getNumeroTelefono().getNumeroTelefono());
+            qDebug() <<QString::fromStdString(dipendenti2.back()->getReparto());
+            qDebug() <<dipendenti2.back()->getOrePreviste().getOre()<<":"<<dipendenti2.back()->getOrePreviste().getMinuti();
+            qDebug() <<dipendenti2.back()->getDataScadenza().toString("dd/MM/yyyy");
+            qDebug() <<dynamic_cast<StudenteLavoratore*>(dipendenti2.back())->getOccupazione();
+            qDebug() <<dipendenti2.back()->getID();
+            qDebug() <<"StudenteLavoratore-------------------------fine "<<i;*/
+        }
     }
 
     qDebug() <<  "documento caricato";
