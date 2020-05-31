@@ -3,6 +3,10 @@
 
 #include <QFile>
 #include <data/lavoratore.h>
+#include <data/impiegato.h>
+#include <data/studente_lavoratore.h>
+#include <data/operaio.h>
+#include <data/rappresentante.h>
 #include <util/lista.h>
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
@@ -10,10 +14,9 @@
 class TabellaModel
 {
 public:
-    //Costruttore dove va passato l'oggetto XML
     TabellaModel();
 
-    void readFromFile(QFile *file);
+    void readFromFile(QDomDocument doc);
     QDomDocument saveFile();
 
     void aggiungiLavoratore(Lavoratore *nuovoLavoratore);
