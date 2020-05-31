@@ -96,9 +96,10 @@ void ClasseTestXML::TestXML()
         filelett.close();
     }
     lista<Lavoratore*> dipendenti2;
-    //prendi l'elemento root
 
+    //prendi l'elemento root
     QDomElement root = documentoletto.firstChildElement();
+    qDebug() << root.childNodes().size();
     for (int i=0;i<root.childNodes().size();++i) {
         if(root.childNodes().at(i).nodeName()=="Operaio")
         {

@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    ClasseTestXML::TestXML();
+    //ClasseTestXML::TestXML();
     //return 0;
 
     MainWindow w;
