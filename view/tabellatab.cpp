@@ -273,7 +273,7 @@ bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, s
     else if(accettabile && nome.empty()) accettabile = false;
     else if(accettabile && cognome.empty()) accettabile = false;
     else if(accettabile && (cf.empty() || cf.length() != 16)) accettabile = false;
-    else if(accettabile && telefono.empty()) accettabile = false;
+    else if(accettabile && (telefono.empty() || !Telefono::isNumber(telefono))) accettabile = false;
     else if(accettabile && reparto.empty()) accettabile = false;
     return accettabile;
 }
@@ -403,7 +403,7 @@ void TabellaTab::btnAggiungiClicked()
     string Cognome = cognome->text().toStdString();
     QDate DataNascita = dataNascita->date();
     Genere GenereEnum = (genere->currentText().toStdString() == "M" ? Genere::M : Genere::F);
-    string CF = cf->text().toStdString();
+    string CF = cf->text().toStdString(); for (auto & c: CF) c = toupper(c);
     string NumeroTelefono = numeroTelefono->text().trimmed().toStdString();
     string Reparto = reparto->text().toStdString();
     int OreDiLavoro = oreDiLavoro->value();
