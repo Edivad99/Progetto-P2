@@ -317,13 +317,13 @@ void Tabella::updateTabella()
     intestazioneColonna.push_back("Paga per ora");
     intestazioneColonna.push_back("Vendite effettuate");
 
-
-    table->setRowCount(_model->getLavoratori()->getSize());
+    lista<Lavoratore*>supp = _model->getLavoratori();
+    table->setRowCount(supp.getSize());
     table->setColumnCount(intestazioneColonna.size());
     table->setHorizontalHeaderLabels(intestazioneColonna);
 
     int rowCount = 0;
-    for(lista<Lavoratore*>::constiterator cit = _model->getLavoratori()->begin(); cit != _model->getLavoratori()->end(); cit++)
+    for(lista<Lavoratore*>::constiterator cit = supp.begin(); cit != supp.end(); cit++)
     {
         QString nome = QString::fromStdString((*cit)->getNome());
         QString cognome = QString::fromStdString((*cit)->getCognome());

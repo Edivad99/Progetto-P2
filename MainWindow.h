@@ -5,11 +5,14 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
+#include <QMessageBox>
 #include <QVBoxLayout>
 #include <QFileDialog>
 #include <QDir>
 #include <QTextStream>
+#include <QCloseEvent>
 #include "view/tabella.h"
+#include <model/tabellamodel.h>
 
 class MainWindow : public QWidget
 {
@@ -30,6 +33,8 @@ private:
 
     void addMenuButtons();
     void setApplicationStyle();
+    void checkUnsavedData();
+    void closeEvent(QCloseEvent *event);
 
 private slots:
     void apriClicked();

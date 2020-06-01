@@ -1,7 +1,6 @@
 #ifndef TABELLAMODEL_H
 #define TABELLAMODEL_H
 
-#include <QFile>
 #include <data/lavoratore.h>
 #include <data/impiegato.h>
 #include <data/studente_lavoratore.h>
@@ -20,10 +19,14 @@ public:
     QDomDocument saveFile();
 
     void aggiungiLavoratore(Lavoratore *nuovoLavoratore);
-    lista<Lavoratore*>* getLavoratori() const;
+    lista<Lavoratore*> getLavoratori() const;
+
+    bool deviSalvare();
+    void salvato();
 
 private:
-    lista<Lavoratore*> *lavoratori;
+    lista<Lavoratore*> lavoratori;
+    bool _deviSalvare;
 };
 
 #endif // TABELLAMODEL_H

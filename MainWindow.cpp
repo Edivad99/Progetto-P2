@@ -1,7 +1,5 @@
 #include "MainWindow.h"
 
-#include <model/tabellamodel.h>
-
 MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 {
     mainLayout = new QVBoxLayout(this);
@@ -23,8 +21,11 @@ void MainWindow::addMenuButtons()
 
     QMenu* file = new QMenu("File", menuBar);
     QAction* apri = new QAction("Apri", file);
+    apri->setShortcut(Qt::CTRL | Qt::Key_N);
     QAction* salva = new QAction("Salva", file);
+    salva->setShortcut(Qt::CTRL | Qt::Key_S);
     QAction* salvaConNome = new QAction("Salva con nome", file);
+    salvaConNome->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
     QAction* chiudi = new QAction("Chiudi", file);
 
     //Actions
@@ -57,8 +58,20 @@ void MainWindow::setApplicationStyle()
     mainLayout->setMargin(0);
 }
 
+void MainWindow::checkUnsavedData()
+{
+    if(tabellaModel->deviSalvare())
+    {
+        QMessageBox::StandardButton response= QMessageBox::question(this, "Salvare i dati", "Vuoi salvare i dati modificati prima di continuare?", QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+        if(response == QMessageBox::Yes)
+            salvaClicked();
+    }
+}
+
 void MainWindow::apriClicked()
 {
+    checkUnsavedData();
+
     QString filter = "XML File (*.xml)";
     QString fileName = QFileDialog::getOpenFileName(this, "Seleziona un file da importare", QDir::homePath(), filter);
 
@@ -122,5 +135,14 @@ void MainWindow::salvaConNomeClicked()
             fileAperto->close();
         }
     }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (tabellaModel->deviSalvare())
+    {
+        checkUnsavedData();
+    }
+    event->accept();
 }
 
