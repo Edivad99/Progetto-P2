@@ -31,6 +31,7 @@ void TabellaModel::readFromFile(QDomDocument doc)
             lavoratori.insertBack(new StudenteLavoratore(studlav));
         }
     }
+    _deviSalvare = false;
 }
 
 QDomDocument TabellaModel::saveFile()

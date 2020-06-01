@@ -105,6 +105,7 @@ void MainWindow::salvaClicked()
             QTextStream stream(fileAperto);
             stream << dipendenti.toString();
             fileAperto->close();
+            tabellaModel->salvato();
         }
     }
     else
@@ -133,6 +134,7 @@ void MainWindow::salvaConNomeClicked()
             QTextStream stream(fileAperto);
             stream << dipendenti.toString();
             fileAperto->close();
+            tabellaModel->salvato();
         }
     }
 }
