@@ -16,6 +16,7 @@
 #include <QSpinBox>
 #include <QPushButton>
 #include <model/tabellamodel.h>
+#include <view/widgets/wcontratto.h>
 #include "data/lavoratore.h"
 #include "data/operaio.h"
 #include "data/impiegato.h"
@@ -49,10 +50,12 @@ private:
     //Input
     QComboBox *tipologia, *genere, *occupazione;
     QLineEdit *nome, *cognome, *cf, *reparto, *numeroTelefono, *prefisso;
-    QDateEdit *dataNascita, *scadenzaContratto;
-    QRadioButton *determinato, *indeterminato;
+    QDateEdit *dataNascita;
     QSpinBox *oreDiLavoro, *livello, *venditeEffettuate;
     QDoubleSpinBox *pagaPerOra;
+
+    //Custom Input
+    WContratto *contratto;
 
     //Azioni
     QPushButton *btnAggiungi, *btnModifica, *btnRimuovi;

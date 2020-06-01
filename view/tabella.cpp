@@ -61,13 +61,11 @@ void Tabella::Aggiungi()
     prefisso = new QLineEdit();
     cf = new QLineEdit();
     dataNascita = new QDateEdit();
-    scadenzaContratto = new QDateEdit(QDate::currentDate().addMonths(1));
+    contratto = new WContratto();
     oreDiLavoro = new QSpinBox();
     livello = new QSpinBox();
     pagaPerOra = new QDoubleSpinBox();
     venditeEffettuate = new QSpinBox();
-    determinato = new QRadioButton();
-    indeterminato = new QRadioButton();
 
     //Azioni
     btnAggiungi = new QPushButton();
@@ -141,21 +139,7 @@ void Tabella::Aggiungi()
     layoutAggiungi->addLayout(oreLayout, 8, 0);
 
     //TIPOLOGIA DI CONTRATTO
-    QVBoxLayout *contrattoLayout = new QVBoxLayout();
-    contrattoLayout->setSpacing(0);
-    contrattoLayout->addWidget(new QLabel("Tipologia di Contratto"));
-
-    indeterminato->setText("Indeterminato");
-    indeterminato->setChecked(true);
-    contrattoLayout->addWidget(indeterminato);
-
-    QHBoxLayout *determinatoLayout = new QHBoxLayout();
-    determinato->setText("Determinato");
-    determinatoLayout->addWidget(determinato);
-    determinatoLayout->addWidget(scadenzaContratto);
-
-    contrattoLayout->addLayout(determinatoLayout);
-    layoutAggiungi->addLayout(contrattoLayout, 0, 1);
+    layoutAggiungi->addWidget(contratto, 0, 1);
 
     //LIVELLO
     Qlivello = new QWidget();
@@ -416,8 +400,8 @@ void Tabella::btnAggiungiClicked()
     string Prefisso = prefisso->text().trimmed().toStdString();
     string Reparto = reparto->text().toStdString();
     int OreDiLavoro = oreDiLavoro->value();
-    bool Determinato = determinato->isChecked();
-    QDate ScadenzaContratto = scadenzaContratto->date();
+    bool Determinato = contratto->isDeterminato();
+    QDate ScadenzaContratto = contratto->getDataScadenza();
     if(!Determinato)
         ScadenzaContratto = QDate(0,0,0);
 

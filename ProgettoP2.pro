@@ -32,7 +32,8 @@ SOURCES += \
     util/telefono.cpp \
     util/lista.cpp \
     util/nodo.cpp \
-    view/tabella.cpp
+    view/tabella.cpp \
+    view/widgets/wcontratto.cpp
 HEADERS += \
     MainWindow.h \
     classetestxml.h \
@@ -48,7 +49,8 @@ HEADERS += \
     util/telefono.h \
     util/lista.h \
     util/nodo.h \
-    view/tabella.h
+    view/tabella.h \
+    view/widgets/wcontratto.h
 
 FORMS +=
 
