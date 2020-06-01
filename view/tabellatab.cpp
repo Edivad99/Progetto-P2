@@ -58,6 +58,7 @@ void TabellaTab::Aggiungi()
     cognome = new QLineEdit();
     reparto = new QLineEdit();
     numeroTelefono = new QLineEdit();
+    prefisso = new QLineEdit();
     cf = new QLineEdit();
     dataNascita = new QDateEdit();
     scadenzaContratto = new QDateEdit(QDate::currentDate().addMonths(1));
@@ -118,8 +119,14 @@ void TabellaTab::Aggiungi()
     layoutAggiungi->addWidget(cf, 5, 0);
 
     //NUMERO DI TELEFONO
+    QHBoxLayout *telefonoLayout = new QHBoxLayout();
+    telefonoLayout->setSpacing(0);
+    prefisso->setPlaceholderText("Prefisso");
+    prefisso->setText("39");
     numeroTelefono->setPlaceholderText("Numero di Telefono");
-    layoutAggiungi->addWidget(numeroTelefono, 6, 0);
+    telefonoLayout->addWidget(prefisso, 20);
+    telefonoLayout->addWidget(numeroTelefono, 80);
+    layoutAggiungi->addLayout(telefonoLayout, 6, 0);
 
     //REPARTO
     reparto->setPlaceholderText("Reparto");
@@ -265,7 +272,7 @@ void TabellaTab::VisualizzaStudente()
     Qoccupazione->setVisible(true);
 }
 
-bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string reparto) const
+bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const
 {
     //TODO:Forse da aggiungere controlli sulle date
     bool accettabile = true;
@@ -274,6 +281,7 @@ bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, s
     else if(accettabile && cognome.empty()) accettabile = false;
     else if(accettabile && (cf.empty() || cf.length() != 16)) accettabile = false;
     else if(accettabile && (telefono.empty() || !Telefono::isNumber(telefono))) accettabile = false;
+    else if(accettabile && (prefisso.empty() || !Telefono::isNumber(prefisso))) accettabile = false;
     else if(accettabile && reparto.empty()) accettabile = false;
     return accettabile;
 }
@@ -405,6 +413,7 @@ void TabellaTab::btnAggiungiClicked()
     Genere GenereEnum = (genere->currentText().toStdString() == "M" ? Genere::M : Genere::F);
     string CF = cf->text().toStdString(); for (auto & c: CF) c = toupper(c);
     string NumeroTelefono = numeroTelefono->text().trimmed().toStdString();
+    string Prefisso = prefisso->text().trimmed().toStdString();
     string Reparto = reparto->text().toStdString();
     int OreDiLavoro = oreDiLavoro->value();
     bool Determinato = determinato->isChecked();
@@ -421,7 +430,7 @@ void TabellaTab::btnAggiungiClicked()
     //Studente
     Occupazione OccupazioneEnum = (occupazione->currentText().toStdString() == "Superiori" ? Occupazione::Superiori : Occupazione::Universita);
 
-    if(!convalidaInput(Tipologia, Nome, Cognome, CF, NumeroTelefono, Reparto))
+    if(!convalidaInput(Tipologia, Nome, Cognome, CF, NumeroTelefono, Prefisso, Reparto))
     {
         QMessageBox *message = new QMessageBox(QMessageBox::Information, "Errore dati inseriti", "I dati inseriti non sono corretti o sono mancanti!", QMessageBox::Ok);
         message->show();
@@ -431,19 +440,19 @@ void TabellaTab::btnAggiungiClicked()
         Lavoratore *nuovo = nullptr;
         if(Tipologia == "Operaio")
         {
-            nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
+            nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
         }
         else if (Tipologia == "Impiegato")
         {
-            nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra);
+            nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra);
         }
         else if (Tipologia == "Rappresentante")
         {
-            nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra, VenditeEffettuate);
+            nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra, VenditeEffettuate);
         }
         else if (Tipologia == "Studente")
         {
-            nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
+            nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
         }
         if(nuovo != nullptr)
         {

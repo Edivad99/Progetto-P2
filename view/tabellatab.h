@@ -48,7 +48,7 @@ private:
 
     //Input
     QComboBox *tipologia, *genere, *occupazione;
-    QLineEdit *nome, *cognome, *cf, *reparto, *numeroTelefono;
+    QLineEdit *nome, *cognome, *cf, *reparto, *numeroTelefono, *prefisso;
     QDateEdit *dataNascita, *scadenzaContratto;
     QRadioButton *determinato, *indeterminato;
     QSpinBox *oreDiLavoro, *livello, *venditeEffettuate;
@@ -70,7 +70,7 @@ private:
     void VisualizzaStudente();
 
     //Controllo sull'input
-    bool convalidaInput(string, string, string, string, string, string) const;
+    bool convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const;
 
     //Test
     void setText(QString text, int row, int column);
