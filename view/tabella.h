@@ -17,6 +17,7 @@
 #include <QPushButton>
 #include <model/tabellamodel.h>
 #include <view/widgets/wcontratto.h>
+#include <view/widgets/wtelefono.h>
 #include "data/lavoratore.h"
 #include "data/operaio.h"
 #include "data/impiegato.h"
@@ -49,13 +50,14 @@ private:
 
     //Input
     QComboBox *tipologia, *genere, *occupazione;
-    QLineEdit *nome, *cognome, *cf, *reparto, *numeroTelefono, *prefisso;
+    QLineEdit *nome, *cognome, *cf, *reparto;
     QDateEdit *dataNascita;
     QSpinBox *oreDiLavoro, *livello, *venditeEffettuate;
     QDoubleSpinBox *pagaPerOra;
 
     //Custom Input
     WContratto *contratto;
+    WTelefono *numeroTelefono;
 
     //Azioni
     QPushButton *btnAggiungi, *btnModifica, *btnRimuovi;
@@ -73,7 +75,7 @@ private:
     void VisualizzaStudente();
 
     //Controllo sull'input
-    bool convalidaInput(string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const;
+    bool convalidaInput(string nome, string cognome, string cf, string reparto) const;
 
     //Test
     void setText(QString text, int row, int column);

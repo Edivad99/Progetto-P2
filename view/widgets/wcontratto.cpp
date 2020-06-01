@@ -23,6 +23,7 @@ void WContratto::initUI()
 
     QVBoxLayout *contrattoLayout = new QVBoxLayout();
     contrattoLayout->setSpacing(0);
+    contrattoLayout->setMargin(0);
     contrattoLayout->addWidget(new QLabel("Tipologia di Contratto"));
 
     indeterminato->setText("Indeterminato");

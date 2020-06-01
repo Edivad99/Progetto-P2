@@ -8,7 +8,9 @@ Persona::Persona(string nome, string cognome, QDate dataNascita, string codiceFi
 
 Persona::Persona(QDomElement pers):_nome(pers.attribute("Nome").toStdString()), _cognome(pers.attribute("Cognome").toStdString()),
     _dataNascita(QDate::fromString(pers.attribute("DataNascita"),"dd/MM/yyyy")), _codiceFiscale(pers.attribute("CodiceFiscale").toStdString()),
-    _genere(Genere(pers.attribute("Genere").toStdString()=="M" ? 0:1)), _numeroTelefono(pers.attribute("Telefono").split(" ")[1].toStdString(),pers.attribute("Telefono").split(" ")[0].toStdString())
+    _genere(Genere(pers.attribute("Genere").toStdString()=="M" ? 0:1)),
+    _numeroTelefono(pers.attribute("Telefono").toStdString() == "Sconosciuto" ? "0" : pers.attribute("Telefono").split(" ")[1].toStdString(),
+                    pers.attribute("Telefono").toStdString() == "Sconosciuto" ? "0" : pers.attribute("Telefono").split(" ")[0].toStdString())
 {
 
 };
