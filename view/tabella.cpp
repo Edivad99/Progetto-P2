@@ -1,6 +1,6 @@
-#include "tabellatab.h"
+#include "tabella.h"
 
-TabellaTab::TabellaTab(TabellaModel *model, QWidget *parent): QWidget(parent), _model(model)
+Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(model)
 {
     mainLayout = new QHBoxLayout(this);
     layoutOpzioni = new QVBoxLayout();
@@ -46,7 +46,7 @@ TabellaTab::TabellaTab(TabellaModel *model, QWidget *parent): QWidget(parent), _
     connect(btnAggiungi, SIGNAL(clicked()), this, SLOT(btnAggiungiClicked()));
 }
 
-void TabellaTab::Aggiungi()
+void Tabella::Aggiungi()
 {
     layoutAggiungi = new QGridLayout();
 
@@ -204,7 +204,7 @@ void TabellaTab::Aggiungi()
     aggiungi->setLayout(layoutAggiungi);
 }
 
-void TabellaTab::Modifica()
+void Tabella::Modifica()
 {
     layoutModifica = new QGridLayout();
 
@@ -214,7 +214,7 @@ void TabellaTab::Modifica()
     modifica->setLayout(layoutModifica);
 }
 
-void TabellaTab::Rimuovi()
+void Tabella::Rimuovi()
 {
     layoutRimuovi = new QGridLayout();
 
@@ -224,7 +224,7 @@ void TabellaTab::Rimuovi()
     rimuovi->setLayout(layoutRimuovi);
 }
 
-void TabellaTab::VisualizzaOperaio()
+void Tabella::VisualizzaOperaio()
 {
     //Livello
     Qlivello->setVisible(true);
@@ -236,7 +236,7 @@ void TabellaTab::VisualizzaOperaio()
     Qoccupazione->setVisible(false);
 }
 
-void TabellaTab::VisualizzaImpiegato()
+void Tabella::VisualizzaImpiegato()
 {
     //Livello
     Qlivello->setVisible(false);
@@ -248,7 +248,7 @@ void TabellaTab::VisualizzaImpiegato()
     Qoccupazione->setVisible(false);
 }
 
-void TabellaTab::VisualizzaRappresentante()
+void Tabella::VisualizzaRappresentante()
 {
     //Livello
     Qlivello->setVisible(false);
@@ -260,7 +260,7 @@ void TabellaTab::VisualizzaRappresentante()
     Qoccupazione->setVisible(false);
 }
 
-void TabellaTab::VisualizzaStudente()
+void Tabella::VisualizzaStudente()
 {
     //Livello
     Qlivello->setVisible(false);
@@ -272,7 +272,7 @@ void TabellaTab::VisualizzaStudente()
     Qoccupazione->setVisible(true);
 }
 
-bool TabellaTab::convalidaInput(string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const
+bool Tabella::convalidaInput(string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const
 {
     //TODO:Forse da aggiungere controlli sulle date
     bool accettabile = true;
@@ -285,7 +285,7 @@ bool TabellaTab::convalidaInput(string nome, string cognome, string cf, string t
     return accettabile;
 }
 
-void TabellaTab::setText(QString text, int row, int column)
+void Tabella::setText(QString text, int row, int column)
 {
     QTableWidgetItem *pCell = table->item(row, column);
     if(!pCell)
@@ -297,7 +297,7 @@ void TabellaTab::setText(QString text, int row, int column)
     pCell->setText(text);
 }
 
-void TabellaTab::updateTabella()
+void Tabella::updateTabella()
 {
     QStringList intestazioneColonna;
     intestazioneColonna.push_back("ID");
@@ -391,7 +391,7 @@ void TabellaTab::updateTabella()
     }
 }
 
-void TabellaTab::tipologiaIndexChanged(int index)
+void Tabella::tipologiaIndexChanged(int index)
 {
     if(index==0)
         VisualizzaOperaio();
@@ -403,7 +403,7 @@ void TabellaTab::tipologiaIndexChanged(int index)
         VisualizzaStudente();
 }
 
-void TabellaTab::btnAggiungiClicked()
+void Tabella::btnAggiungiClicked()
 {
     //Generali
     int Tipologia = tipologia->currentIndex();

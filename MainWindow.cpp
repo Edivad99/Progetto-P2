@@ -5,20 +5,14 @@
 MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 {
     mainLayout = new QVBoxLayout(this);
-    tabWidget = new QTabWidget();
     //La barra dei menu va per prima
     addMenuButtons();
     fileAperto = nullptr;
 
     tabellaModel = new TabellaModel();
+    tabellaTab = new Tabella(tabellaModel);
 
-    homeTab = new HomeTab();
-    tabellaTab = new TabellaTab(tabellaModel);
-
-    tabWidget->addTab(homeTab, "Home");
-    tabWidget->addTab(tabellaTab, "Tabella");
-
-    mainLayout->addWidget(tabWidget);
+    mainLayout->addWidget(tabellaTab);
     setApplicationStyle();
     setLayout(mainLayout);
 }

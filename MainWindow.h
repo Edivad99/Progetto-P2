@@ -6,12 +6,10 @@
 #include <QMenu>
 #include <QAction>
 #include <QVBoxLayout>
-#include <QTabWidget>
 #include <QFileDialog>
 #include <QDir>
 #include <QTextStream>
-#include "view/hometab.h"
-#include "view/tabellatab.h"
+#include "view/tabella.h"
 
 class MainWindow : public QWidget
 {
@@ -24,13 +22,10 @@ public:
 private:
 
     QVBoxLayout *mainLayout;
-    QTabWidget *tabWidget;
 
     QFile* fileAperto;
 
-    HomeTab* homeTab;
-    TabellaTab* tabellaTab;
-
+    Tabella* tabellaTab;
     TabellaModel *tabellaModel;
 
     void addMenuButtons();

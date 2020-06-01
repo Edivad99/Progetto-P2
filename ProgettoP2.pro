@@ -32,8 +32,7 @@ SOURCES += \
     util/telefono.cpp \
     util/lista.cpp \
     util/nodo.cpp \
-    view/hometab.cpp \
-    view/tabellatab.cpp
+    view/tabella.cpp
 HEADERS += \
     MainWindow.h \
     classetestxml.h \
@@ -49,8 +48,7 @@ HEADERS += \
     util/telefono.h \
     util/lista.h \
     util/nodo.h \
-    view/hometab.h \
-    view/tabellatab.h
+    view/tabella.h
 
 FORMS +=
 

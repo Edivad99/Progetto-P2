@@ -25,11 +25,11 @@
 
 using std::string;
 
-class TabellaTab : public QWidget
+class Tabella : public QWidget
 {
     Q_OBJECT
 public:
-    TabellaTab(TabellaModel *model, QWidget *parent = 0);
+    Tabella(TabellaModel *model, QWidget *parent = 0);
 
     void updateTabella();
 
