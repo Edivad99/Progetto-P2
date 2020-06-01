@@ -7,8 +7,8 @@ class lista
 {
 private:
     nodo<T> *_first, *_end;//_end punta all'ultimo nodo, non alla "cella" successiva
-    static nodo<T> *copia(nodo<T>* f, nodo<T>*& l);
-    unsigned int _size;
+    static nodo<T> *copia(nodo<T>* f, nodo<T>*& l); //per copia profonda
+    unsigned int _size; //dimensione della lista
 
 public:
     //costruttore lista
@@ -19,9 +19,9 @@ public:
     ~lista();
     //operatore di assegnazione
     lista& operator=(const lista& d);
-    //metodo della size
+    //restituisce il numero di elementi della lista
     unsigned int getSize() const;
-    //lista vuota
+    //indica se la lista è vuota
     bool isEmpty() const;
     //inserimento in testa
     void insertFront(const T& t);
@@ -35,8 +35,9 @@ public:
         bool _pastTheEnd; // true sse constiterator è "past-the-end"
         constiterator(nodo<T>* p, bool pte=false);
     public:
-        constiterator(): _ptr(nullptr), _pastTheEnd(false) {}
-
+        //costruttore
+        constiterator();
+        //operatori
         const T& operator*() const;
 
         const T* operator->() const;
@@ -53,25 +54,28 @@ public:
 
         bool operator!=(const constiterator& x) const;
     };
+    //restituisce il constiterator al primo nodo della lista
     constiterator begin() const;
-
+    //restituisce il constiterator al pte
     constiterator end() const;
-
+    //restituisce un reference al primo elemento della lista
     T& front();
 
     const T& front() const;
-
+    //restituisce un reference all'ultimo elemento della lista
     T& back();
 
     const T& back() const;
-
+    //rimuove dalla lista un singolo elemento dato un constiterator
     constiterator erase(constiterator x);
-
+    //rimuove dalla lista tutti gli elementi uguali a t
     void remove(const T& t);
-
+    //indica se la lista contiene l'elemento t
     bool contains(const T& t) const;
-
+    //resituisce il constiterator dell'elemento dato t
     constiterator indexOf(const T& t) const;
+    //rimuove tutti gli elementi della lista
+    void clear();
 
 };
 
@@ -273,7 +277,7 @@ typename lista<T>::constiterator lista<T>::indexOf(const T &t) const {
 template<class T>
 typename lista<T>::constiterator lista<T>::erase(constiterator x) {
 
-    if (_first == _end && x == begin())//ho solo un elemento
+    if (_first == _end && x == begin())
     {
         delete _first;
         _first = _end = nullptr;
@@ -324,5 +328,18 @@ void lista<T>::remove(const T& t) {
             ++cit;
         }
     }
+}
+
+template<class T>
+void lista<T>::clear(){
+    nodo<T>* curr = _first;
+    while(_first) {
+        curr = _first;
+        _first = _first->_next;
+        curr->_next=nullptr;
+        delete curr;
+    }
+    _first = _end = nullptr;
+    _size = 0;
 }
 #endif //LISTA_H
