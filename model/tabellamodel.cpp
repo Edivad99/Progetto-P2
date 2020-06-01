@@ -7,6 +7,7 @@ TabellaModel::TabellaModel()
 
 void TabellaModel::readFromFile(QDomDocument doc)
 {
+    lavoratori->clear();
     QDomElement root = doc.firstChildElement();
     for (int i=0;i<root.childNodes().size();++i)
     {

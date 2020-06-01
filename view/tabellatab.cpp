@@ -82,7 +82,7 @@ void TabellaTab::Aggiungi()
     tipologieItems.push_back("Operaio");
     tipologieItems.push_back("Impiegato");
     tipologieItems.push_back("Rappresentante");
-    tipologieItems.push_back("Studente");
+    tipologieItems.push_back("Studente-Lavoratore");
     tipologia->addItems(tipologieItems);
     tipologiaLayout->addWidget(tipologia);
     layoutAggiungi->addLayout(tipologiaLayout, 0, 0);
@@ -272,12 +272,11 @@ void TabellaTab::VisualizzaStudente()
     Qoccupazione->setVisible(true);
 }
 
-bool TabellaTab::convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const
+bool TabellaTab::convalidaInput(string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const
 {
     //TODO:Forse da aggiungere controlli sulle date
     bool accettabile = true;
-    if(tipologia.empty()) accettabile = false;
-    else if(accettabile && nome.empty()) accettabile = false;
+    if(accettabile && nome.empty()) accettabile = false;
     else if(accettabile && cognome.empty()) accettabile = false;
     else if(accettabile && (cf.empty() || cf.length() != 16)) accettabile = false;
     else if(accettabile && (telefono.empty() || !Telefono::isNumber(telefono))) accettabile = false;
@@ -292,6 +291,7 @@ void TabellaTab::setText(QString text, int row, int column)
     if(!pCell)
     {
         pCell = new QTableWidgetItem();
+        pCell->setFlags(pCell->flags() ^ Qt::ItemIsEditable);
         table->setItem(row, column, pCell);
     }
     pCell->setText(text);
@@ -406,7 +406,7 @@ void TabellaTab::tipologiaIndexChanged(int index)
 void TabellaTab::btnAggiungiClicked()
 {
     //Generali
-    string Tipologia = tipologia->currentText().toStdString();
+    int Tipologia = tipologia->currentIndex();
     string Nome = nome->text().toStdString();
     string Cognome = cognome->text().toStdString();
     QDate DataNascita = dataNascita->date();
@@ -430,7 +430,7 @@ void TabellaTab::btnAggiungiClicked()
     //Studente
     Occupazione OccupazioneEnum = (occupazione->currentText().toStdString() == "Superiori" ? Occupazione::Superiori : Occupazione::Universita);
 
-    if(!convalidaInput(Tipologia, Nome, Cognome, CF, NumeroTelefono, Prefisso, Reparto))
+    if(!convalidaInput(Nome, Cognome, CF, NumeroTelefono, Prefisso, Reparto))
     {
         QMessageBox *message = new QMessageBox(QMessageBox::Information, "Errore dati inseriti", "I dati inseriti non sono corretti o sono mancanti!", QMessageBox::Ok);
         message->show();
@@ -438,19 +438,19 @@ void TabellaTab::btnAggiungiClicked()
     else
     {
         Lavoratore *nuovo = nullptr;
-        if(Tipologia == "Operaio")
+        if(Tipologia == 0)
         {
             nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
         }
-        else if (Tipologia == "Impiegato")
+        else if (Tipologia == 1)
         {
             nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra);
         }
-        else if (Tipologia == "Rappresentante")
+        else if (Tipologia == 2)
         {
             nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra, VenditeEffettuate);
         }
-        else if (Tipologia == "Studente")
+        else if (Tipologia == 3)
         {
             nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, Telefono(NumeroTelefono, Prefisso), OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
         }

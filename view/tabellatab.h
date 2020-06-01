@@ -70,7 +70,7 @@ private:
     void VisualizzaStudente();
 
     //Controllo sull'input
-    bool convalidaInput(string tipologia, string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const;
+    bool convalidaInput(string nome, string cognome, string cf, string telefono, string prefisso, string reparto) const;
 
     //Test
     void setText(QString text, int row, int column);
