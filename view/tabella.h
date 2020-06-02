@@ -18,6 +18,7 @@
 #include <model/tabellamodel.h>
 #include <view/widgets/wcontratto.h>
 #include <view/widgets/wlivello.h>
+#include <view/widgets/wpagaperora.h>
 #include <view/widgets/wtelefono.h>
 #include "data/lavoratore.h"
 #include "data/operaio.h"
@@ -54,18 +55,18 @@ private:
     QLineEdit *nome, *cognome, *cf, *reparto;
     QDateEdit *dataNascita;
     QSpinBox *oreDiLavoro, *venditeEffettuate;
-    QDoubleSpinBox *pagaPerOra;
 
     //Custom Input
     WContratto *contratto;
     WTelefono *numeroTelefono;
     WLivello *livello;
+    WPagaPerOra *pagaPerOra;
 
     //Azioni
     QPushButton *btnAggiungi, *btnModifica, *btnRimuovi;
 
     //QWidget per mostrare/nascondere alcuni campi
-    QWidget *Qpaga, *Qvendite, *Qoccupazione;
+    QWidget *Qvendite, *Qoccupazione;
 
     void Aggiungi();
     void Modifica();

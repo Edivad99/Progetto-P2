@@ -35,6 +35,7 @@ SOURCES += \
     view/tabella.cpp \
     view/widgets/wcontratto.cpp \
     view/widgets/wlivello.cpp \
+    view/widgets/wpagaperora.cpp \
     view/widgets/wtelefono.cpp
 HEADERS += \
     MainWindow.h \
@@ -54,6 +55,7 @@ HEADERS += \
     view/tabella.h \
     view/widgets/wcontratto.h \
     view/widgets/wlivello.h \
+    view/widgets/wpagaperora.h \
     view/widgets/wtelefono.h
 
 FORMS +=

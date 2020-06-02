@@ -63,7 +63,7 @@ void Tabella::Aggiungi()
     contratto = new WContratto();
     oreDiLavoro = new QSpinBox();
     livello = new WLivello(1,5);
-    pagaPerOra = new QDoubleSpinBox();
+    pagaPerOra = new WPagaPerOra();
     venditeEffettuate = new QSpinBox();
 
     //Azioni
@@ -138,14 +138,7 @@ void Tabella::Aggiungi()
     layoutAggiungi->addWidget(livello, 1, 1);
 
     //PAGA PER ORA
-    Qpaga = new QWidget();
-    QVBoxLayout *pagaLayout = new QVBoxLayout(Qpaga);
-    pagaLayout->setMargin(0);
-    pagaLayout->setSpacing(0);
-    pagaLayout->addWidget(new QLabel("Paga per ora"));
-    pagaPerOra->setRange(0, 10000);
-    pagaLayout->addWidget(pagaPerOra);
-    layoutAggiungi->addWidget(Qpaga, 2, 1);
+    layoutAggiungi->addWidget(pagaPerOra, 2, 1);
 
     //VENDITE EFFETTUATE
     Qvendite = new QWidget();
@@ -203,7 +196,7 @@ void Tabella::VisualizzaOperaio()
     //Livello
     livello->setVisible(true);
     //Paga per ora
-    Qpaga->setVisible(false);
+    pagaPerOra->setVisible(false);
     //Vendite effettuate
     Qvendite->setVisible(false);
     //Occupazione
@@ -215,7 +208,7 @@ void Tabella::VisualizzaImpiegato()
     //Livello
     livello->setVisible(false);
     //Paga per ora
-    Qpaga->setVisible(true);
+    pagaPerOra->setVisible(true);
     //Vendite effettuate
     Qvendite->setVisible(false);
     //Occupazione
@@ -227,7 +220,7 @@ void Tabella::VisualizzaRappresentante()
     //Livello
     livello->setVisible(false);
     //Paga per ora
-    Qpaga->setVisible(true);
+    pagaPerOra->setVisible(true);
     //Vendite effettuate
     Qvendite->setVisible(true);
     //Occupazione
@@ -239,7 +232,7 @@ void Tabella::VisualizzaStudente()
     //Livello
     livello->setVisible(false);
     //Paga per ora
-    Qpaga->setVisible(false);
+    pagaPerOra->setVisible(false);
     //Vendite effettuate
     Qvendite->setVisible(false);
     //Occupazione
@@ -395,7 +388,7 @@ void Tabella::btnAggiungiClicked()
     //Operaio
     int Livello = livello->getLivello();
     //Impiegato
-    float PagaPerOra = pagaPerOra->value();
+    float PagaPerOra = pagaPerOra->getPaga();
     //+Rappresentante
     int VenditeEffettuate = venditeEffettuate->value();
     //Studente
