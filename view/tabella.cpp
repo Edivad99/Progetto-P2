@@ -2,7 +2,9 @@
 
 Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(model)
 {
-    mainLayout = new QHBoxLayout(this);
+    mainLayout = new QVBoxLayout(this);
+    tableLayout = new QHBoxLayout();
+    bottomBar = new QHBoxLayout();
     layoutOpzioni = new QVBoxLayout();
     aggiungi = new QGroupBox("Aggiungi");
     modifica = new QGroupBox("Modifica");
@@ -21,8 +23,7 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     rimuoviPolicy.setHorizontalStretch(1);
     rimuovi->setSizePolicy(rimuoviPolicy);
 
-
-    //Imposto le dimensioni della tabella
+    //Imposto la tabella
     table = new QTableWidget();
     updateTabella();
 
@@ -31,14 +32,16 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     Rimuovi();
 
     //Aggiunta layout
-    mainLayout->addWidget(table, 66);
+    tableLayout->setMargin(0);
+    tableLayout->addWidget(table, 66);
+    tableLayout->addLayout(layoutOpzioni, 33);
 
-    layoutOpzioni->addWidget(aggiungi);
-    layoutOpzioni->addWidget(modifica);
-    layoutOpzioni->addWidget(rimuovi);
+    //Table + operations
+    mainLayout->addLayout(tableLayout, 98);
 
-
-    mainLayout->addLayout(layoutOpzioni, 33);
+    //Bottom bar
+    mainLayout->addLayout(bottomBar, 2);
+    bottomBar->addWidget(new QLabel("Bottom bar"));
 
     mainLayout->setMargin(0);
     setLayout(mainLayout);
@@ -162,6 +165,7 @@ void Tabella::Aggiungi()
 
 
     aggiungi->setLayout(layoutAggiungi);
+    layoutOpzioni->addWidget(aggiungi);
 }
 
 void Tabella::Modifica()
@@ -216,12 +220,13 @@ void Tabella::Modifica()
     //BOTTONE MODIFICA
     layoutModifica->addWidget(btnModifica, 4, 1);
 
-    modifica->setLayout(layoutModifica);
-
     //Nascondi i campi dati variabili
     editLivello->setVisible(false);
     editPagaPerOra->setVisible(false);
     editVenditeEffettuate->setVisible(false);
+
+    modifica->setLayout(layoutModifica);
+    layoutOpzioni->addWidget(modifica);
 }
 
 void Tabella::Rimuovi()
@@ -232,6 +237,7 @@ void Tabella::Rimuovi()
     layoutRimuovi->addWidget(example);
 
     rimuovi->setLayout(layoutRimuovi);
+    layoutOpzioni->addWidget(rimuovi);
 }
 
 void Tabella::VisualizzaOperaio()
