@@ -10,6 +10,7 @@ class Telefono
 {
 public:
     Telefono(string numeroTelefono, string prefisso = "39");
+    static Telefono Sconosciuto();
 
     static bool isNumber(string numero);
 

@@ -207,6 +207,11 @@ void Tabella::Modifica()
     layoutModifica->addWidget(btnModifica, 3, 1);
 
     modifica->setLayout(layoutModifica);
+
+    //Nascondi i campi dati variabili
+    editLivello->setVisible(false);
+    editPagaPerOra->setVisible(false);
+    editVenditeEffettuate->setVisible(false);
 }
 
 void Tabella::Rimuovi()
@@ -458,7 +463,7 @@ void Tabella::cellaClicked(int row, int column)
 {
     QString telefonoText = table->item(row, 7)->text();
     if(telefonoText == "Sconosciuto")
-        editNumeroTelefono->setNumeroTelefono(Telefono("0", "0"));
+        editNumeroTelefono->setNumeroTelefono(Telefono::Sconosciuto());
     else
         editNumeroTelefono->setNumeroTelefono(Telefono(telefonoText.split(" ")[1].toStdString(), telefonoText.split(" ")[0].toStdString()));
 
@@ -478,6 +483,44 @@ void Tabella::cellaClicked(int row, int column)
     else
     {
         editContratto->setContrattoIndeterminato();
+    }
+
+    QString tipo = table->item(row, 1)->text();
+    if(tipo == "Operaio")
+    {
+        editLivello->setVisible(true);
+        editPagaPerOra->setVisible(false);
+        editVenditeEffettuate->setVisible(false);
+
+        int livello = table->item(row, 13)->text().toInt();
+        editLivello->setValue(livello);
+    }
+    else if (tipo == "Impiegato")
+    {
+        editLivello->setVisible(false);
+        editPagaPerOra->setVisible(true);
+        editVenditeEffettuate->setVisible(false);
+
+        float paga = table->item(row, 14)->text().toFloat();
+        editPagaPerOra->setPaga(paga);
+    }
+    else if (tipo == "Rappresentante")
+    {
+        editLivello->setVisible(false);
+        editPagaPerOra->setVisible(true);
+        editVenditeEffettuate->setVisible(true);
+
+        float paga = table->item(row, 14)->text().toFloat();
+        editPagaPerOra->setPaga(paga);
+
+        int vendite = table->item(row, 15)->text().toInt();
+        editVenditeEffettuate->setValue(vendite);
+    }
+    else
+    {
+        editLivello->setVisible(false);
+        editPagaPerOra->setVisible(false);
+        editVenditeEffettuate->setVisible(false);
     }
 
 }

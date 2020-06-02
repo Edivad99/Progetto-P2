@@ -17,7 +17,8 @@ int WCSpinBox::getValue() const
 
 void WCSpinBox::setValue(int newValue)
 {
-    livello->setValue(newValue);
+    if(newValue >= _min && newValue <= _max)
+        livello->setValue(newValue);
 }
 
 void WCSpinBox::initUI()

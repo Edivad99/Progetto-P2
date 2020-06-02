@@ -10,6 +10,11 @@ float WPagaPerOra::getPaga() const
     return pagaPerOra->value();
 }
 
+void WPagaPerOra::setPaga(float newPaga)
+{
+    pagaPerOra->setValue(newPaga);
+}
+
 void WPagaPerOra::initUI()
 {
     pagaPerOra = new QDoubleSpinBox();

@@ -7,6 +7,11 @@ Telefono::Telefono(string numeroTelefono, string prefisso): _numeroTelefono((isN
 
 }
 
+Telefono Telefono::Sconosciuto()
+{
+    return Telefono("0", "0");
+}
+
 bool Telefono::isNumber(string numero)
 {
     string::const_iterator it = numero.begin();

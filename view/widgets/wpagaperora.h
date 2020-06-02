@@ -12,6 +12,7 @@ public:
     WPagaPerOra(QWidget *parent =0);
 
     float getPaga() const;
+    void setPaga(float newPaga);
 
 private:
     QDoubleSpinBox *pagaPerOra;
