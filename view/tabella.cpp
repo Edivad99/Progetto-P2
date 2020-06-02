@@ -47,6 +47,7 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     VisualizzaOperaio();
     connect(tipologia, SIGNAL(currentIndexChanged(int)), this, SLOT(tipologiaIndexChanged(int)));
     connect(btnAggiungi, SIGNAL(clicked()), this, SLOT(btnAggiungiClicked()));
+    connect(table, SIGNAL(cellClicked(int, int)), this, SLOT(cellaClicked(int, int)));
 }
 
 void Tabella::Aggiungi()
@@ -451,4 +452,32 @@ void Tabella::btnAggiungiClicked()
             updateTabella();
         }
     }
+}
+
+void Tabella::cellaClicked(int row, int column)
+{
+    QString telefonoText = table->item(row, 7)->text();
+    if(telefonoText == "Sconosciuto")
+        editNumeroTelefono->setNumeroTelefono(Telefono("0", "0"));
+    else
+        editNumeroTelefono->setNumeroTelefono(Telefono(telefonoText.split(" ")[1].toStdString(), telefonoText.split(" ")[0].toStdString()));
+
+    QString reparto = table->item(row, 9)->text();
+    editReparto->setText(reparto);
+
+    int ore = table->item(row, 10)->text().split(":")[0].toInt();
+    int minuti = table->item(row, 10)->text().split(":")[1].toInt();
+    editOreDiLavoro->setValue(ore);
+
+    QString contratto = table->item(row, 11)->text();
+    if(contratto == "Determinato")
+    {
+        QDate scadenza = QDate::fromString(table->item(row, 12)->text(), "dd/MM/yyyy");
+        editContratto->setContrattoDeterminato(scadenza);
+    }
+    else
+    {
+        editContratto->setContrattoIndeterminato();
+    }
+
 }

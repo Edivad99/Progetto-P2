@@ -17,6 +17,10 @@ public:
 
     QDate getDataScadenza() const;
     bool isDeterminato() const;
+
+    void setContrattoIndeterminato();
+
+    void setContrattoDeterminato(QDate dataScadenza);
 private:
     QDateEdit *scadenzaContratto;
     QRadioButton *determinato, *indeterminato;

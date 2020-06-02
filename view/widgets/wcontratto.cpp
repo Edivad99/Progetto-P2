@@ -15,6 +15,20 @@ bool WContratto::isDeterminato() const
     return determinato->isChecked();
 }
 
+void WContratto::setContrattoIndeterminato()
+{
+    indeterminato->setChecked(true);
+    determinato->setChecked(false);
+    scadenzaContratto->setDate(QDate::currentDate().addMonths(1));
+}
+
+void WContratto::setContrattoDeterminato(QDate dataScadenza)
+{
+    indeterminato->setChecked(false);
+    determinato->setChecked(true);
+    scadenzaContratto->setDate(dataScadenza);
+}
+
 void WContratto::initUI()
 {
     scadenzaContratto = new QDateEdit(QDate::currentDate().addMonths(1));

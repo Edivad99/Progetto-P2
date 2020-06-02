@@ -14,6 +14,7 @@ public:
     WCSpinBox(QString text, int min, int max, int defaultValue, QWidget *parent =0);
 
     int getValue() const;
+    void setValue(int newValue);
 private:
     int _min, _max;
     QString _text;

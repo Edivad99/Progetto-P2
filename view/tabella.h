@@ -84,6 +84,7 @@ private:
 private slots:
     void tipologiaIndexChanged(int);
     void btnAggiungiClicked();
+    void cellaClicked(int, int);
 
 };
 

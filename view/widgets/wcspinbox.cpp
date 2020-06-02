@@ -15,6 +15,11 @@ int WCSpinBox::getValue() const
     return livello->value();
 }
 
+void WCSpinBox::setValue(int newValue)
+{
+    livello->setValue(newValue);
+}
+
 void WCSpinBox::initUI()
 {
     livello = new QSpinBox();
