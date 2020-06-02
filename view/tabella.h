@@ -41,7 +41,8 @@ private:
     TabellaModel *_model;
 
     //GUI
-    QHBoxLayout *mainLayout;
+    QVBoxLayout *mainLayout;
+    QHBoxLayout *tableLayout, *bottomBar;
     QTableWidget* table;
 
     QVBoxLayout *layoutOpzioni;
