@@ -48,6 +48,7 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     connect(tipologia, SIGNAL(currentIndexChanged(int)), this, SLOT(tipologiaIndexChanged(int)));
     connect(btnAggiungi, SIGNAL(clicked()), this, SLOT(btnAggiungiClicked()));
     connect(table, SIGNAL(cellClicked(int, int)), this, SLOT(cellaClicked(int, int)));
+    connect(btnModifica, SIGNAL(clicked()), this, SLOT(btnModificaClicked()));
 }
 
 void Tabella::Aggiungi()
@@ -178,33 +179,42 @@ void Tabella::Modifica()
     editPagaPerOra = new WPagaPerOra();
     editVenditeEffettuate = new WCSpinBox(QString("Vendite effettuate"), 0, 10000, 0);
 
+    editNome = new QLabel();
+    editID = new QLabel();
+
     //Azioni
     btnModifica = new QPushButton("Modifica");
 
+    //NOME
+    layoutModifica->addWidget(editNome, 0, 0);
+
     //NUMERO DI TELEFONO
-    layoutModifica->addWidget(editNumeroTelefono, 0, 0);
+    layoutModifica->addWidget(editNumeroTelefono, 1, 0);
 
     //REPARTO
     editReparto->setPlaceholderText("Reparto");
-    layoutModifica->addWidget(editReparto, 1, 0);
+    layoutModifica->addWidget(editReparto, 2, 0);
 
     //ORE LAVORATIVE
-    layoutModifica->addWidget(editOreDiLavoro, 2, 0);
+    layoutModifica->addWidget(editOreDiLavoro, 3, 0);
 
     //TIPOLOGIA CONTRATTO
-    layoutModifica->addWidget(editContratto, 3, 0);
+    layoutModifica->addWidget(editContratto, 4, 0);
+
+    //ID AZIENDALE
+    layoutModifica->addWidget(editID, 0, 1);
 
     //LIVELLO
-    layoutModifica->addWidget(editLivello, 0, 1);
+    layoutModifica->addWidget(editLivello, 1, 1);
 
     //PAGA PER ORA
-    layoutModifica->addWidget(editPagaPerOra, 1, 1);
+    layoutModifica->addWidget(editPagaPerOra, 2, 1);
 
     //VENDITE EFFETTUATE
-    layoutModifica->addWidget(editVenditeEffettuate, 2, 1);
+    layoutModifica->addWidget(editVenditeEffettuate, 3, 1);
 
     //BOTTONE MODIFICA
-    layoutModifica->addWidget(btnModifica, 3, 1);
+    layoutModifica->addWidget(btnModifica, 4, 1);
 
     modifica->setLayout(layoutModifica);
 
@@ -414,9 +424,7 @@ void Tabella::btnAggiungiClicked()
     string Reparto = reparto->text().toStdString();
     int OreDiLavoro = oreDiLavoro->getValue();
     bool Determinato = contratto->isDeterminato();
-    QDate ScadenzaContratto = contratto->getDataScadenza();
-    if(!Determinato)
-        ScadenzaContratto = QDate(0,0,0);
+    QDate ScadenzaContratto = Determinato ? contratto->getDataScadenza() : QDate(0,0,0);
 
     //Operaio
     int Livello = livello->getValue();
@@ -459,8 +467,64 @@ void Tabella::btnAggiungiClicked()
     }
 }
 
+void Tabella::btnModificaClicked()
+{
+    if(!editID->text().isEmpty())
+    {
+        string ID = editID->text().split(" ")[1].toStdString();
+        Lavoratore* lav = _model->getLavoratoreByID(ID);
+
+        if(lav != nullptr)
+        {
+            Telefono nuovoTelefono = editNumeroTelefono->getNumeroTelefono();
+            string nuovoReparto = editReparto->text().toStdString();
+            OreLavorative nuoveOre(editOreDiLavoro->getValue(), 0);
+
+            bool Determinato = editContratto->isDeterminato();
+            QDate ScadenzaContratto = Determinato ? editContratto->getDataScadenza() : QDate(0,0,0);
+
+            Operaio* operaio =dynamic_cast<Operaio*>(lav);
+            Impiegato* impiegato =dynamic_cast<Impiegato*>(lav);
+            Rappresentante* rappresentante =dynamic_cast<Rappresentante*>(lav);
+
+            lav->setNumeroTelefono(nuovoTelefono);
+            lav->setReparto(nuovoReparto);
+            lav->setOrePreviste(nuoveOre);
+
+            if(Determinato)
+                lav->setContrattoDeterminato(ScadenzaContratto);
+            else
+                lav->setContrattoIndeterminato();
+
+            if(operaio)
+            {
+                //Operaio
+                int Livello = editLivello->getValue();
+                operaio->setLivello(static_cast<enum Livello>(Livello-1));
+            }
+            else if(impiegato)
+            {
+                //Impiegato
+                float PagaPerOra = editPagaPerOra->getPaga();
+                impiegato->setPagaPerOra(PagaPerOra);
+                if (rappresentante)
+                {
+                    //+Rappresentante
+                    int VenditeEffettuate = editVenditeEffettuate->getValue();
+                    rappresentante->setVenditeEffettuate(VenditeEffettuate);
+                }
+            }
+            updateTabella();
+        }
+    }
+}
+
 void Tabella::cellaClicked(int row, int column)
 {
+    editNome->setText("Nome: " + table->item(row, 2)->text() + " " + table->item(row, 3)->text());
+
+    editID->setText("ID: " + table->item(row, 0)->text());
+
     QString telefonoText = table->item(row, 7)->text();
     if(telefonoText == "Sconosciuto")
         editNumeroTelefono->setNumeroTelefono(Telefono::Sconosciuto());
@@ -522,5 +586,4 @@ void Tabella::cellaClicked(int row, int column)
         editPagaPerOra->setVisible(false);
         editVenditeEffettuate->setVisible(false);
     }
-
 }

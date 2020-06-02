@@ -21,7 +21,7 @@ void MainWindow::addMenuButtons()
 
     QMenu* file = new QMenu("File", menuBar);
     QAction* apri = new QAction("Apri", file);
-    apri->setShortcut(Qt::CTRL | Qt::Key_N);
+    apri->setShortcut(Qt::CTRL | Qt::Key_O);
     QAction* salva = new QAction("Salva", file);
     salva->setShortcut(Qt::CTRL | Qt::Key_S);
     QAction* salvaConNome = new QAction("Salva con nome", file);

@@ -60,6 +60,19 @@ lista<Lavoratore*> TabellaModel::getLavoratori() const
     return lavoratori;
 }
 
+Lavoratore *TabellaModel::getLavoratoreByID(std::string ID)
+{
+    for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
+    {
+        if(std::to_string((*cit)->getID()) == ID)
+        {
+            _deviSalvare = true;
+            return *cit;
+        }
+    }
+    return nullptr;
+}
+
 bool TabellaModel::deviSalvare()
 {
     return _deviSalvare;

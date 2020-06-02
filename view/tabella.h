@@ -65,6 +65,8 @@ private:
 
     //QWidget per mostrare/nascondere alcuni campi
     QWidget *Qoccupazione;
+    QLabel *editNome, *editID;
+
 
     void Aggiungi();
     void Modifica();
@@ -84,6 +86,7 @@ private:
 private slots:
     void tipologiaIndexChanged(int);
     void btnAggiungiClicked();
+    void btnModificaClicked();
     void cellaClicked(int, int);
 
 };

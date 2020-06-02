@@ -21,6 +21,8 @@ public:
     void aggiungiLavoratore(Lavoratore *nuovoLavoratore);
     lista<Lavoratore*> getLavoratori() const;
 
+    Lavoratore* getLavoratoreByID(string ID);
+
     bool deviSalvare();
     void salvato();
 
