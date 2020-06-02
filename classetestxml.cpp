@@ -1,5 +1,68 @@
 #include "classetestxml.h"
 
+
+
+#include <QTextStream>/////////////////////////////////////////////////////////////////////////////////////////////////////
+void StampaBusta(lista<Lavoratore*> dipendenti)//Quando si copia stampa busta ricordarsi di inlcude QTextStream se non c'è
+{
+    //Writing csv
+    //per test su mesi successivi metti questo al posto di quello sotto dove 1 è quanti mesi in più da quello attuale -> QDateTime::currentDateTime().addMonths(1).toString("MMMM");
+    QString mese=QDateTime::currentDateTime().toString("MMMM");
+
+    QStringList parts = mese.split(' ', QString::SkipEmptyParts);
+    parts[0].replace(0, 1, parts[0][0].toUpper());
+    mese=parts.join(" ");
+    QFile data("..\\Progetto-P2\\"+mese+"BustePaga.csv");
+    if (data.open(QFile::WriteOnly | QFile::Truncate)) {
+        QTextStream out(&data);
+        for(lista<Lavoratore*>::constiterator cit = dipendenti.begin(); cit != dipendenti.end(); ++cit)
+        {
+            QString id=QString::number((*cit)->getID());
+            QString nome=QString::fromStdString((*cit)->getNome());
+            QString cognome=QString::fromStdString((*cit)->getCognome());
+
+            //getTipologia
+            Operaio* operaio =dynamic_cast<Operaio*>((*cit));
+            Impiegato* impiegato =dynamic_cast<Impiegato*>((*cit));
+            Rappresentante* rappresentante =dynamic_cast<Rappresentante*>((*cit));
+            StudenteLavoratore* studlav =dynamic_cast<StudenteLavoratore*>((*cit));
+            QString tipologia = "";
+            if(operaio)
+            {
+                tipologia = QString("Operaio");
+            }
+            else if(impiegato)
+            {
+                tipologia = QString("Impiegato");
+
+                if (rappresentante)
+                {
+                    tipologia = QString("Rappresentante");
+                }
+            }
+            else if(studlav)
+            {
+                tipologia = QString("StudenteLavoratore");
+            }
+
+
+            QString codfisc=QString::fromStdString((*cit)->getCodiceFiscale());
+            QString salario=QString::number((*cit)->Stipendio());
+
+
+            out <<id<<";"<<nome<<";"<<cognome<<";"<<tipologia<<";"<<codfisc<<";"<<salario<<"\n";
+        }
+
+
+    }
+    data.close();
+}
+
+
+
+
+
+
 void ClasseTestXML::TestXML()
 {
     /*Letture da csv*/
@@ -197,6 +260,7 @@ void ClasseTestXML::TestXML()
             qDebug() <<"StudenteLavoratore-------------------------fine "<<i;*/
         }
     }
+    StampaBusta(dipendenti2);
 
     qDebug() <<  "documento caricato";
 }
