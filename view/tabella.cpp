@@ -62,7 +62,7 @@ void Tabella::Aggiungi()
     dataNascita = new QDateEdit();
     contratto = new WContratto();
     oreDiLavoro = new QSpinBox();
-    livello = new QSpinBox();
+    livello = new WLivello(1,5);
     pagaPerOra = new QDoubleSpinBox();
     venditeEffettuate = new QSpinBox();
 
@@ -135,14 +135,7 @@ void Tabella::Aggiungi()
     layoutAggiungi->addWidget(contratto, 0, 1);
 
     //LIVELLO
-    Qlivello = new QWidget();
-    QVBoxLayout *livelloLayout = new QVBoxLayout(Qlivello);
-    livelloLayout->setMargin(0);
-    livelloLayout->setSpacing(0);
-    livelloLayout->addWidget(new QLabel("Livello"));
-    livello->setRange(1, 5);
-    livelloLayout->addWidget(livello);
-    layoutAggiungi->addWidget(Qlivello, 1, 1);
+    layoutAggiungi->addWidget(livello, 1, 1);
 
     //PAGA PER ORA
     Qpaga = new QWidget();
@@ -208,7 +201,7 @@ void Tabella::Rimuovi()
 void Tabella::VisualizzaOperaio()
 {
     //Livello
-    Qlivello->setVisible(true);
+    livello->setVisible(true);
     //Paga per ora
     Qpaga->setVisible(false);
     //Vendite effettuate
@@ -220,7 +213,7 @@ void Tabella::VisualizzaOperaio()
 void Tabella::VisualizzaImpiegato()
 {
     //Livello
-    Qlivello->setVisible(false);
+    livello->setVisible(false);
     //Paga per ora
     Qpaga->setVisible(true);
     //Vendite effettuate
@@ -232,7 +225,7 @@ void Tabella::VisualizzaImpiegato()
 void Tabella::VisualizzaRappresentante()
 {
     //Livello
-    Qlivello->setVisible(false);
+    livello->setVisible(false);
     //Paga per ora
     Qpaga->setVisible(true);
     //Vendite effettuate
@@ -244,7 +237,7 @@ void Tabella::VisualizzaRappresentante()
 void Tabella::VisualizzaStudente()
 {
     //Livello
-    Qlivello->setVisible(false);
+    livello->setVisible(false);
     //Paga per ora
     Qpaga->setVisible(false);
     //Vendite effettuate
@@ -400,7 +393,7 @@ void Tabella::btnAggiungiClicked()
         ScadenzaContratto = QDate(0,0,0);
 
     //Operaio
-    int Livello = livello->value();
+    int Livello = livello->getLivello();
     //Impiegato
     float PagaPerOra = pagaPerOra->value();
     //+Rappresentante
