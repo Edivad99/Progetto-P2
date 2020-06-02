@@ -52,7 +52,7 @@ void MainWindow::addMenuButtons()
 void MainWindow::setApplicationStyle()
 {
     setWindowState(Qt::WindowMaximized);
-    setMinimumSize(QSize(400,400));
+    setMinimumSize(QSize(650,650));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     //TODO: Da rimuovere e mettere nel file css appena possibile
     mainLayout->setMargin(0);

@@ -13,10 +13,13 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     aggiungiPolicy.setHorizontalStretch(3);
     aggiungi->setSizePolicy(aggiungiPolicy);
 
-    QSizePolicy altrePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    altrePolicy.setHorizontalStretch(1);
-    modifica->setSizePolicy(altrePolicy);
-    rimuovi->setSizePolicy(altrePolicy);
+    QSizePolicy modificaPolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    modificaPolicy.setHorizontalStretch(2);
+    modifica->setSizePolicy(modificaPolicy);
+
+    QSizePolicy rimuoviPolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    rimuoviPolicy.setHorizontalStretch(1);
+    rimuovi->setSizePolicy(rimuoviPolicy);
 
 
     //Imposto le dimensioni della tabella
@@ -49,6 +52,8 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
 void Tabella::Aggiungi()
 {
     layoutAggiungi = new QGridLayout();
+    layoutAggiungi->setColumnStretch(0, 1);
+    layoutAggiungi->setColumnStretch(1, 1);
 
     //Input
     tipologia = new QComboBox();
@@ -67,7 +72,7 @@ void Tabella::Aggiungi()
     venditeEffettuate = new WCSpinBox(QString("Vendite effettuate"), 0, 10000, 0);
 
     //Azioni
-    btnAggiungi = new QPushButton();
+    btnAggiungi = new QPushButton("Aggiungi");
 
     //TIPOLOGIA
     //Questa parte bisogna spostarla sul modello
@@ -151,7 +156,6 @@ void Tabella::Aggiungi()
     layoutAggiungi->addWidget(Qoccupazione, 4, 1);
 
     //BOTTONE AGGIUNGI
-    btnAggiungi->setText("Aggiungi");
     layoutAggiungi->addWidget(btnAggiungi, 5, 1);
 
 
@@ -161,9 +165,45 @@ void Tabella::Aggiungi()
 void Tabella::Modifica()
 {
     layoutModifica = new QGridLayout();
+    layoutModifica->setColumnStretch(0, 1);
+    layoutModifica->setColumnStretch(1, 1);
 
-    QLabel* example = new QLabel("Modifica");
-    layoutModifica->addWidget(example);
+    //Input
+    editNumeroTelefono = new WTelefono();
+    editReparto = new QLineEdit();
+    editOreDiLavoro = new WCSpinBox(QString("Ore di lavoro previste"), 0, 200, 160);
+    editContratto = new WContratto();
+    editLivello = new WCSpinBox(QString("Livello"), 1, 5, 1);
+    editPagaPerOra = new WPagaPerOra();
+    editVenditeEffettuate = new WCSpinBox(QString("Vendite effettuate"), 0, 10000, 0);
+
+    //Azioni
+    btnModifica = new QPushButton("Modifica");
+
+    //NUMERO DI TELEFONO
+    layoutModifica->addWidget(editNumeroTelefono, 0, 0);
+
+    //REPARTO
+    editReparto->setPlaceholderText("Reparto");
+    layoutModifica->addWidget(editReparto, 1, 0);
+
+    //ORE LAVORATIVE
+    layoutModifica->addWidget(editOreDiLavoro, 2, 0);
+
+    //TIPOLOGIA CONTRATTO
+    layoutModifica->addWidget(editContratto, 3, 0);
+
+    //LIVELLO
+    layoutModifica->addWidget(editLivello, 0, 1);
+
+    //PAGA PER ORA
+    layoutModifica->addWidget(editPagaPerOra, 1, 1);
+
+    //VENDITE EFFETTUATE
+    layoutModifica->addWidget(editVenditeEffettuate, 2, 1);
+
+    //BOTTONE MODIFICA
+    layoutModifica->addWidget(btnModifica, 3, 1);
 
     modifica->setLayout(layoutModifica);
 }

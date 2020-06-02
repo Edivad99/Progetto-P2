@@ -51,14 +51,14 @@ private:
 
     //Input
     QComboBox *tipologia, *genere, *occupazione;
-    QLineEdit *nome, *cognome, *cf, *reparto;
+    QLineEdit *nome, *cognome, *cf, *reparto, *editReparto;
     QDateEdit *dataNascita;
 
     //Custom Input
-    WContratto *contratto;
-    WTelefono *numeroTelefono;
-    WCSpinBox *livello, *oreDiLavoro, *venditeEffettuate;
-    WPagaPerOra *pagaPerOra;
+    WContratto *contratto, *editContratto;
+    WTelefono *numeroTelefono, *editNumeroTelefono;
+    WCSpinBox *livello, *oreDiLavoro, *venditeEffettuate, *editLivello, *editOreDiLavoro, *editVenditeEffettuate;
+    WPagaPerOra *pagaPerOra, *editPagaPerOra;
 
     //Azioni
     QPushButton *btnAggiungi, *btnModifica, *btnRimuovi;

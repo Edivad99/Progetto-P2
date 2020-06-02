@@ -14,6 +14,7 @@ public:
     WTelefono(QWidget *parent =0);
 
     Telefono getNumeroTelefono() const;
+    void setNumeroTelefono(Telefono telefono);
 private:
     QLineEdit *prefisso, *numero;
 

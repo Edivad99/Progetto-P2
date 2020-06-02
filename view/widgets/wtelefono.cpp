@@ -10,6 +10,20 @@ Telefono WTelefono::getNumeroTelefono() const
     return Telefono(numero->text().toStdString(), prefisso->text().toStdString());
 }
 
+void WTelefono::setNumeroTelefono(Telefono telefono)
+{
+    if(telefono.getNumeroTelefono() == "0")
+    {
+        prefisso->setText("");
+        numero->setText("");
+    }
+    else
+    {
+        prefisso->setText(QString::fromStdString(telefono.getPrefisso()));
+        numero->setText(QString::fromStdString(telefono.getNumeroTelefono()));
+    }
+}
+
 void WTelefono::initUI()
 {
     numero = new QLineEdit();
