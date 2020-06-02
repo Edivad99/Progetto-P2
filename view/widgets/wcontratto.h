@@ -15,8 +15,8 @@ class WContratto : public QFrame
 public:
     WContratto(QWidget *parent =0);
 
-    QDate getDataScadenza();
-    bool isDeterminato();
+    QDate getDataScadenza() const;
+    bool isDeterminato() const;
 private:
     QDateEdit *scadenzaContratto;
     QRadioButton *determinato, *indeterminato;

@@ -13,7 +13,7 @@ class WTelefono : public QFrame
 public:
     WTelefono(QWidget *parent =0);
 
-    Telefono getNumeroTelefono();
+    Telefono getNumeroTelefono() const;
 private:
     QLineEdit *prefisso, *numero;
 

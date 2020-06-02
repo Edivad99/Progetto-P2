@@ -5,7 +5,7 @@ WTelefono::WTelefono(QWidget *parent) : QFrame(parent)
     initUI();
 }
 
-Telefono WTelefono::getNumeroTelefono()
+Telefono WTelefono::getNumeroTelefono() const
 {
     return Telefono(numero->text().toStdString(), prefisso->text().toStdString());
 }
@@ -15,7 +15,7 @@ void WTelefono::initUI()
     numero = new QLineEdit();
     prefisso = new QLineEdit();
 
-    QHBoxLayout *telefonoLayout = new QHBoxLayout();
+    QHBoxLayout *telefonoLayout = new QHBoxLayout(this);
     telefonoLayout->setSpacing(0);
     telefonoLayout->setMargin(0);
     prefisso->setPlaceholderText("Prefisso");

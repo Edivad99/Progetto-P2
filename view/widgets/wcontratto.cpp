@@ -5,12 +5,12 @@ WContratto::WContratto(QWidget *parent) : QFrame(parent)
     initUI();
 }
 
-QDate WContratto::getDataScadenza()
+QDate WContratto::getDataScadenza() const
 {
     return scadenzaContratto->date();
 }
 
-bool WContratto::isDeterminato()
+bool WContratto::isDeterminato() const
 {
     return determinato->isChecked();
 }
@@ -21,7 +21,7 @@ void WContratto::initUI()
     determinato = new QRadioButton();
     indeterminato = new QRadioButton();
 
-    QVBoxLayout *contrattoLayout = new QVBoxLayout();
+    QVBoxLayout *contrattoLayout = new QVBoxLayout(this);
     contrattoLayout->setSpacing(0);
     contrattoLayout->setMargin(0);
     contrattoLayout->addWidget(new QLabel("Tipologia di Contratto"));
