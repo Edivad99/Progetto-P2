@@ -61,10 +61,10 @@ void Tabella::Aggiungi()
     cf = new QLineEdit();
     dataNascita = new QDateEdit();
     contratto = new WContratto();
-    oreDiLavoro = new QSpinBox();
-    livello = new WLivello(1,5);
+    oreDiLavoro = new WCSpinBox(QString("Ore di lavoro previste"), 0, 200, 160);
+    livello = new WCSpinBox(QString("Livello"), 1, 5, 1);
     pagaPerOra = new WPagaPerOra();
-    venditeEffettuate = new QSpinBox();
+    venditeEffettuate = new WCSpinBox(QString("Vendite effettuate"), 0, 10000, 0);
 
     //Azioni
     btnAggiungi = new QPushButton();
@@ -123,13 +123,7 @@ void Tabella::Aggiungi()
     layoutAggiungi->addWidget(reparto, 7, 0);
 
     //ORE LAVORATIVE
-    QVBoxLayout *oreLayout = new QVBoxLayout();
-    oreLayout->setMargin(0);
-    oreLayout->addWidget(new QLabel("Ore di lavoro previste"));
-    oreDiLavoro->setRange(0, 200); //Per convenzione non si può lavorare più di 200 ore
-    oreDiLavoro->setValue(160);
-    oreLayout->addWidget(oreDiLavoro);
-    layoutAggiungi->addLayout(oreLayout, 8, 0);
+    layoutAggiungi->addWidget(oreDiLavoro, 8, 0);
 
     //TIPOLOGIA DI CONTRATTO
     layoutAggiungi->addWidget(contratto, 0, 1);
@@ -141,14 +135,7 @@ void Tabella::Aggiungi()
     layoutAggiungi->addWidget(pagaPerOra, 2, 1);
 
     //VENDITE EFFETTUATE
-    Qvendite = new QWidget();
-    QVBoxLayout *venditeLayout = new QVBoxLayout(Qvendite);
-    venditeLayout->setMargin(0);
-    venditeLayout->setSpacing(0);
-    venditeLayout->addWidget(new QLabel("Vendite effettuate"));
-    venditeEffettuate->setRange(0, 1000);
-    venditeLayout->addWidget(venditeEffettuate);
-    layoutAggiungi->addWidget(Qvendite, 3, 1);
+    layoutAggiungi->addWidget(venditeEffettuate, 3, 1);
 
     //OCCUPAZIONE
     Qoccupazione = new QWidget();
@@ -198,7 +185,7 @@ void Tabella::VisualizzaOperaio()
     //Paga per ora
     pagaPerOra->setVisible(false);
     //Vendite effettuate
-    Qvendite->setVisible(false);
+    venditeEffettuate->setVisible(false);
     //Occupazione
     Qoccupazione->setVisible(false);
 }
@@ -210,7 +197,7 @@ void Tabella::VisualizzaImpiegato()
     //Paga per ora
     pagaPerOra->setVisible(true);
     //Vendite effettuate
-    Qvendite->setVisible(false);
+    venditeEffettuate->setVisible(false);
     //Occupazione
     Qoccupazione->setVisible(false);
 }
@@ -222,7 +209,7 @@ void Tabella::VisualizzaRappresentante()
     //Paga per ora
     pagaPerOra->setVisible(true);
     //Vendite effettuate
-    Qvendite->setVisible(true);
+    venditeEffettuate->setVisible(true);
     //Occupazione
     Qoccupazione->setVisible(false);
 }
@@ -234,7 +221,7 @@ void Tabella::VisualizzaStudente()
     //Paga per ora
     pagaPerOra->setVisible(false);
     //Vendite effettuate
-    Qvendite->setVisible(false);
+    venditeEffettuate->setVisible(false);
     //Occupazione
     Qoccupazione->setVisible(true);
 }
@@ -379,18 +366,18 @@ void Tabella::btnAggiungiClicked()
     string CF = cf->text().toStdString(); for (auto & c: CF) c = toupper(c);
     Telefono NumeroTelefono = numeroTelefono->getNumeroTelefono();
     string Reparto = reparto->text().toStdString();
-    int OreDiLavoro = oreDiLavoro->value();
+    int OreDiLavoro = oreDiLavoro->getValue();
     bool Determinato = contratto->isDeterminato();
     QDate ScadenzaContratto = contratto->getDataScadenza();
     if(!Determinato)
         ScadenzaContratto = QDate(0,0,0);
 
     //Operaio
-    int Livello = livello->getLivello();
+    int Livello = livello->getValue();
     //Impiegato
     float PagaPerOra = pagaPerOra->getPaga();
     //+Rappresentante
-    int VenditeEffettuate = venditeEffettuate->value();
+    int VenditeEffettuate = venditeEffettuate->getValue();
     //Studente
     Occupazione OccupazioneEnum = (occupazione->currentText().toStdString() == "Superiori" ? Occupazione::Superiori : Occupazione::Universita);
 

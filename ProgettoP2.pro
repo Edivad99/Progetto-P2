@@ -34,7 +34,7 @@ SOURCES += \
     util/nodo.cpp \
     view/tabella.cpp \
     view/widgets/wcontratto.cpp \
-    view/widgets/wlivello.cpp \
+    view/widgets/wcspinbox.cpp \
     view/widgets/wpagaperora.cpp \
     view/widgets/wtelefono.cpp
 HEADERS += \
@@ -54,7 +54,7 @@ HEADERS += \
     util/nodo.h \
     view/tabella.h \
     view/widgets/wcontratto.h \
-    view/widgets/wlivello.h \
+    view/widgets/wcspinbox.h \
     view/widgets/wpagaperora.h \
     view/widgets/wtelefono.h
 

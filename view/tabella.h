@@ -13,11 +13,10 @@
 #include <QMessageBox>
 #include <sstream>
 #include <QRadioButton>
-#include <QSpinBox>
 #include <QPushButton>
 #include <model/tabellamodel.h>
 #include <view/widgets/wcontratto.h>
-#include <view/widgets/wlivello.h>
+#include <view/widgets/wcspinbox.h>
 #include <view/widgets/wpagaperora.h>
 #include <view/widgets/wtelefono.h>
 #include "data/lavoratore.h"
@@ -54,19 +53,18 @@ private:
     QComboBox *tipologia, *genere, *occupazione;
     QLineEdit *nome, *cognome, *cf, *reparto;
     QDateEdit *dataNascita;
-    QSpinBox *oreDiLavoro, *venditeEffettuate;
 
     //Custom Input
     WContratto *contratto;
     WTelefono *numeroTelefono;
-    WLivello *livello;
+    WCSpinBox *livello, *oreDiLavoro, *venditeEffettuate;
     WPagaPerOra *pagaPerOra;
 
     //Azioni
     QPushButton *btnAggiungi, *btnModifica, *btnRimuovi;
 
     //QWidget per mostrare/nascondere alcuni campi
-    QWidget *Qvendite, *Qoccupazione;
+    QWidget *Qoccupazione;
 
     void Aggiungi();
     void Modifica();
