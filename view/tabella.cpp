@@ -50,8 +50,10 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     VisualizzaOperaio();
     connect(tipologia, SIGNAL(currentIndexChanged(int)), this, SLOT(tipologiaIndexChanged(int)));
     connect(btnAggiungi, SIGNAL(clicked()), this, SLOT(btnAggiungiClicked()));
-    connect(table, SIGNAL(cellClicked(int, int)), this, SLOT(cellaClicked(int, int)));
     connect(btnModifica, SIGNAL(clicked()), this, SLOT(btnModificaClicked()));
+    connect(btnRimuovi, SIGNAL(clicked()), this, SLOT(btnRimuoviClicked()));
+    connect(table, SIGNAL(cellClicked(int, int)), this, SLOT(cellaClicked(int, int)));
+    connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(tabellaChanged(QTableWidgetItem*)));
 }
 
 void Tabella::Aggiungi()
@@ -80,7 +82,6 @@ void Tabella::Aggiungi()
     btnAggiungi = new QPushButton("Aggiungi");
 
     //TIPOLOGIA
-    //Questa parte bisogna spostarla sul modello
     QVBoxLayout *tipologiaLayout = new QVBoxLayout();
     tipologiaLayout->setSpacing(0);
     tipologiaLayout->addWidget(new QLabel("Tipologia"));
@@ -231,10 +232,15 @@ void Tabella::Modifica()
 
 void Tabella::Rimuovi()
 {
-    layoutRimuovi = new QGridLayout();
+    layoutRimuovi = new QVBoxLayout();
+    layoutRimuovi->setSpacing(0);
+    layoutRimuovi->addWidget(new QLabel("Rimuovi per ID aziendale"));
 
-    QLabel* example = new QLabel("Rimuovi");
-    layoutRimuovi->addWidget(example);
+    rimuoviID = new QComboBox();
+    btnRimuovi = new QPushButton("Rimuovi");
+
+    layoutRimuovi->addWidget(rimuoviID);
+    layoutRimuovi->addWidget(btnRimuovi);
 
     rimuovi->setLayout(layoutRimuovi);
     layoutOpzioni->addWidget(rimuovi);
@@ -525,6 +531,16 @@ void Tabella::btnModificaClicked()
     }
 }
 
+void Tabella::btnRimuoviClicked()
+{
+    QString id = rimuoviID->currentText();
+    if(!id.isEmpty())
+    {
+        _model->rimuoviPerID(id.toStdString());
+        updateTabella();
+    }
+}
+
 void Tabella::cellaClicked(int row, int column)
 {
     editNome->setText("Nome: " + table->item(row, 2)->text() + " " + table->item(row, 3)->text());
@@ -543,6 +559,11 @@ void Tabella::cellaClicked(int row, int column)
     int ore = table->item(row, 10)->text().split(":")[0].toInt();
     int minuti = table->item(row, 10)->text().split(":")[1].toInt();
     editOreDiLavoro->setValue(ore);
+
+    //Evidenzio l'id nel menu rimuovi
+    int index = rimuoviID->findText(table->item(row, 0)->text());
+    if(index != -1)
+        rimuoviID->setCurrentIndex(index);
 
     QString contratto = table->item(row, 11)->text();
     if(contratto == "Determinato")
@@ -592,4 +613,16 @@ void Tabella::cellaClicked(int row, int column)
         editPagaPerOra->setVisible(false);
         editVenditeEffettuate->setVisible(false);
     }
+}
+
+void Tabella::tabellaChanged(QTableWidgetItem *item)
+{
+    QStringList idItems;
+    for(int i = 0; i < table->rowCount(); i++)
+    {
+        if(table->item(i, 0) != nullptr)
+            idItems.push_back(table->item(i, 0)->text());
+    }
+    rimuoviID->clear();
+    rimuoviID->addItems(idItems);
 }

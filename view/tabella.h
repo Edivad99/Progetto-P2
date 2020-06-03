@@ -9,10 +9,8 @@
 #include <QGroupBox>
 #include <QComboBox>
 #include <QLineEdit>
-#include <QDateEdit>
 #include <QMessageBox>
 #include <sstream>
-#include <QRadioButton>
 #include <QPushButton>
 #include <model/tabellamodel.h>
 #include <view/widgets/wcontratto.h>
@@ -41,17 +39,16 @@ private:
     TabellaModel *_model;
 
     //GUI
-    QVBoxLayout *mainLayout;
+    QVBoxLayout *mainLayout, *layoutOpzioni, *layoutRimuovi;
     QHBoxLayout *tableLayout, *bottomBar;
     QTableWidget* table;
 
-    QVBoxLayout *layoutOpzioni;
     QGroupBox *aggiungi, *modifica, *rimuovi;
 
-    QGridLayout *layoutAggiungi, *layoutModifica, *layoutRimuovi;
+    QGridLayout *layoutAggiungi, *layoutModifica;
 
     //Input
-    QComboBox *tipologia, *genere, *occupazione;
+    QComboBox *tipologia, *genere, *occupazione, *rimuoviID;
     QLineEdit *nome, *cognome, *cf, *reparto, *editReparto;
     QDateEdit *dataNascita;
 
@@ -88,7 +85,9 @@ private slots:
     void tipologiaIndexChanged(int);
     void btnAggiungiClicked();
     void btnModificaClicked();
+    void btnRimuoviClicked();
     void cellaClicked(int, int);
+    void tabellaChanged(QTableWidgetItem * item);
 
 };
 

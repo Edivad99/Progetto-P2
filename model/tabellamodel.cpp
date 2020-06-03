@@ -73,6 +73,19 @@ Lavoratore *TabellaModel::getLavoratoreByID(std::string ID)
     return nullptr;
 }
 
+void TabellaModel::rimuoviPerID(std::string ID)
+{
+    for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
+    {
+        if(std::to_string((*cit)->getID()) == ID)
+        {
+            lavoratori.erase(cit);
+            _deviSalvare = true;
+            return;
+        }
+    }
+}
+
 bool TabellaModel::deviSalvare()
 {
     return _deviSalvare;

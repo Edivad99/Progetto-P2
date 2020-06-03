@@ -22,6 +22,7 @@ public:
     lista<Lavoratore*> getLavoratori() const;
 
     Lavoratore* getLavoratoreByID(string ID);
+    void rimuoviPerID(string ID);
 
     bool deviSalvare();
     void salvato();
