@@ -63,12 +63,13 @@ private:
 
     //QWidget per mostrare/nascondere alcuni campi
     QWidget *Qoccupazione;
-    QLabel *editNome, *editID;
+    QLabel *editNome, *editID, *numeroDipendenti;
 
 
     void Aggiungi();
     void Modifica();
     void Rimuovi();
+    void BottomBar();
 
     void VisualizzaOperaio();
     void VisualizzaImpiegato();

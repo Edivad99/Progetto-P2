@@ -41,7 +41,7 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
 
     //Bottom bar
     mainLayout->addLayout(bottomBar, 2);
-    bottomBar->addWidget(new QLabel("Bottom bar"));
+    BottomBar();
 
     mainLayout->setMargin(0);
     setLayout(mainLayout);
@@ -244,6 +244,12 @@ void Tabella::Rimuovi()
 
     rimuovi->setLayout(layoutRimuovi);
     layoutOpzioni->addWidget(rimuovi);
+}
+
+void Tabella::BottomBar()
+{
+    numeroDipendenti = new QLabel("Dipendenti: 0");
+    bottomBar->addWidget(numeroDipendenti);
 }
 
 void Tabella::VisualizzaOperaio()
@@ -625,4 +631,9 @@ void Tabella::tabellaChanged(QTableWidgetItem *item)
     }
     rimuoviID->clear();
     rimuoviID->addItems(idItems);
+
+    //Aggiorno il numero di dipendenti
+    int n = table->rowCount();
+    std::cout << n << std::endl;
+    numeroDipendenti->setText(QString("Numero dipendenti: " ) + QString::fromStdString(std::to_string(n)));
 }
