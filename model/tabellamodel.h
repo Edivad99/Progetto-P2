@@ -24,6 +24,8 @@ public:
     Lavoratore* getLavoratoreByID(string ID);
     void rimuoviPerID(string ID);
 
+    QString generaStipendio(float bonus) const;
+
     bool deviSalvare();
     void salvato();
 

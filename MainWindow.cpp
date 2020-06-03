@@ -26,17 +26,21 @@ void MainWindow::addMenuButtons()
     salva->setShortcut(Qt::CTRL | Qt::Key_S);
     QAction* salvaConNome = new QAction("Salva con nome", file);
     salvaConNome->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
+    QAction* esportaStipendio = new QAction("Esporta stipendi", file);
+    esportaStipendio->setShortcut(Qt::CTRL | Qt::Key_E);
     QAction* chiudi = new QAction("Chiudi", file);
 
     //Actions
     connect(apri, SIGNAL(triggered()), this, SLOT(apriClicked()));
     connect(salva, SIGNAL(triggered()), this, SLOT(salvaClicked()));
     connect(salvaConNome, SIGNAL(triggered()), this, SLOT(salvaConNomeClicked()));
+    connect(esportaStipendio, SIGNAL(triggered()), this, SLOT(esportaStipendio()));
     connect(chiudi, SIGNAL(triggered()), this, SLOT(close()));
 
     file->addAction(apri);
     file->addAction(salva);
     file->addAction(salvaConNome);
+    file->addAction(esportaStipendio);
     file->addAction(chiudi);
 
     QMenu* help = new QMenu("Help", menuBar);
@@ -128,15 +132,40 @@ void MainWindow::salvaConNomeClicked()
             QMessageBox::information(this, "Impossibile salvare nel file", fileAperto->errorString());
             return;
         }
-        if(fileName.endsWith(".xml"))
+        QDomDocument dipendenti = tabellaModel->saveFile();
+        QTextStream stream(fileAperto);
+        stream << dipendenti.toString();
+        fileAperto->close();
+        tabellaModel->salvato();
+    }
+}
+
+void MainWindow::esportaStipendio()
+{
+    bool ok;
+    float bonus = QInputDialog::getDouble(this, "Bonus stipendio", "Imposta un bonus stipendio", 0, 0, 100000, 2, &ok);
+
+    if(ok)
+    {
+        QString defaultName = QString("BustePaga").append(QDate::currentDate().toString("MMMMyyyy")).append(".csv");
+
+        QString filter = "CSV File (*.csv)";
+        QString fileName = QFileDialog::getSaveFileName(this, "Salva con nome", QDir::homePath() + "/" + defaultName, filter);
+
+        if(!fileName.isEmpty())
         {
-            QDomDocument dipendenti = tabellaModel->saveFile();
-            QTextStream stream(fileAperto);
-            stream << dipendenti.toString();
+            QFile *fileAperto = new QFile(fileName);
+            if(!fileAperto->open(QIODevice::WriteOnly | QIODevice::Text))
+            {
+                QMessageBox::information(this, "Impossibile salvare nel file", fileAperto->errorString());
+                return;
+            }
+            QTextStream out(fileAperto);
+            out << tabellaModel->generaStipendio(bonus);
             fileAperto->close();
-            tabellaModel->salvato();
         }
     }
+
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

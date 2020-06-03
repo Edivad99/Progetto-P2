@@ -11,6 +11,7 @@
 #include <QDir>
 #include <QTextStream>
 #include <QCloseEvent>
+#include <QInputDialog>
 #include "view/tabella.h"
 #include <model/tabellamodel.h>
 
@@ -40,5 +41,6 @@ private slots:
     void apriClicked();
     void salvaClicked();
     void salvaConNomeClicked();
+    void esportaStipendio();
 };
 #endif // MAINWINDOW_H

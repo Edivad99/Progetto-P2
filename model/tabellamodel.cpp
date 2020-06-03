@@ -86,6 +86,41 @@ void TabellaModel::rimuoviPerID(std::string ID)
     }
 }
 
+QString TabellaModel::generaStipendio(float bonus) const
+{
+    bonus = std::max(bonus, 0.0F);
+    QString result;
+    for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
+    {
+        QString id=QString::number((*cit)->getID());
+        QString nome=QString::fromStdString((*cit)->getNome());
+        QString cognome=QString::fromStdString((*cit)->getCognome());
+
+        //getTipologia
+        Operaio* operaio =dynamic_cast<Operaio*>((*cit));
+        Impiegato* impiegato =dynamic_cast<Impiegato*>((*cit));
+        Rappresentante* rappresentante =dynamic_cast<Rappresentante*>((*cit));
+        StudenteLavoratore* studlav =dynamic_cast<StudenteLavoratore*>((*cit));
+        QString tipologia = "";
+        if(operaio)
+            tipologia = QString("Operaio");
+        else if(impiegato)
+        {
+            tipologia = QString("Impiegato");
+            if (rappresentante)
+                tipologia = QString("Rappresentante");
+        }
+        else if(studlav)
+            tipologia = QString("StudenteLavoratore");
+
+
+        QString codfisc=QString::fromStdString((*cit)->getCodiceFiscale());
+        QString salario=QString::number((*cit)->Stipendio(bonus));
+        result += id+";"+nome+";"+cognome+";"+tipologia+";"+codfisc+";"+salario+"\n";
+    }
+    return result;
+}
+
 bool TabellaModel::deviSalvare()
 {
     return _deviSalvare;

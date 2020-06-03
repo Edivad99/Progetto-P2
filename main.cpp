@@ -2,16 +2,12 @@
 
 #include <QApplication>
 #include <QStyleFactory>
-#include "classetestxml.h"
 
 int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":/img/icona.png"));
-
-    //ClasseTestXML::TestXML();
-    //return 0;
 
     //Test css
     /*qApp->setStyle(QStyleFactory::create("Fusion"));
