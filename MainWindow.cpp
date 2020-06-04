@@ -28,6 +28,7 @@ void MainWindow::addMenuButtons()
     salvaConNome->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
     QAction* esportaStipendio = new QAction("Esporta stipendi", file);
     esportaStipendio->setShortcut(Qt::CTRL | Qt::Key_E);
+    QAction* analizzaStipendio = new QAction("Analizza stipendio", file);
     QAction* chiudi = new QAction("Chiudi", file);
 
     //Actions
@@ -35,12 +36,14 @@ void MainWindow::addMenuButtons()
     connect(salva, SIGNAL(triggered()), this, SLOT(salvaClicked()));
     connect(salvaConNome, SIGNAL(triggered()), this, SLOT(salvaConNomeClicked()));
     connect(esportaStipendio, SIGNAL(triggered()), this, SLOT(esportaStipendio()));
+    connect(analizzaStipendio, SIGNAL(triggered()), this, SLOT(analizzaStipendio()));
     connect(chiudi, SIGNAL(triggered()), this, SLOT(close()));
 
     file->addAction(apri);
     file->addAction(salva);
     file->addAction(salvaConNome);
     file->addAction(esportaStipendio);
+    file->addAction(analizzaStipendio);
     file->addAction(chiudi);
 
     QMenu* help = new QMenu("Help", menuBar);
@@ -166,6 +169,24 @@ void MainWindow::esportaStipendio()
         }
     }
 
+}
+
+void MainWindow::analizzaStipendio()
+{
+    QString filter = "CSV File (*.csv)";
+    QString fileName = QFileDialog::getOpenFileName(this, "Seleziona un file da importare", QDir::homePath(), filter);
+
+    if(!fileName.isEmpty())
+    {
+        QFile *fileAperto = new QFile(fileName);
+        QDomDocument documentoLetto("Documento");
+        if(!fileAperto->open(QIODevice::ReadOnly | QIODevice::Text) || !documentoLetto.setContent(fileAperto))
+        {
+            QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
+            return;
+        }
+        fileAperto->close();
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
