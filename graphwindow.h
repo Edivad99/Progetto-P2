@@ -22,6 +22,9 @@ public:
 private:
 
     QHBoxLayout *mainLayout;
+    QVBoxLayout *mainLayoutDati;
+    QChartView *chartView;
+
 };
 
 #endif // GRAPHWINDOW_H
