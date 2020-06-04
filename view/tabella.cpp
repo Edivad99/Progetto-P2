@@ -12,11 +12,11 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
 
     //Imposto il "peso" per ogni grouBox
     QSizePolicy aggiungiPolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    aggiungiPolicy.setHorizontalStretch(3);
+    aggiungiPolicy.setHorizontalStretch(4);
     aggiungi->setSizePolicy(aggiungiPolicy);
 
     QSizePolicy modificaPolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    modificaPolicy.setHorizontalStretch(2);
+    modificaPolicy.setHorizontalStretch(3);
     modifica->setSizePolicy(modificaPolicy);
 
     QSizePolicy rimuoviPolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -167,6 +167,7 @@ void Tabella::Aggiungi()
 
     aggiungi->setLayout(layoutAggiungi);
     layoutOpzioni->addWidget(aggiungi);
+    layoutAggiungi->setAlignment(Qt::AlignTop);
 }
 
 void Tabella::Modifica()
@@ -228,6 +229,8 @@ void Tabella::Modifica()
 
     modifica->setLayout(layoutModifica);
     layoutOpzioni->addWidget(modifica);
+
+    layoutModifica->setAlignment(Qt::AlignTop);
 }
 
 void Tabella::Rimuovi()
@@ -238,7 +241,7 @@ void Tabella::Rimuovi()
 
     rimuoviID = new QComboBox();
     btnRimuovi = new QPushButton("Rimuovi");
-
+    layoutRimuovi->setAlignment(Qt::AlignTop);
     layoutRimuovi->addWidget(rimuoviID);
     layoutRimuovi->addWidget(btnRimuovi);
 
@@ -250,6 +253,12 @@ void Tabella::BottomBar()
 {
     numeroDipendenti = new QLabel("Dipendenti: 0");
     bottomBar->addWidget(numeroDipendenti);
+    bottomBar->setAlignment(Qt::AlignLeft);
+    bottomBar->addWidget(new QLabel("ciao"));
+    bottomBar->addWidget(new QLabel("ciao"));
+    bottomBar->addWidget(new QLabel("ciao"));
+    bottomBar->addWidget(new QLabel("ciao"));
+
 }
 
 void Tabella::VisualizzaOperaio()
