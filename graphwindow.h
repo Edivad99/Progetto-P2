@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QBarSet>
 #include <QBarSeries>
-#include <QChart>
+#include <QtCharts>
 #include <QBarCategoryAxis>
 #include <QValueAxis>
 #include <QChartView>
