@@ -174,30 +174,37 @@ void MainWindow::esportaStipendio()
 void MainWindow::analizzaStipendio()
 {
     QString filter = "CSV File (*.csv)";
-    QString fileName = QFileDialog::getOpenFileName(this, "Seleziona un file da importare", QDir::homePath(), filter);
+    QStringList fileNames = QFileDialog::getOpenFileNames(this, "Seleziona un file da importare", QDir::homePath(), filter);
 
-    if(!fileName.isEmpty())
+    lista<QStringList*> *csvData = new lista<QStringList*>();
+
+    for(int i = 0; i < fileNames.size(); i++)
     {
-        QFile *fileAperto = new QFile(fileName);
-        if(!fileAperto->open(QIODevice::ReadOnly | QIODevice::Text))
+        if(!fileNames.at(i).isEmpty())
         {
-            QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
-            return;
+            QFile *fileAperto = new QFile(fileNames.at(i));
+            if(!fileAperto->open(QIODevice::ReadOnly | QIODevice::Text))
+            {
+                QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
+                return;
+            }
+
+            QStringList *wordlist = new QStringList();
+            QTextStream in(fileAperto);
+            while (!in.atEnd())
+            {
+                QString line = in.readLine();
+                wordlist->push_back(line);
+            }
+
+            fileAperto->close();
+            csvData->insertBack(wordlist);
         }
-
-        QStringList wordlist;
-        QTextStream in(fileAperto);
-        while (!in.atEnd())
-        {
-            QString line = in.readLine();
-            wordlist.push_back(line);
-        }
-
-        fileAperto->close();
-
-        gw=new GraphWindow(wordlist);
-        gw->show();
     }
+    //passarela per puntatore
+    gw=new GraphWindow(csvData);
+    gw->show();
+
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

@@ -11,12 +11,14 @@
 #include <QChartView>
 #include <QPainter>
 
+#include <util/lista.h>
+
 class GraphWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    GraphWindow(QStringList testo ,QWidget *parent = nullptr);
+    GraphWindow(lista<QStringList*> *csvData, QWidget *parent = nullptr);
     ~GraphWindow() = default;
 
 private:
