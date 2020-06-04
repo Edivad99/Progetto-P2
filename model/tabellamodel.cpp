@@ -89,7 +89,7 @@ void TabellaModel::rimuoviPerID(std::string ID)
 QString TabellaModel::generaStipendio(float bonus) const
 {
     bonus = std::max(bonus, 0.0F);
-    QString result;
+    QString result=QDate::currentDate().toString("MMMM;yyyy").append("\n");
     for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
     {
         result += (*cit)->generateCSVRow(bonus);

@@ -16,7 +16,7 @@ class GraphWindow : public QWidget
     Q_OBJECT
 
 public:
-    GraphWindow(QWidget *parent = nullptr);
+    GraphWindow(QStringList testo ,QWidget *parent = nullptr);
     ~GraphWindow() = default;
 
 private:

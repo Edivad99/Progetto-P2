@@ -184,8 +184,18 @@ void MainWindow::analizzaStipendio()
             QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
             return;
         }
+
+        QStringList wordlist;
+        QTextStream in(fileAperto);
+        while (!in.atEnd())
+        {
+            QString line = in.readLine();
+            wordlist.push_back(line);
+        }
+
         fileAperto->close();
-        gw=new GraphWindow();
+
+        gw=new GraphWindow(wordlist);
         gw->show();
     }
 }
