@@ -17,6 +17,8 @@ public:
     virtual float Stipendio(float bonus = 0) const;
 
     virtual QDomElement XmlSerialize(QDomDocument doc) const;
+
+    virtual QString type() const;
 };
 
 #endif // STUDENTELAVORATORE_H

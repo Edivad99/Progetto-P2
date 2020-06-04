@@ -23,6 +23,8 @@ public:
 
     static const float guadagnoPerMerce;
 
+    virtual QString type() const;
+
 private:
 
     int _venditeEffettuate;

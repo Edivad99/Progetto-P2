@@ -385,29 +385,25 @@ void Tabella::updateTabella()
         Rappresentante* rappresentante =dynamic_cast<Rappresentante*>(*cit);
         StudenteLavoratore* studlav =dynamic_cast<StudenteLavoratore*>(*cit);
 
-        QString tipologia = "";
+        QString tipologia = (*cit)->type();
         if(operaio)
         {
-            tipologia = QString("Operaio");
             string livello = std::to_string(operaio->getLivello() + 1);
             setText(QString::fromStdString(livello), rowCount, 13);//Livello
         }
         else if(impiegato)
         {
-            tipologia = QString("Impiegato");
             string pagaPerOra = std::to_string(impiegato->getPagaPerOra());
             setText(QString::fromStdString(pagaPerOra), rowCount, 14);//Paga per ora
 
             if (rappresentante)
             {
-                tipologia = QString("Rappresentante");
                 string venditeEffettuate = std::to_string(rappresentante->getVenditeEffettuate());
                 setText(QString::fromStdString(venditeEffettuate), rowCount, 15);//Vendite effettuate
             }
         }
         else if(studlav)
         {
-            tipologia = QString("StudenteLavoratore");
             string occupazione = studlav->getOccupazione() == 0 ? "Superiori" : "Universita'";
             setText(QString::fromStdString(occupazione), rowCount, 8);//Occupazione
         }

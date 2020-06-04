@@ -33,9 +33,14 @@ void Rappresentante::setVenditeEffettuate(int venditeEffettuate)
     _venditeEffettuate = venditeEffettuate;
 }
 
+QString Rappresentante::type() const
+{
+    return QString("Rappresentante");
+}
+
 QDomElement Rappresentante::XmlSerialize(QDomDocument doc) const
 {
-    QDomElement rappre = doc.createElement("Rappresentante");;
+    QDomElement rappre = doc.createElement(type());;
     rappre.appendChild(Impiegato::XmlSerialize(doc));
     rappre.setAttribute("Vendite", _venditeEffettuate);
     return rappre;

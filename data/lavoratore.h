@@ -43,6 +43,10 @@ public:
 
     QDate getDataScadenza() const;
 
+    QString generateCSVRow(float bonus) const;
+
+    virtual QString type() const = 0;
+
 private:
     string _reparto;
     OreLavorative _orePreviste;//Le ore previste da contratto

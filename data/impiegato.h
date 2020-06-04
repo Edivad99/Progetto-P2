@@ -20,6 +20,8 @@ public:
 
     void setPagaPerOra(float pagaPerOra);
 
+    virtual QString type() const;
+
 private:
     float _pagaPerOra;
 };

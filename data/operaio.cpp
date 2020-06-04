@@ -35,10 +35,15 @@ float Operaio::Stipendio(float bonus) const
 
 QDomElement Operaio::XmlSerialize(QDomDocument doc) const
 {
-    QDomElement operaio = doc.createElement("Operaio");;
+    QDomElement operaio = doc.createElement(type());
     operaio.appendChild(Lavoratore::XmlSerialize(doc));
     operaio.setAttribute("Livello", _livello + 1);
     return operaio;
+}
+
+QString Operaio::type() const
+{
+    return QString("Operaio");
 }
 
 const float Operaio::_salarioMensile[] = {1000, 1350, 1575, 1825, 2100};

@@ -21,6 +21,8 @@ public:
 
     virtual QDomElement XmlSerialize(QDomDocument doc) const;
 
+    virtual QString type() const;
+
 private:
     Livello _livello;
     static const float _salarioMensile[5];

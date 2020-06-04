@@ -34,9 +34,14 @@ void Impiegato::setPagaPerOra(float pagaPerOra)
     _pagaPerOra = pagaPerOra;
 }
 
+QString Impiegato::type() const
+{
+    return QString("Impiegato");
+}
+
 QDomElement Impiegato::XmlSerialize(QDomDocument doc) const
 {
-    QDomElement impiegato = doc.createElement("Impiegato");;
+    QDomElement impiegato = doc.createElement(type());
     impiegato.appendChild(Lavoratore::XmlSerialize(doc));
     impiegato.setAttribute("PagaOra", _pagaPerOra);
     return impiegato;
