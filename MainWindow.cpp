@@ -174,7 +174,7 @@ void MainWindow::esportaStipendio()
 void MainWindow::analizzaStipendio()
 {
     QString filter = "CSV File (*.csv)";
-    QStringList fileNames = QFileDialog::getOpenFileNames(this, "Seleziona un file da importare", QDir::homePath(), filter);
+    QStringList fileNames = QFileDialog::getOpenFileNames(this, "Seleziona uno o più file da importare", QDir::homePath(), filter);
 
     lista<QStringList*> *csvData = new lista<QStringList*>();
 

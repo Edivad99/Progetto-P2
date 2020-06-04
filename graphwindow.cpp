@@ -74,7 +74,7 @@ GraphWindow::GraphWindow(lista<QStringList*> *csvData, QWidget *parent): QWidget
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("Stipendi");
-    chart->setAnimationOptions(QChart::AllAnimations);
+    chart->setAnimationOptions(QChart::SeriesAnimations);
 
 
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
