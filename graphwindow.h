@@ -1,0 +1,32 @@
+#ifndef GRAPHWINDOW_H
+#define GRAPHWINDOW_H
+
+#include <QHBoxLayout>
+#include <QWidget>
+#include <QBarSet>
+#include <QBarSeries>
+#include <QtCharts>
+#include <QBarCategoryAxis>
+#include <QValueAxis>
+#include <QChartView>
+#include <QPainter>
+
+#include <util/lista.h>
+
+class GraphWindow : public QWidget
+{
+    Q_OBJECT
+
+public:
+    GraphWindow(lista<QStringList*> *csvData, QWidget *parent = nullptr);
+    ~GraphWindow() = default;
+
+private:
+
+    QHBoxLayout *mainLayout;
+    QVBoxLayout *mainLayoutDati;
+    QChartView *chartView;
+
+};
+
+#endif // GRAPHWINDOW_H

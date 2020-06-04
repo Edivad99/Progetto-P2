@@ -25,6 +25,7 @@ SOURCES += \
     data/rappresentante.cpp \
     data/studente.cpp \
     data/studente_lavoratore.cpp \
+    graphwindow.cpp \
     main.cpp \
     model/tabellamodel.cpp \
     util/orelavorative.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     data/rappresentante.h \
     data/studente.h \
     data/studente_lavoratore.h \
+    graphwindow.h \
     model/tabellamodel.h \
     util/orelavorative.h \
     util/telefono.h \
