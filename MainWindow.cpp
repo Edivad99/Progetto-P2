@@ -179,13 +179,14 @@ void MainWindow::analizzaStipendio()
     if(!fileName.isEmpty())
     {
         QFile *fileAperto = new QFile(fileName);
-        QDomDocument documentoLetto("Documento");
-        if(!fileAperto->open(QIODevice::ReadOnly | QIODevice::Text) || !documentoLetto.setContent(fileAperto))
+        if(!fileAperto->open(QIODevice::ReadOnly | QIODevice::Text))
         {
             QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
             return;
         }
         fileAperto->close();
+        gw=new GraphWindow();
+        gw->show();
     }
 }
 

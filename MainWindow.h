@@ -13,6 +13,7 @@
 #include <QCloseEvent>
 #include <QInputDialog>
 #include "view/tabella.h"
+#include "graphwindow.h"
 #include <model/tabellamodel.h>
 
 class MainWindow : public QWidget
@@ -31,6 +32,7 @@ private:
 
     Tabella* tabellaTab;
     TabellaModel *tabellaModel;
+    GraphWindow* gw;
 
     void addMenuButtons();
     void setApplicationStyle();
