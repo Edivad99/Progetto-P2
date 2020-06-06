@@ -22,6 +22,7 @@
 #include "data/impiegato.h"
 #include "data/rappresentante.h"
 #include "data/studente_lavoratore.h"
+#include <QCheckBox>
 #include <iostream>
 
 using std::string;
@@ -64,6 +65,7 @@ private:
     //QWidget per mostrare/nascondere alcuni campi
     QWidget *Qoccupazione;
     QLabel *editNome, *editID, *numeroDipendenti;
+    QCheckBox *operaio, *impiegato, *rappresentante, *studlav;
 
 
     void Aggiungi();
@@ -88,7 +90,8 @@ private slots:
     void btnModificaClicked();
     void btnRimuoviClicked();
     void cellaClicked(int, int);
-    void tabellaChanged(QTableWidgetItem * item);
+    void tabellaChanged(QTableWidgetItem*);
+    void checkboxChanged(int);
 
 };
 

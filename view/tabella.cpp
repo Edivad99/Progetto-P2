@@ -54,6 +54,10 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     connect(btnRimuovi, SIGNAL(clicked()), this, SLOT(btnRimuoviClicked()));
     connect(table, SIGNAL(cellClicked(int, int)), this, SLOT(cellaClicked(int, int)));
     connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(tabellaChanged(QTableWidgetItem*)));
+    connect(operaio, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
+    connect(impiegato, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
+    connect(rappresentante, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
+    connect(studlav, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
 }
 
 void Tabella::Aggiungi()
@@ -252,13 +256,23 @@ void Tabella::Rimuovi()
 void Tabella::BottomBar()
 {
     numeroDipendenti = new QLabel("Dipendenti: 0");
-    bottomBar->addWidget(numeroDipendenti);
-    bottomBar->setAlignment(Qt::AlignLeft);
-    bottomBar->addWidget(new QLabel("ciao"));
-    bottomBar->addWidget(new QLabel("ciao"));
-    bottomBar->addWidget(new QLabel("ciao"));
-    bottomBar->addWidget(new QLabel("ciao"));
+    operaio = new QCheckBox("Operaio");
+    impiegato = new QCheckBox("Impiegato");
+    rappresentante = new QCheckBox("Rappresentante");
+    studlav = new QCheckBox("StudenteLavoratore");
 
+    operaio->setChecked(true);
+    impiegato->setChecked(true);
+    rappresentante->setChecked(true);
+    studlav->setChecked(true);
+
+    bottomBar->addWidget(numeroDipendenti);
+    bottomBar->addWidget(operaio);
+    bottomBar->addWidget(impiegato);
+    bottomBar->addWidget(rappresentante);
+    bottomBar->addWidget(studlav);
+
+    bottomBar->setAlignment(Qt::AlignLeft);
 }
 
 void Tabella::VisualizzaOperaio()
@@ -641,4 +655,9 @@ void Tabella::tabellaChanged(QTableWidgetItem *item)
     int n = table->rowCount();
     std::cout << n << std::endl;
     numeroDipendenti->setText(QString("Numero dipendenti: " ) + QString::fromStdString(std::to_string(n)));
+}
+
+void Tabella::checkboxChanged(int)
+{
+
 }
