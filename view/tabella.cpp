@@ -54,10 +54,9 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     connect(btnRimuovi, SIGNAL(clicked()), this, SLOT(btnRimuoviClicked()));
     connect(table, SIGNAL(cellClicked(int, int)), this, SLOT(cellaClicked(int, int)));
     connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(tabellaChanged(QTableWidgetItem*)));
-    connect(operaio, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
-    connect(impiegato, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
-    connect(rappresentante, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
-    connect(studlav, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
+    connect(operaioCB, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
+    connect(impiegatoCB, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
+    connect(studlavCB, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
 }
 
 void Tabella::Aggiungi()
@@ -256,21 +255,18 @@ void Tabella::Rimuovi()
 void Tabella::BottomBar()
 {
     numeroDipendenti = new QLabel("Dipendenti: 0");
-    operaio = new QCheckBox("Operaio");
-    impiegato = new QCheckBox("Impiegato");
-    rappresentante = new QCheckBox("Rappresentante");
-    studlav = new QCheckBox("StudenteLavoratore");
+    operaioCB = new QCheckBox("Operaio");
+    impiegatoCB = new QCheckBox("Impiegato");
+    studlavCB = new QCheckBox("StudenteLavoratore");
 
-    operaio->setChecked(true);
-    impiegato->setChecked(true);
-    rappresentante->setChecked(true);
-    studlav->setChecked(true);
+    operaioCB->setChecked(true);
+    impiegatoCB->setChecked(true);
+    studlavCB->setChecked(true);
 
     bottomBar->addWidget(numeroDipendenti);
-    bottomBar->addWidget(operaio);
-    bottomBar->addWidget(impiegato);
-    bottomBar->addWidget(rappresentante);
-    bottomBar->addWidget(studlav);
+    bottomBar->addWidget(operaioCB);
+    bottomBar->addWidget(impiegatoCB);
+    bottomBar->addWidget(studlavCB);
 
     bottomBar->setAlignment(Qt::AlignLeft);
 }
@@ -367,7 +363,7 @@ void Tabella::updateTabella()
     intestazioneColonna.push_back("Vendite effettuate");
 
     lista<Lavoratore*>supp = _model->getLavoratori();
-    table->setRowCount(supp.getSize());
+    table->setRowCount(0);
     table->setColumnCount(intestazioneColonna.size());
     table->setHorizontalHeaderLabels(intestazioneColonna);
 
@@ -391,48 +387,55 @@ void Tabella::updateTabella()
         QString contratto = QString::fromStdString(((*cit)->getTipologiaContratto() == 0 ? "Determinato" : "Indeterminato"));//Contratto
         QString dataScadenza = QString((*cit)->getDataScadenza().toString("dd/MM/yyyy"));//Data scadenza
 
-        setText(QString::fromStdString(std::to_string((*cit)->getID())), rowCount, 0);//ID
-        setText(nome, rowCount, 2);//Nome
-        setText(cognome, rowCount, 3);//Cognome
-        setText(dataNascita, rowCount, 4);//DataNascita
-        setText(cf, rowCount, 5);//CF
-        setText(genere, rowCount, 6);//Genere
-        setText(numeroTelefono, rowCount, 7);//Telefono
-        setText(reparto, rowCount, 9);//Reparto
-        setText(orePreviste, rowCount, 10);//Ore di lavoro
-        setText(contratto, rowCount, 11);//Contratto
-        setText(dataScadenza, rowCount, 12);//Data scadenza
 
         Operaio* operaio =dynamic_cast<Operaio*>(*cit);
         Impiegato* impiegato =dynamic_cast<Impiegato*>(*cit);
         Rappresentante* rappresentante =dynamic_cast<Rappresentante*>(*cit);
         StudenteLavoratore* studlav =dynamic_cast<StudenteLavoratore*>(*cit);
 
-        QString tipologia = (*cit)->type();
-        if(operaio)
-        {
-            string livello = std::to_string(operaio->getLivello() + 1);
-            setText(QString::fromStdString(livello), rowCount, 13);//Livello
-        }
-        else if(impiegato)
-        {
-            string pagaPerOra = std::to_string(impiegato->getPagaPerOra());
-            setText(QString::fromStdString(pagaPerOra), rowCount, 14);//Paga per ora
 
-            if (rappresentante)
+        if((operaioCB->isChecked() && operaio) ||
+            (impiegatoCB->isChecked() && impiegato) ||
+            (studlavCB->isChecked() && studlav))
+        {
+            table->insertRow(table->rowCount());
+
+            setText(QString::fromStdString(std::to_string((*cit)->getID())), rowCount, 0);//ID
+            setText((*cit)->type(), rowCount, 1);//Tipologia
+            setText(nome, rowCount, 2);//Nome
+            setText(cognome, rowCount, 3);//Cognome
+            setText(dataNascita, rowCount, 4);//DataNascita
+            setText(cf, rowCount, 5);//CF
+            setText(genere, rowCount, 6);//Genere
+            setText(numeroTelefono, rowCount, 7);//Telefono
+            setText(reparto, rowCount, 9);//Reparto
+            setText(orePreviste, rowCount, 10);//Ore di lavoro
+            setText(contratto, rowCount, 11);//Contratto
+            setText(dataScadenza, rowCount, 12);//Data scadenza
+
+            if(operaio)
             {
-                string venditeEffettuate = std::to_string(rappresentante->getVenditeEffettuate());
-                setText(QString::fromStdString(venditeEffettuate), rowCount, 15);//Vendite effettuate
+                string livello = std::to_string(operaio->getLivello() + 1);
+                setText(QString::fromStdString(livello), rowCount, 13);//Livello
             }
-        }
-        else if(studlav)
-        {
-            string occupazione = studlav->getOccupazione() == 0 ? "Superiori" : "Universita'";
-            setText(QString::fromStdString(occupazione), rowCount, 8);//Occupazione
-        }
+            else if(impiegato)
+            {
+                string pagaPerOra = std::to_string(impiegato->getPagaPerOra());
+                setText(QString::fromStdString(pagaPerOra), rowCount, 14);//Paga per ora
 
-        setText(tipologia, rowCount, 1);//Tipologia
-        rowCount++;
+                if (rappresentante)
+                {
+                    string venditeEffettuate = std::to_string(rappresentante->getVenditeEffettuate());
+                    setText(QString::fromStdString(venditeEffettuate), rowCount, 15);//Vendite effettuate
+                }
+            }
+            else if(studlav)
+            {
+                string occupazione = studlav->getOccupazione() == 0 ? "Superiori" : "Universita'";
+                setText(QString::fromStdString(occupazione), rowCount, 8);//Occupazione
+            }
+            rowCount++;
+        }
     }
 }
 
@@ -659,5 +662,5 @@ void Tabella::tabellaChanged(QTableWidgetItem *item)
 
 void Tabella::checkboxChanged(int)
 {
-
+    Tabella::updateTabella();
 }

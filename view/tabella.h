@@ -65,7 +65,7 @@ private:
     //QWidget per mostrare/nascondere alcuni campi
     QWidget *Qoccupazione;
     QLabel *editNome, *editID, *numeroDipendenti;
-    QCheckBox *operaio, *impiegato, *rappresentante, *studlav;
+    QCheckBox *operaioCB, *impiegatoCB, *studlavCB;
 
 
     void Aggiungi();
