@@ -25,7 +25,6 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
 
     //Imposto la tabella
     table = new QTableWidget();
-    updateTabella();
 
     Aggiungi();
     Modifica();
@@ -46,6 +45,8 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     mainLayout->setMargin(0);
     setLayout(mainLayout);
 
+    updateTabella();
+
     //Visualizzo di default l'operaio
     VisualizzaOperaio();
     connect(tipologia, SIGNAL(currentIndexChanged(int)), this, SLOT(tipologiaIndexChanged(int)));
@@ -53,7 +54,6 @@ Tabella::Tabella(TabellaModel *model, QWidget *parent): QWidget(parent), _model(
     connect(btnModifica, SIGNAL(clicked()), this, SLOT(btnModificaClicked()));
     connect(btnRimuovi, SIGNAL(clicked()), this, SLOT(btnRimuoviClicked()));
     connect(table, SIGNAL(cellClicked(int, int)), this, SLOT(cellaClicked(int, int)));
-    connect(table, SIGNAL(itemChanged(QTableWidgetItem*)), this, SLOT(tabellaChanged(QTableWidgetItem*)));
     connect(operaioCB, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
     connect(impiegatoCB, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
     connect(studlavCB, SIGNAL(stateChanged(int)), this, SLOT(checkboxChanged(int)));
@@ -437,6 +437,8 @@ void Tabella::updateTabella()
             rowCount++;
         }
     }
+
+    tabellaChanged();
 }
 
 void Tabella::tipologiaIndexChanged(int index)
@@ -643,7 +645,7 @@ void Tabella::cellaClicked(int row, int column)
     }
 }
 
-void Tabella::tabellaChanged(QTableWidgetItem *item)
+void Tabella::tabellaChanged()
 {
     QStringList idItems;
     for(int i = 0; i < table->rowCount(); i++)
@@ -656,8 +658,7 @@ void Tabella::tabellaChanged(QTableWidgetItem *item)
 
     //Aggiorno il numero di dipendenti
     int n = table->rowCount();
-    std::cout << n << std::endl;
-    numeroDipendenti->setText(QString("Numero dipendenti: " ) + QString::fromStdString(std::to_string(n)));
+    numeroDipendenti->setText(QString("Numero dipendenti: ") + QString::fromStdString(std::to_string(n)));
 }
 
 void Tabella::checkboxChanged(int)

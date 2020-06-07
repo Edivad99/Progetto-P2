@@ -67,7 +67,6 @@ private:
     QLabel *editNome, *editID, *numeroDipendenti;
     QCheckBox *operaioCB, *impiegatoCB, *studlavCB;
 
-
     void Aggiungi();
     void Modifica();
     void Rimuovi();
@@ -78,10 +77,11 @@ private:
     void VisualizzaRappresentante();
     void VisualizzaStudente();
 
+    void tabellaChanged();
+
     //Controllo sull'input
     bool convalidaInput(string nome, string cognome, string cf, string reparto) const;
 
-    //Test
     void setText(QString text, int row, int column);
 
 private slots:
@@ -90,7 +90,6 @@ private slots:
     void btnModificaClicked();
     void btnRimuoviClicked();
     void cellaClicked(int, int);
-    void tabellaChanged(QTableWidgetItem*);
     void checkboxChanged(int);
 
 };
