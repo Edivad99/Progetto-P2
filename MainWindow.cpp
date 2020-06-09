@@ -150,7 +150,7 @@ void MainWindow::esportaStipendio()
 
     if(ok)
     {
-        QString defaultName = QString("BustePaga").append(QDate::currentDate().toString("MMMMyyyy")).append(".csv");
+        QString defaultName = QString("BustePaga").append(GeneralUtil::capitalizeFirstLetter(QDate::currentDate().toString("MMMMyyyy"))).append(".csv");
 
         QString filter = "CSV File (*.csv)";
         QString fileName = QFileDialog::getSaveFileName(this, "Salva con nome", QDir::homePath() + "/" + defaultName, filter);

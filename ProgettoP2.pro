@@ -28,6 +28,7 @@ SOURCES += \
     graphwindow.cpp \
     main.cpp \
     model/tabellamodel.cpp \
+    util/generalutil.cpp \
     util/orelavorative.cpp \
     util/telefono.cpp \
     util/lista.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     data/studente_lavoratore.h \
     graphwindow.h \
     model/tabellamodel.h \
+    util/generalutil.h \
     util/orelavorative.h \
     util/telefono.h \
     util/lista.h \

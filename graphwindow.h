@@ -10,7 +10,7 @@
 #include <QValueAxis>
 #include <QChartView>
 #include <QPainter>
-
+#include <util/generalutil.h>
 #include <util/lista.h>
 
 class GraphWindow : public QWidget

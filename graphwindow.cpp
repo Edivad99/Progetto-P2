@@ -54,7 +54,7 @@ GraphWindow::GraphWindow(lista<QStringList*> *csvData, QWidget *parent): QWidget
             }
         }
 
-        categories << data.toString("MMMM");
+        categories << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM"));
         *set0 << salarioTot[rowCount][0];
         *set1 << salarioTot[rowCount][1];
         *set2 << salarioTot[rowCount][2];
