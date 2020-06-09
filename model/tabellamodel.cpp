@@ -98,6 +98,7 @@ QString TabellaModel::generaStipendio(float bonus) const
 }
 
 bool TabellaModel::deviSalvare() const
+{
     return _deviSalvare;
 }
 

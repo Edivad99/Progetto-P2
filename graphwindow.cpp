@@ -26,7 +26,11 @@ GraphWindow::GraphWindow(lista<QStringList*> *csvData, QWidget *parent): QWidget
     for (lista<QStringList*>::constiterator cit = csvData->begin(); cit != csvData->end(); ++cit)
     {
         QStringList* testo = *cit;
-        QDate data =QDate::fromString(testo->at(0),"MMMM;yyyy");
+        QString mese = testo->at(0).split(";")[0];
+        QString anno = testo->at(0).split(";")[1];
+
+
+        QDate data =QDate::fromString(mese.append(anno),"MMMMyyyy");
         for(int i=1;i<testo->size();++i)//file
         {
             QStringList linea=testo->at(i).split(";");//linea
