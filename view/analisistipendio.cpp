@@ -11,7 +11,7 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
     mainLayout->setMargin(0);
 
     float salarioTot[csvData->getSize()][5];
-    for(int i = 0; i < csvData->getSize(); i++)
+    for(unsigned int i = 0; i < csvData->getSize(); i++)
         for(int j = 0; j < 5; j++)
             salarioTot[i][j] = 0;
 

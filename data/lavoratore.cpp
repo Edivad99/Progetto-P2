@@ -82,7 +82,7 @@ QDomElement Lavoratore::XmlSerialize(QDomDocument doc) const
     lavoratore.setAttribute("OrePreviste", QString::fromStdString(ss.str()));
     lavoratore.setAttribute("Contratto", QString::fromStdString((_contratto == 0) ? "Determinato" : "Indeterminato"));
     lavoratore.setAttribute("DataScadenza", _dataScadenza.toString("dd/MM/yyyy"));
-    lavoratore.setAttribute("IDAziendale", Lavoratore::getID());
+    lavoratore.setAttribute("IDAziendale", QString::fromStdString(std::to_string(Lavoratore::getID())));
     return lavoratore;
 }
 
