@@ -29,7 +29,6 @@ void Operaio::setLivello(Livello livello)
 
 float Operaio::Stipendio(float bonus) const
 {
-    //TODO: decidere se va bene così
     return _salarioMensile[_livello] + bonus;
 }
 

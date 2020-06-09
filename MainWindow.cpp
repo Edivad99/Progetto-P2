@@ -201,7 +201,6 @@ void MainWindow::analizzaStipendio()
             csvData->insertBack(wordlist);
         }
     }
-    //passarela per puntatore
     gw=new AnalisiStipendio(csvData);
     gw->show();
 

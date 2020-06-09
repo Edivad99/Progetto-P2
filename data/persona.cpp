@@ -7,7 +7,7 @@ Persona::Persona(string nome, string cognome, QDate dataNascita, string codiceFi
 }
 
 Persona::Persona(QDomElement pers):_nome(pers.attribute("Nome").toStdString()), _cognome(pers.attribute("Cognome").toStdString()),
-    _dataNascita(QDate::fromString(pers.attribute("DataNascita"),"dd/MM/yyyy")), _codiceFiscale(pers.attribute("CodiceFiscale").toStdString()),
+    _dataNascita(GeneralUtil::strToItaDate(pers.attribute("DataNascita"))), _codiceFiscale(pers.attribute("CodiceFiscale").toStdString()),
     _genere(Genere(pers.attribute("Genere").toStdString()=="M" ? 0:1)),
     _numeroTelefono(pers.attribute("Telefono").toStdString() == "Sconosciuto" ? "0" : pers.attribute("Telefono").split(" ")[1].toStdString(),
                     pers.attribute("Telefono").toStdString() == "Sconosciuto" ? "0" : pers.attribute("Telefono").split(" ")[0].toStdString())
@@ -35,7 +35,7 @@ QDomElement Persona::XmlSerialize(QDomDocument doc) const
     QDomElement persona = doc.createElement("Persona");
     persona.setAttribute("Nome", QString::fromStdString(_nome));
     persona.setAttribute("Cognome", QString::fromStdString(_cognome));
-    persona.setAttribute("DataNascita", _dataNascita.toString("dd/MM/yyyy"));
+    persona.setAttribute("DataNascita", GeneralUtil::dateToItaStr(_dataNascita));
     persona.setAttribute("CodiceFiscale", QString::fromStdString(_codiceFiscale));
     persona.setAttribute("Genere", QString::fromStdString((_genere == 0) ? "M" : "F"));
     std::stringstream text;

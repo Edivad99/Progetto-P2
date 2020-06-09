@@ -7,3 +7,13 @@ QString GeneralUtil::capitalizeFirstLetter(QString string)
     result.append(QString::fromStdString(string.toStdString().substr(1, string.length()-1)));
     return result;
 }
+
+QDate GeneralUtil::strToItaDate(QString date)
+{
+    return QDate::fromString(date,"dd/MM/yyyy");
+}
+
+QString GeneralUtil::dateToItaStr(QDate date)
+{
+    return date.toString("dd/MM/yyyy");
+}

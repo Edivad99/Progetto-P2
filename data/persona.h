@@ -5,6 +5,7 @@
 #include <QDate>
 #include <QString>
 #include "util/telefono.h"
+#include "util/generalutil.h"
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
 #include <sstream>

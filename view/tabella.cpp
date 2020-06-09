@@ -372,7 +372,7 @@ void Tabella::updateTabella()
     {
         QString nome = QString::fromStdString((*cit)->getNome());
         QString cognome = QString::fromStdString((*cit)->getCognome());
-        QString dataNascita = QString((*cit)->getDataNascita().toString("dd/MM/yyyy"));
+        QString dataNascita = GeneralUtil::dateToItaStr((*cit)->getDataNascita());
         QString cf = QString::fromStdString((*cit)->getCodiceFiscale());
         QString genere = QString(QString::fromStdString(((*cit)->getGenere() == 0) ? "M" : "F"));
 
@@ -385,14 +385,12 @@ void Tabella::updateTabella()
         textOrePreviste << (*cit)->getOrePreviste();
         QString orePreviste = QString::fromStdString(textOrePreviste.str());//Ore di lavoro
         QString contratto = QString::fromStdString(((*cit)->getTipologiaContratto() == 0 ? "Determinato" : "Indeterminato"));//Contratto
-        QString dataScadenza = QString((*cit)->getDataScadenza().toString("dd/MM/yyyy"));//Data scadenza
-
+        QString dataScadenza = GeneralUtil::dateToItaStr((*cit)->getDataScadenza());//Data scadenza
 
         Operaio* operaio =dynamic_cast<Operaio*>(*cit);
         Impiegato* impiegato =dynamic_cast<Impiegato*>(*cit);
         Rappresentante* rappresentante =dynamic_cast<Rappresentante*>(*cit);
         StudenteLavoratore* studlav =dynamic_cast<StudenteLavoratore*>(*cit);
-
 
         if((operaioCB->isChecked() && operaio) ||
             (impiegatoCB->isChecked() && impiegato) ||
@@ -598,7 +596,7 @@ void Tabella::cellaClicked(int row, int column)
     QString contratto = table->item(row, 11)->text();
     if(contratto == "Determinato")
     {
-        QDate scadenza = QDate::fromString(table->item(row, 12)->text(), "dd/MM/yyyy");
+        QDate scadenza = GeneralUtil::strToItaDate(table->item(row, 12)->text());
         editContratto->setContrattoDeterminato(scadenza);
     }
     else

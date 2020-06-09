@@ -29,18 +29,9 @@ float StudenteLavoratore::Stipendio(float bonus) const
 
 QDomElement StudenteLavoratore::XmlSerialize(QDomDocument doc) const
 {
-    //creo un elemento studente lavoratore <StudenteLavoratore>
     QDomElement studlav = doc.createElement(type());
-    //appendo <Persona>, come nella chiusura a diamante, l'elemento Persona viene creato da StudenteLavoratore
-    //studlav.appendChild(Persona::XmlSerialize(doc));
-    //creo elemento <Studente> e sottraggo la parte di persona
-    QDomElement stud =Studente::XmlSerialize(doc);
-    //stud.removeChild(stud.childNodes().at(0).toElement());
-    studlav.appendChild(stud);
-    //creo elemento <Lavoratore> e sottraggo la parte di persona
-    QDomElement lavor =Lavoratore::XmlSerialize(doc);
-    //lavor.removeChild(lavor.childNodes().at(0).toElement());
-    studlav.appendChild(lavor);
+    studlav.appendChild(Studente::XmlSerialize(doc));
+    studlav.appendChild(Lavoratore::XmlSerialize(doc));
     return studlav;
 }
 

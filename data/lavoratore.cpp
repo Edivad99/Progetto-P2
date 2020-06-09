@@ -12,8 +12,8 @@ Lavoratore::Lavoratore(string nome, string cognome, QDate dataNascita, string co
 Lavoratore::Lavoratore(QDomElement lavorat):
     Persona(lavorat.childNodes().at(0).toElement()),
     _reparto(lavorat.attribute("Reparto").toStdString()), _orePreviste(lavorat.attribute("OrePreviste").split(":")[0].toInt(),lavorat.attribute("OrePreviste").split(":")[1].toInt()),
-    _contratto(QDate::fromString(lavorat.attribute("DataScadenza"),"dd/MM/yyyy").isNull()? Indeterminato : Determinato),
-    _dataScadenza(QDate::fromString(lavorat.attribute("DataScadenza"),"dd/MM/yyyy")), _IDAziendale(generateID(lavorat.childNodes().at(0).toElement().attribute("CodiceFiscale").toStdString()))
+    _contratto(GeneralUtil::strToItaDate(lavorat.attribute("DataScadenza")).isNull()? Indeterminato : Determinato),
+    _dataScadenza(GeneralUtil::strToItaDate(lavorat.attribute("DataScadenza"))), _IDAziendale(generateID(lavorat.childNodes().at(0).toElement().attribute("CodiceFiscale").toStdString()))
 {
 
 }
@@ -81,7 +81,7 @@ QDomElement Lavoratore::XmlSerialize(QDomDocument doc) const
     ss << _orePreviste;
     lavoratore.setAttribute("OrePreviste", QString::fromStdString(ss.str()));
     lavoratore.setAttribute("Contratto", QString::fromStdString((_contratto == 0) ? "Determinato" : "Indeterminato"));
-    lavoratore.setAttribute("DataScadenza", _dataScadenza.toString("dd/MM/yyyy"));
+    lavoratore.setAttribute("DataScadenza", GeneralUtil::dateToItaStr(_dataScadenza));
     lavoratore.setAttribute("IDAziendale", QString::fromStdString(std::to_string(Lavoratore::getID())));
     return lavoratore;
 }
@@ -96,7 +96,6 @@ QString Lavoratore::generateCSVRow(float bonus) const
     QString id = QString::fromStdString(std::to_string(_IDAziendale));
     QString nome = QString::fromStdString(getNome());
     QString cognome = QString::fromStdString(getCognome());
-
     QString codfisc=QString::fromStdString(getCodiceFiscale());
     QString salario=QString::number(Stipendio(bonus));
 
