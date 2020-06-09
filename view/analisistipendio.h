@@ -1,5 +1,5 @@
-#ifndef GRAPHWINDOW_H
-#define GRAPHWINDOW_H
+#ifndef ANALISISTIPENDIO_H
+#define ANALISISTIPENDIO_H
 
 #include <QHBoxLayout>
 #include <QWidget>
@@ -13,13 +13,13 @@
 #include <util/generalutil.h>
 #include <util/lista.h>
 
-class GraphWindow : public QWidget
+class AnalisiStipendio : public QWidget
 {
     Q_OBJECT
 
 public:
-    GraphWindow(lista<QStringList*> *csvData, QWidget *parent = nullptr);
-    ~GraphWindow() = default;
+    AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent = nullptr);
+    ~AnalisiStipendio() = default;
 
 private:
 

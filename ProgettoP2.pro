@@ -25,7 +25,6 @@ SOURCES += \
     data/rappresentante.cpp \
     data/studente.cpp \
     data/studente_lavoratore.cpp \
-    graphwindow.cpp \
     main.cpp \
     model/tabellamodel.cpp \
     util/generalutil.cpp \
@@ -34,10 +33,12 @@ SOURCES += \
     util/lista.cpp \
     util/nodo.cpp \
     view/tabella.cpp \
+    view/analisistipendio.cpp \
     view/widgets/wcontratto.cpp \
     view/widgets/wcspinbox.cpp \
     view/widgets/wpagaperora.cpp \
     view/widgets/wtelefono.cpp
+
 HEADERS += \
     MainWindow.h \
     data/impiegato.h \
@@ -47,7 +48,6 @@ HEADERS += \
     data/rappresentante.h \
     data/studente.h \
     data/studente_lavoratore.h \
-    graphwindow.h \
     model/tabellamodel.h \
     util/generalutil.h \
     util/orelavorative.h \
@@ -55,6 +55,7 @@ HEADERS += \
     util/lista.h \
     util/nodo.h \
     view/tabella.h \
+    view/analisistipendio.h \
     view/widgets/wcontratto.h \
     view/widgets/wcspinbox.h \
     view/widgets/wpagaperora.h \

@@ -202,7 +202,7 @@ void MainWindow::analizzaStipendio()
         }
     }
     //passarela per puntatore
-    gw=new GraphWindow(csvData);
+    gw=new AnalisiStipendio(csvData);
     gw->show();
 
 }

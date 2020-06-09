@@ -1,6 +1,6 @@
-#include "graphwindow.h"
+#include "analisistipendio.h"
 
-GraphWindow::GraphWindow(lista<QStringList*> *csvData, QWidget *parent): QWidget(parent)
+AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent): QWidget(parent)
 {
     mainLayout = new QHBoxLayout(this);
     mainLayoutDati = new QVBoxLayout();
