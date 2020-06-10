@@ -12,6 +12,7 @@
 #include <QPainter>
 #include <util/generalutil.h>
 #include <util/lista.h>
+#include <view/widgets/wstipendiomensile.h>
 
 class AnalisiStipendio : public QWidget
 {
@@ -24,8 +25,10 @@ public:
 private:
 
     QHBoxLayout *mainLayout;
-    QVBoxLayout *mainLayoutDati;
+    QListWidget *dati;
     QChartView *chartView;
+
+    void Grafico();
 
 };
 

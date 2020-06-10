@@ -96,8 +96,8 @@ QString Lavoratore::generateCSVRow(float bonus) const
     QString id = QString::fromStdString(std::to_string(_IDAziendale));
     QString nome = QString::fromStdString(getNome());
     QString cognome = QString::fromStdString(getCognome());
-    QString codfisc=QString::fromStdString(getCodiceFiscale());
-    QString salario=QString::number(Stipendio(bonus));
+    QString codfisc = QString::fromStdString(getCodiceFiscale());
+    QString salario = QString::number(Stipendio(bonus));
 
     return id+";"+nome+";"+cognome+";"+type()+";"+codfisc+";"+salario+"\n";
 }

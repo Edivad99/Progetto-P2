@@ -3,7 +3,8 @@
 AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent): QWidget(parent)
 {
     mainLayout = new QHBoxLayout(this);
-    mainLayoutDati = new QVBoxLayout();
+    dati = new QListWidget();
+    dati->setSizeAdjustPolicy(QListWidget::AdjustToContents);
     setLayout(mainLayout);
 
     setMinimumSize(QSize(650,650));
@@ -58,6 +59,10 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
             }
         }
 
+        QListWidgetItem *item = new QListWidgetItem();
+        dati->addItem(item);
+        dati->setItemWidget(item, new WStipendioMensile(data, salarioTot[rowCount]));
+
         categories << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM"));
         *set0 << salarioTot[rowCount][0];
         *set1 << salarioTot[rowCount][1];
@@ -98,18 +103,7 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
     chartView->setRenderHint(QPainter::Antialiasing);
 
 
-    mainLayout->addWidget(chartView);
-
-/*
-    mainLayout->addWidget(chartView,66);
-
-    mainLayoutDati->addWidget(new QLabel("Operaio: "+QString::number(salarioTot[0])));
-    mainLayoutDati->addWidget(new QLabel("Impiegato: "+QString::number(salarioTot[1])));
-    mainLayoutDati->addWidget(new QLabel("Rappresentante: "+QString::number(salarioTot[2])));
-    mainLayoutDati->addWidget(new QLabel("StudenteLavoratore: "+QString::number(salarioTot[3])));
-    mainLayoutDati->addWidget(new QLabel("Altro: "+QString::number(salarioTot[4])));
-
-    mainLayout->addLayout(mainLayoutDati,33);
-*/
+    mainLayout->addWidget(chartView, 66);
+    mainLayout->addWidget(dati, 33);
 
 }

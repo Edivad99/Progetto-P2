@@ -37,6 +37,7 @@ SOURCES += \
     view/widgets/wcontratto.cpp \
     view/widgets/wcspinbox.cpp \
     view/widgets/wpagaperora.cpp \
+    view/widgets/wstipendiomensile.cpp \
     view/widgets/wtelefono.cpp
 
 HEADERS += \
@@ -59,6 +60,7 @@ HEADERS += \
     view/widgets/wcontratto.h \
     view/widgets/wcspinbox.h \
     view/widgets/wpagaperora.h \
+    view/widgets/wstipendiomensile.h \
     view/widgets/wtelefono.h
 
 FORMS +=
