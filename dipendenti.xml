@@ -1,121 +1,121 @@
 <!DOCTYPE Dipendenti>
 <Dipendenti>
  <Operaio Livello="1">
-  <Lavoratore IDAziendale="3069630175" Contratto="Indeterminato" Reparto="Tessile" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3603051110" Nome="Oliver" Cognome="Dolce" CodiceFiscale="DLCLVR02P16F839B" Genere="M" DataNascita="19/06/1979"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Tessile" DataScadenza="" IDAziendale="3069630175">
+   <Persona Telefono="39 3603051110" DataNascita="19/06/1979" Nome="Oliver" Cognome="Dolce" CodiceFiscale="DLCLVR02P16F839B" Genere="M"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="2">
-  <Lavoratore IDAziendale="4030099776" Contratto="Indeterminato" Reparto="Tessile" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3476305605" Nome="Rossano" Cognome="Filippini" CodiceFiscale="FLPRSN06E07L736S" Genere="M" DataNascita="19/09/1988"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Tessile" DataScadenza="" IDAziendale="4030099776">
+   <Persona Telefono="39 3476305605" DataNascita="19/09/1988" Nome="Rossano" Cognome="Filippini" CodiceFiscale="FLPRSN06E07L736S" Genere="M"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="3">
-  <Lavoratore IDAziendale="2618575724" Contratto="Indeterminato" Reparto="Tessile" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3537774745" Nome="Desiree" Cognome="Fortunato" CodiceFiscale="FRTDSR04P69F205E" Genere="F" DataNascita="15/04/2000"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Tessile" DataScadenza="" IDAziendale="2618575724">
+   <Persona Telefono="39 3537774745" DataNascita="15/04/2000" Nome="Desiree" Cognome="Fortunato" CodiceFiscale="FRTDSR04P69F205E" Genere="F"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="4">
-  <Lavoratore IDAziendale="894833936" Contratto="Indeterminato" Reparto="Elettrico" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3583828770" Nome="Michele" Cognome="Boldi" CodiceFiscale="XDGRDZ43D04D171A" Genere="M" DataNascita="16/12/1983"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Elettrico" DataScadenza="" IDAziendale="894833936">
+   <Persona Telefono="39 3583828770" DataNascita="16/12/1983" Nome="Michele" Cognome="Boldi" CodiceFiscale="XDGRDZ43D04D171A" Genere="M"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="2">
-  <Lavoratore IDAziendale="317214926" Contratto="Indeterminato" Reparto="Elettrico" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3730777136" Nome="Cristina" Cognome="Bioni" CodiceFiscale="DFZVVS61S19C169H" Genere="F" DataNascita="23/11/1972"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Elettrico" DataScadenza="" IDAziendale="317214926">
+   <Persona Telefono="39 3730777136" DataNascita="23/11/1972" Nome="Cristina" Cognome="Bioni" CodiceFiscale="DFZVVS61S19C169H" Genere="F"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="5">
-  <Lavoratore IDAziendale="408231876" Contratto="Indeterminato" Reparto="Elettrico" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3716514293" Nome="Veronica" Cognome="Liscio" CodiceFiscale="ZDLZYB30C04E669R" Genere="F" DataNascita="16/09/1979"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Elettrico" DataScadenza="" IDAziendale="408231876">
+   <Persona Telefono="39 3716514293" DataNascita="16/09/1979" Nome="Veronica" Cognome="Liscio" CodiceFiscale="ZDLZYB30C04E669R" Genere="F"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="4">
-  <Lavoratore IDAziendale="2857252144" Contratto="Indeterminato" Reparto="Assemblamento" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3327937553" Nome="Luca" Cognome="Pinton" CodiceFiscale="PVZDGG32B27F364W" Genere="M" DataNascita="14/03/1973"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Assemblamento" DataScadenza="" IDAziendale="2857252144">
+   <Persona Telefono="39 3327937553" DataNascita="14/03/1973" Nome="Luca" Cognome="Pinton" CodiceFiscale="PVZDGG32B27F364W" Genere="M"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="3">
-  <Lavoratore IDAziendale="3325491521" Contratto="Indeterminato" Reparto="Assemblamento" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3272085522" Nome="Federico" Cognome="Rossi" CodiceFiscale="NWUVHO27D04I071Y" Genere="M" DataNascita="12/01/1992"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Assemblamento" DataScadenza="" IDAziendale="3325491521">
+   <Persona Telefono="39 3272085522" DataNascita="12/01/1992" Nome="Federico" Cognome="Rossi" CodiceFiscale="NWUVHO27D04I071Y" Genere="M"/>
   </Lavoratore>
  </Operaio>
  <Operaio Livello="2">
-  <Lavoratore IDAziendale="3040105739" Contratto="Indeterminato" Reparto="Assemblamento" DataScadenza="" OrePreviste="160:0">
-   <Persona Telefono="39 3251930175" Nome="Marina" Cognome="Baldacche" CodiceFiscale="FTBDZT73A62L682S" Genere="F" DataNascita="06/04/1971"/>
+  <Lavoratore OrePreviste="160:0" Contratto="Indeterminato" Reparto="Assemblamento" DataScadenza="" IDAziendale="3040105739">
+   <Persona Telefono="39 3251930175" DataNascita="06/04/1971" Nome="Marina" Cognome="Baldacche" CodiceFiscale="FTBDZT73A62L682S" Genere="F"/>
   </Lavoratore>
  </Operaio>
  <Impiegato PagaOra="15">
-  <Lavoratore IDAziendale="1306265472" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" OrePreviste="80:0">
-   <Persona Telefono="39 3484843167" Nome="Dario" Cognome="Piccolo" CodiceFiscale="VGKNGR54A28G025U" Genere="M" DataNascita="08/11/1999"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" IDAziendale="1306265472">
+   <Persona Telefono="39 3484843167" DataNascita="08/11/1999" Nome="Dario" Cognome="Piccolo" CodiceFiscale="VGKNGR54A28G025U" Genere="M"/>
   </Lavoratore>
  </Impiegato>
  <Impiegato PagaOra="15">
-  <Lavoratore IDAziendale="2472249746" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" OrePreviste="80:0">
-   <Persona Telefono="39 3830613842" Nome="Carlo" Cognome="Bresto" CodiceFiscale="NBFHNS40H11G147D" Genere="M" DataNascita="16/03/1993"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" IDAziendale="2472249746">
+   <Persona Telefono="39 3830613842" DataNascita="16/03/1993" Nome="Carlo" Cognome="Bresto" CodiceFiscale="NBFHNS40H11G147D" Genere="M"/>
   </Lavoratore>
  </Impiegato>
  <Impiegato PagaOra="22">
-  <Lavoratore IDAziendale="267388295" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" OrePreviste="80:0">
-   <Persona Telefono="39 3967326380" Nome="Simone" Cognome="Serato" CodiceFiscale="RDIGVS61R53C126P" Genere="M" DataNascita="14/09/1984"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" IDAziendale="267388295">
+   <Persona Telefono="39 3967326380" DataNascita="14/09/1984" Nome="Simone" Cognome="Serato" CodiceFiscale="RDIGVS61R53C126P" Genere="M"/>
   </Lavoratore>
  </Impiegato>
  <Impiegato PagaOra="22">
-  <Lavoratore IDAziendale="1595907571" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" OrePreviste="80:0">
-   <Persona Telefono="39 3750618147" Nome="Davide" Cognome="Ghiotto" CodiceFiscale="NJPWXR28P06B445Y" Genere="M" DataNascita="08/01/2000"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Indeterminato" Reparto="Assistenza" DataScadenza="" IDAziendale="1595907571">
+   <Persona Telefono="39 3750618147" DataNascita="08/01/2000" Nome="Davide" Cognome="Ghiotto" CodiceFiscale="NJPWXR28P06B445Y" Genere="M"/>
   </Lavoratore>
  </Impiegato>
  <Rappresentante Vendite="39">
-  <Impiegato PagaOra="22">
-   <Lavoratore IDAziendale="2766563739" Contratto="Indeterminato" Reparto="Vendita" DataScadenza="" OrePreviste="80:0">
-    <Persona Telefono="39 3586399184" Nome="Francesca" Cognome="Busto" CodiceFiscale="LGQMTT98A56H836Z" Genere="F" DataNascita="26/02/1989"/>
+  <Rappresentante PagaOra="22">
+   <Lavoratore OrePreviste="80:0" Contratto="Indeterminato" Reparto="Vendita" DataScadenza="" IDAziendale="2766563739">
+    <Persona Telefono="39 3586399184" DataNascita="26/02/1989" Nome="Francesca" Cognome="Busto" CodiceFiscale="LGQMTT98A56H836Z" Genere="F"/>
    </Lavoratore>
-  </Impiegato>
+  </Rappresentante>
  </Rappresentante>
  <Rappresentante Vendite="43">
-  <Impiegato PagaOra="22">
-   <Lavoratore IDAziendale="3049885965" Contratto="Indeterminato" Reparto="Vendita" DataScadenza="" OrePreviste="80:0">
-    <Persona Telefono="39 3659658084" Nome="Mario" Cognome="Fusto" CodiceFiscale="GMVDDM99S48G446C" Genere="M" DataNascita="20/03/1996"/>
+  <Rappresentante PagaOra="22">
+   <Lavoratore OrePreviste="80:0" Contratto="Indeterminato" Reparto="Vendita" DataScadenza="" IDAziendale="3049885965">
+    <Persona Telefono="39 3659658084" DataNascita="20/03/1996" Nome="Mario" Cognome="Fusto" CodiceFiscale="GMVDDM99S48G446C" Genere="M"/>
    </Lavoratore>
-  </Impiegato>
+  </Rappresentante>
  </Rappresentante>
  <Rappresentante Vendite="38">
-  <Impiegato PagaOra="22">
-   <Lavoratore IDAziendale="1264220354" Contratto="Indeterminato" Reparto="Vendita" DataScadenza="" OrePreviste="80:0">
-    <Persona Telefono="39 3394500039" Nome="Luca" Cognome="Bionchi" CodiceFiscale="TMBXDY43D44F486T" Genere="M" DataNascita="30/04/1994"/>
+  <Rappresentante PagaOra="22">
+   <Lavoratore OrePreviste="80:0" Contratto="Indeterminato" Reparto="Vendita" DataScadenza="" IDAziendale="1264220354">
+    <Persona Telefono="39 3394500039" DataNascita="30/04/1994" Nome="Luca" Cognome="Bionchi" CodiceFiscale="TMBXDY43D44F486T" Genere="M"/>
    </Lavoratore>
-  </Impiegato>
+  </Rappresentante>
  </Rappresentante>
  <StudenteLavoratore>
   <Studente Occupazione="Superiori">
-    <Persona Telefono="39 3556894878" Nome="Mattia" Cognome="Biondo" CodiceFiscale="CLBTMM99T15L195A" Genere="M" DataNascita="22/02/2002"/>
+   <Persona Telefono="39 3556894878" DataNascita="22/02/2002" Nome="Mattia" Cognome="Biondo" CodiceFiscale="CLBTMM99T15L195A" Genere="M"/>
   </Studente>
-  <Lavoratore IDAziendale="4075768706" Contratto="Determinato" Reparto="Elettrico" DataScadenza="01/09/2020" OrePreviste="80:0">
-    <Persona Telefono="39 3556894878" Nome="Mattia" Cognome="Biondo" CodiceFiscale="CLBTMM99T15L195A" Genere="M" DataNascita="22/02/2002"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Elettrico" DataScadenza="01/09/2020" IDAziendale="4075768706">
+   <Persona Telefono="39 3556894878" DataNascita="22/02/2002" Nome="Mattia" Cognome="Biondo" CodiceFiscale="CLBTMM99T15L195A" Genere="M"/>
   </Lavoratore>
  </StudenteLavoratore>
  <StudenteLavoratore>
   <Studente Occupazione="Superiori">
-    <Persona Telefono="39 3811537584" Nome="Enrico" Cognome="Rocco" CodiceFiscale="DLZLMJ63B62D255E" Genere="M" DataNascita="19/06/2002"/>
+   <Persona Telefono="39 3811537584" DataNascita="19/06/2002" Nome="Enrico" Cognome="Rocco" CodiceFiscale="DLZLMJ63B62D255E" Genere="M"/>
   </Studente>
-  <Lavoratore IDAziendale="2983175078" Contratto="Determinato" Reparto="Elettrico" DataScadenza="01/09/2020" OrePreviste="80:0">
-    <Persona Telefono="39 3811537584" Nome="Enrico" Cognome="Rocco" CodiceFiscale="DLZLMJ63B62D255E" Genere="M" DataNascita="19/06/2002"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Elettrico" DataScadenza="01/09/2020" IDAziendale="2983175078">
+   <Persona Telefono="39 3811537584" DataNascita="19/06/2002" Nome="Enrico" Cognome="Rocco" CodiceFiscale="DLZLMJ63B62D255E" Genere="M"/>
   </Lavoratore>
  </StudenteLavoratore>
  <StudenteLavoratore>
   <Studente Occupazione="Universita'">
-    <Persona Telefono="39 3884024785" Nome="Marta" Cognome="Rossi" CodiceFiscale="GBNPRZ55L71C829B" Genere="F" DataNascita="26/04/1998"/>
+   <Persona Telefono="39 3884024785" DataNascita="26/04/1998" Nome="Marta" Cognome="Rossi" CodiceFiscale="GBNPRZ55L71C829B" Genere="F"/>
   </Studente>
-  <Lavoratore IDAziendale="2598729706" Contratto="Determinato" Reparto="Assistenza" DataScadenza="01/09/2020" OrePreviste="80:0">
-    <Persona Telefono="39 3884024785" Nome="Marta" Cognome="Rossi" CodiceFiscale="GBNPRZ55L71C829B" Genere="F" DataNascita="26/04/1998"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Assistenza" DataScadenza="01/09/2020" IDAziendale="2598729706">
+   <Persona Telefono="39 3884024785" DataNascita="26/04/1998" Nome="Marta" Cognome="Rossi" CodiceFiscale="GBNPRZ55L71C829B" Genere="F"/>
   </Lavoratore>
  </StudenteLavoratore>
  <StudenteLavoratore>
   <Studente Occupazione="Universita'">
-    <Persona Telefono="39 3454323453" Nome="Federico" Cognome="Boso" CodiceFiscale="HFNGHK99S18E981O" Genere="M" DataNascita="12/04/1998"/>
+   <Persona Telefono="39 3454323453" DataNascita="12/04/1998" Nome="Federico" Cognome="Boso" CodiceFiscale="HFNGHK99S18E981O" Genere="M"/>
   </Studente>
-  <Lavoratore IDAziendale="2888195443" Contratto="Determinato" Reparto="Assistenza" DataScadenza="01/09/2020" OrePreviste="80:0">
-    <Persona Telefono="39 3454323453" Nome="Federico" Cognome="Boso" CodiceFiscale="HFNGHK99S18E981O" Genere="M" DataNascita="12/04/1998"/>
+  <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Assistenza" DataScadenza="01/09/2020" IDAziendale="2888195443">
+   <Persona Telefono="39 3454323453" DataNascita="12/04/1998" Nome="Federico" Cognome="Boso" CodiceFiscale="HFNGHK99S18E981O" Genere="M"/>
   </Lavoratore>
  </StudenteLavoratore>
 </Dipendenti>
