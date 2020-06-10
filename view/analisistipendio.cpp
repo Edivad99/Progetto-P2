@@ -37,6 +37,7 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
             QStringList linea=testo->at(i).split(";");//linea
             QString tipologia=linea.at(3);
             float salario=linea.at(5).toFloat();
+
             if(tipologia=="Operaio")
             {
                 salarioTot[rowCount][0]+=salario;
@@ -60,6 +61,7 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
         }
 
         QListWidgetItem *item = new QListWidgetItem();
+        item->setSizeHint(QSize(item->sizeHint().width(), 160));
         dati->addItem(item);
         dati->setItemWidget(item, new WStipendioMensile(data, salarioTot[rowCount]));
 
@@ -92,7 +94,8 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
     series->attachAxis(axisX);
 
     QValueAxis *axisY = new QValueAxis();
-    axisY->setMin(0);
+    float maxStipendio = *std::max_element(&salarioTot[0][0], &salarioTot[0][0]+5*csvData->getSize());
+    axisY->setRange(0, maxStipendio*1.1);
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
