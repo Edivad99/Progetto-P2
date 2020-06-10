@@ -8,11 +8,9 @@ WStipendioMensile::WStipendioMensile(QDate data, float *stipendio, QWidget *pare
 void WStipendioMensile::initUI()
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
-    //pagaLayout->setMargin(0);
-    //pagaLayout->setSpacing(0);
     layout->setAlignment(Qt::AlignTop);
 
-    layout->addWidget(new QLabel(GeneralUtil::capitalizeFirstLetter(_data.toString("MMMM"))));
+    layout->addWidget(new QLabel("<h3><b>" + GeneralUtil::capitalizeFirstLetter(_data.toString("MMMM")) + "</b></h3>"));
     layout->addWidget(new QLabel("Operaio: " + QString::number(_stipendio[0]) + " euro"));
     layout->addWidget(new QLabel("Impiegato: " + QString::number(_stipendio[1]) + " euro"));
     layout->addWidget(new QLabel("Raprresentante: " + QString::number(_stipendio[2]) + " euro"));

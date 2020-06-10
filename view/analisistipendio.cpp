@@ -61,7 +61,7 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
         }
 
         QListWidgetItem *item = new QListWidgetItem();
-        item->setSizeHint(QSize(item->sizeHint().width(), 160));
+        item->setSizeHint(QSize(item->sizeHint().width(), 180));
         dati->addItem(item);
         dati->setItemWidget(item, new WStipendioMensile(data, salarioTot[rowCount]));
 
@@ -74,7 +74,6 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
         rowCount++;
     }
 
-
     QBarSeries *series = new QBarSeries();
     series->append(set0);
     series->append(set1);
@@ -86,7 +85,6 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
     chart->addSeries(series);
     chart->setTitle("Stipendi");
     chart->setAnimationOptions(QChart::SeriesAnimations);
-
 
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX->append(categories);
@@ -104,7 +102,6 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
 
     chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-
 
     mainLayout->addWidget(chartView, 66);
     mainLayout->addWidget(dati, 33);

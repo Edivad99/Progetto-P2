@@ -92,8 +92,16 @@ void MainWindow::apriClicked()
             return;
         }
         fileAperto->close();
-        tabellaModel->readFromFile(documentoLetto);
-        tabellaTab->updateTabella();
+        try
+        {
+            tabellaModel->readFromFile(documentoLetto);
+            tabellaTab->updateTabella();
+        }
+        catch (std::exception *e)
+        {
+            QMessageBox::warning(this, "Impossibile leggere il file", e->what());
+        }
+
     }
 }
 
@@ -201,9 +209,23 @@ void MainWindow::analizzaStipendio()
             csvData->insertBack(wordlist);
         }
     }
-    gw=new AnalisiStipendio(csvData);
-    gw->show();
+    try
+    {
+        if(!csvData->isEmpty())
+        {
+            gw=new AnalisiStipendio(csvData);
+            gw->show();
+        }
+        else
+        {
+            QMessageBox::information(this, "Nessun file selezionato", "Devi selezionare almeno un file");
+        }
 
+    }
+    catch(std::exception)
+    {
+        QMessageBox::warning(this, "Impossibile leggere il file", "Il contenuto del file non rispetta i requisiti!");
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

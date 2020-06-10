@@ -8,6 +8,8 @@ void TabellaModel::readFromFile(QDomDocument doc)
 {
     lavoratori.clear();
     QDomElement root = doc.firstChildElement();
+    if(root.nodeName()!= "Dipendenti")
+        throw new std::invalid_argument("La root non ha nome \"Dipendenti\"");
     for (int i=0;i<root.childNodes().size();++i)
     {
         if(root.childNodes().at(i).nodeName()=="Operaio")
@@ -29,6 +31,10 @@ void TabellaModel::readFromFile(QDomDocument doc)
         {
             QDomElement studlav=root.childNodes().at(i).toElement();
             lavoratori.insertBack(new StudenteLavoratore(studlav));
+        }
+        else
+        {
+            throw new std::runtime_error("Impossibile processare il contenuto");
         }
     }
     _deviSalvare = false;
