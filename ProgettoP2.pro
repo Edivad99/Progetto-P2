@@ -36,6 +36,7 @@ SOURCES += \
     view/analisistipendio.cpp \
     view/widgets/wcontratto.cpp \
     view/widgets/wcspinbox.cpp \
+    view/widgets/worelavoro.cpp \
     view/widgets/wpagaperora.cpp \
     view/widgets/wstipendiomensile.cpp \
     view/widgets/wtelefono.cpp
@@ -59,6 +60,7 @@ HEADERS += \
     view/analisistipendio.h \
     view/widgets/wcontratto.h \
     view/widgets/wcspinbox.h \
+    view/widgets/worelavoro.h \
     view/widgets/wpagaperora.h \
     view/widgets/wstipendiomensile.h \
     view/widgets/wtelefono.h

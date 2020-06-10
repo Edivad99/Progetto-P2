@@ -3,9 +3,9 @@
 WCSpinBox::WCSpinBox(QString text, int min, int max, int defaultValue, QWidget *parent) :QFrame(parent), _min(min), _max(max), _text(text)
 {
     if(defaultValue < _min)
-        _min = defaultValue;
+        defaultValue = _min;
     else if(defaultValue > _max)
-        _max = defaultValue;
+        defaultValue = _max;
     initUI();
     livello->setValue(defaultValue);
 }

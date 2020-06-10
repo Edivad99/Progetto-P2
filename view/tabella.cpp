@@ -76,7 +76,7 @@ void Tabella::Aggiungi()
     cf = new QLineEdit();
     dataNascita = new QDateEdit();
     contratto = new WContratto();
-    oreDiLavoro = new WCSpinBox(QString("Ore di lavoro previste"), 0, 200, 160);
+    oreDiLavoro = new WOreLavoro();
     livello = new WCSpinBox(QString("Livello"), 1, 5, 1);
     pagaPerOra = new WPagaPerOra();
     venditeEffettuate = new WCSpinBox(QString("Vendite effettuate"), 0, 10000, 0);
@@ -182,7 +182,7 @@ void Tabella::Modifica()
     //Input
     editNumeroTelefono = new WTelefono();
     editReparto = new QLineEdit();
-    editOreDiLavoro = new WCSpinBox(QString("Ore di lavoro previste"), 0, 200, 160);
+    editOreDiLavoro = new WOreLavoro();
     editContratto = new WContratto();
     editLivello = new WCSpinBox(QString("Livello"), 1, 5, 1);
     editPagaPerOra = new WPagaPerOra();
@@ -462,7 +462,7 @@ void Tabella::btnAggiungiClicked()
     string CF = cf->text().toStdString(); for (auto & c: CF) c = toupper(c);
     Telefono NumeroTelefono = numeroTelefono->getNumeroTelefono();
     string Reparto = reparto->text().toStdString();
-    int OreDiLavoro = oreDiLavoro->getValue();
+    OreLavorative OreDiLavoro = oreDiLavoro->getOreLavoro();
     bool Determinato = contratto->isDeterminato();
     QDate ScadenzaContratto = Determinato ? contratto->getDataScadenza() : QDate(0,0,0);
 
@@ -485,19 +485,19 @@ void Tabella::btnAggiungiClicked()
         Lavoratore *nuovo = nullptr;
         if(Tipologia == 0)
         {
-            nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, static_cast<enum Livello>(Livello-1));
+            nuovo = new Operaio(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, Reparto, OreDiLavoro, ScadenzaContratto, static_cast<enum Livello>(Livello-1));
         }
         else if (Tipologia == 1)
         {
-            nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra);
+            nuovo = new Impiegato(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, Reparto, OreDiLavoro, ScadenzaContratto, PagaPerOra);
         }
         else if (Tipologia == 2)
         {
-            nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto, PagaPerOra, VenditeEffettuate);
+            nuovo = new Rappresentante(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, Reparto, OreDiLavoro, ScadenzaContratto, PagaPerOra, VenditeEffettuate);
         }
         else if (Tipologia == 3)
         {
-            nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, OccupazioneEnum, Reparto, OreLavorative(OreDiLavoro), ScadenzaContratto);
+            nuovo = new StudenteLavoratore(Nome, Cognome, DataNascita, CF, GenereEnum, NumeroTelefono, OccupazioneEnum, Reparto, OreDiLavoro, ScadenzaContratto);
         }
         if(nuovo != nullptr)
         {
@@ -518,7 +518,7 @@ void Tabella::btnModificaClicked()
         {
             Telefono nuovoTelefono = editNumeroTelefono->getNumeroTelefono();
             string nuovoReparto = editReparto->text().toStdString();
-            OreLavorative nuoveOre(editOreDiLavoro->getValue(), 0);
+            OreLavorative nuoveOre = editOreDiLavoro->getOreLavoro();
 
             bool Determinato = editContratto->isDeterminato();
             QDate ScadenzaContratto = Determinato ? editContratto->getDataScadenza() : QDate(0,0,0);
@@ -586,9 +586,8 @@ void Tabella::cellaClicked(int row, int column)
 
     int ore = table->item(row, 10)->text().split(":")[0].toInt();
     int minuti = table->item(row, 10)->text().split(":")[1].toInt();
-    editOreDiLavoro->setValue(ore);
+    editOreDiLavoro->setOreLavoro(OreLavorative(ore, minuti));
 
-    //Evidenzio l'id nel menu rimuovi
     int index = rimuoviID->findText(table->item(row, 0)->text());
     if(index != -1)
         rimuoviID->setCurrentIndex(index);

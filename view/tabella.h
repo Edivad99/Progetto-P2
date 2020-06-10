@@ -15,6 +15,7 @@
 #include <model/tabellamodel.h>
 #include <view/widgets/wcontratto.h>
 #include <view/widgets/wcspinbox.h>
+#include <view/widgets/worelavoro.h>
 #include <view/widgets/wpagaperora.h>
 #include <view/widgets/wtelefono.h>
 #include "data/lavoratore.h"
@@ -56,8 +57,9 @@ private:
     //Custom Input
     WContratto *contratto, *editContratto;
     WTelefono *numeroTelefono, *editNumeroTelefono;
-    WCSpinBox *livello, *oreDiLavoro, *venditeEffettuate, *editLivello, *editOreDiLavoro, *editVenditeEffettuate;
+    WCSpinBox *livello, *venditeEffettuate, *editLivello, *editVenditeEffettuate;
     WPagaPerOra *pagaPerOra, *editPagaPerOra;
+    WOreLavoro *oreDiLavoro, *editOreDiLavoro;
 
     //Azioni
     QPushButton *btnAggiungi, *btnModifica, *btnRimuovi;
