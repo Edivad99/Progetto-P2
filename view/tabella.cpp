@@ -323,7 +323,7 @@ bool Tabella::convalidaInput(string nome, string cognome, string cf, string repa
 {
     //TODO:Forse da aggiungere controlli sulle date
     bool accettabile = true;
-    if(accettabile && nome.empty()) accettabile = false;
+    if(nome.empty()) accettabile = false;
     else if(accettabile && cognome.empty()) accettabile = false;
     else if(accettabile && (cf.empty() || cf.length() != 16)) accettabile = false;
     else if(accettabile && reparto.empty()) accettabile = false;
@@ -455,16 +455,15 @@ void Tabella::btnAggiungiClicked()
 {
     //Generali
     int Tipologia = tipologia->currentIndex();
-    string Nome = nome->text().toStdString();
-    string Cognome = cognome->text().toStdString();
+    string Nome = GeneralUtil::capitalizeFirstLetter(nome->text()).toStdString();
+    string Cognome = GeneralUtil::capitalizeFirstLetter(cognome->text()).toStdString();
     QDate DataNascita = dataNascita->date();
     Genere GenereEnum = (genere->currentText().toStdString() == "M" ? Genere::M : Genere::F);
-    string CF = cf->text().toStdString(); for (auto & c: CF) c = toupper(c);
+    string CF = cf->text().toUpper().toStdString();
     Telefono NumeroTelefono = numeroTelefono->getNumeroTelefono();
     string Reparto = reparto->text().toStdString();
     OreLavorative OreDiLavoro = oreDiLavoro->getOreLavoro();
-    bool Determinato = contratto->isDeterminato();
-    QDate ScadenzaContratto = Determinato ? contratto->getDataScadenza() : QDate(0,0,0);
+    QDate ScadenzaContratto = contratto->getDataScadenza();
 
     //Operaio
     int Livello = livello->getValue();
@@ -521,7 +520,7 @@ void Tabella::btnModificaClicked()
             OreLavorative nuoveOre = editOreDiLavoro->getOreLavoro();
 
             bool Determinato = editContratto->isDeterminato();
-            QDate ScadenzaContratto = Determinato ? editContratto->getDataScadenza() : QDate(0,0,0);
+            QDate ScadenzaContratto = editContratto->getDataScadenza();
 
             Operaio* operaio =dynamic_cast<Operaio*>(lav);
             Impiegato* impiegato =dynamic_cast<Impiegato*>(lav);

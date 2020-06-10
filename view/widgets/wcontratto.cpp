@@ -7,7 +7,7 @@ WContratto::WContratto(QWidget *parent) : QFrame(parent)
 
 QDate WContratto::getDataScadenza() const
 {
-    return scadenzaContratto->date();
+    return determinato->isChecked() ? scadenzaContratto->date() : QDate(0,0,0);
 }
 
 bool WContratto::isDeterminato() const
