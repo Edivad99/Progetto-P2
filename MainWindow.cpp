@@ -29,6 +29,7 @@ void MainWindow::addMenuButtons()
     QAction* esportaStipendio = new QAction("Esporta stipendi", file);
     esportaStipendio->setShortcut(Qt::CTRL | Qt::Key_E);
     QAction* analizzaStipendio = new QAction("Analizza stipendio", file);
+    analizzaStipendio->setShortcut(Qt::CTRL | Qt::Key_A);
     QAction* chiudi = new QAction("Chiudi", file);
 
     //Actions
@@ -48,6 +49,8 @@ void MainWindow::addMenuButtons()
 
     QMenu* help = new QMenu("Help", menuBar);
     QAction* guide = new QAction("Guida", help);
+    guide->setShortcut(Qt::CTRL | Qt::Key_H);
+    connect(guide, SIGNAL(triggered()), this, SLOT(apriGuida()));
     help->addAction(guide);
 
     menuBar->addMenu(file);
@@ -211,21 +214,20 @@ void MainWindow::analizzaStipendio()
     }
     try
     {
-        if(!csvData->isEmpty())
-        {
+        if(!csvData->isEmpty()) {
             gw=new AnalisiStipendio(csvData);
             gw->show();
         }
-        else
-        {
-            QMessageBox::information(this, "Nessun file selezionato", "Devi selezionare almeno un file");
-        }
-
     }
     catch(std::exception)
     {
         QMessageBox::warning(this, "Impossibile leggere il file", "Il contenuto del file non rispetta i requisiti!");
     }
+}
+
+
+void MainWindow::apriGuida(){
+
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

@@ -28,8 +28,6 @@ private:
     QListWidget *dati;
     QChartView *chartView;
 
-    void Grafico();
-
 };
 
 #endif // GRAPHWINDOW_H
