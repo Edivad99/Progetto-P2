@@ -269,6 +269,7 @@ void Tabella::BottomBar()
     bottomBar->addWidget(studlavCB);
 
     bottomBar->setAlignment(Qt::AlignLeft);
+    bottomBar->setContentsMargins(5,0,0,5);
 }
 
 void Tabella::VisualizzaOperaio()
@@ -355,12 +356,13 @@ void Tabella::updateTabella()
     intestazioneColonna.push_back("Telefono");
     intestazioneColonna.push_back("Occupazione");
     intestazioneColonna.push_back("Reparto");
-    intestazioneColonna.push_back("Ore di lavoro");
+    intestazioneColonna.push_back("Ore lavorative");
     intestazioneColonna.push_back("Contratto");//DETERMINATO INDETERMINATO
-    intestazioneColonna.push_back("Data scadenza");
+    intestazioneColonna.push_back("Termine contratto");
     intestazioneColonna.push_back("Livello");
-    intestazioneColonna.push_back("Paga per ora");
+    intestazioneColonna.push_back("Paga oraria");
     intestazioneColonna.push_back("Vendite effettuate");
+    intestazioneColonna.push_back("Stipendio");
 
     lista<Lavoratore*>supp = _model->getLavoratori();
     table->setRowCount(0);
@@ -386,6 +388,7 @@ void Tabella::updateTabella()
         QString orePreviste = QString::fromStdString(textOrePreviste.str());//Ore di lavoro
         QString contratto = QString::fromStdString(((*cit)->getTipologiaContratto() == 0 ? "Determinato" : "Indeterminato"));//Contratto
         QString dataScadenza = GeneralUtil::dateToItaStr((*cit)->getDataScadenza());//Data scadenza
+        QString stipendio = QString::number((*cit)->Stipendio(0));
 
         Operaio* operaio =dynamic_cast<Operaio*>(*cit);
         Impiegato* impiegato =dynamic_cast<Impiegato*>(*cit);
@@ -410,6 +413,7 @@ void Tabella::updateTabella()
             setText(orePreviste, rowCount, 10);//Ore di lavoro
             setText(contratto, rowCount, 11);//Contratto
             setText(dataScadenza, rowCount, 12);//Data scadenza
+            setText(stipendio, rowCount, 16);//Data scadenza
 
             if(operaio)
             {
@@ -500,8 +504,15 @@ void Tabella::btnAggiungiClicked()
         }
         if(nuovo != nullptr)
         {
-            _model->aggiungiLavoratore(nuovo);
-            updateTabella();
+            try
+            {
+                _model->aggiungiLavoratore(nuovo);
+                updateTabella();
+            }
+            catch(std::invalid_argument *err)
+            {
+                QMessageBox::information(this, "Errore di inserimento", err->what());
+            }
         }
     }
 }

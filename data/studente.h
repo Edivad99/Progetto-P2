@@ -2,8 +2,6 @@
 #define STUDENTE_H
 
 #include "persona.h"
-#include <string.h>
-#include <QDate>
 
 using std::string;
 

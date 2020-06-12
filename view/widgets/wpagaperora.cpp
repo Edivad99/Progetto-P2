@@ -22,7 +22,7 @@ void WPagaPerOra::initUI()
     QVBoxLayout *pagaLayout = new QVBoxLayout(this);
     pagaLayout->setMargin(0);
     pagaLayout->setSpacing(0);
-    pagaLayout->addWidget(new QLabel("Paga per ora"));
+    pagaLayout->addWidget(new QLabel("Paga oraria"));
     pagaPerOra->setRange(0, 10000);
     pagaLayout->addWidget(pagaPerOra);
     setLayout(pagaLayout);

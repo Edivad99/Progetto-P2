@@ -45,6 +45,6 @@ private slots:
     void salvaConNomeClicked();
     void esportaStipendio();
     void analizzaStipendio();
-    void apriGuida();
+    void apriGuida() const;
 };
 #endif // MAINWINDOW_H

@@ -30,6 +30,8 @@ public:
     bool deviSalvare() const;
     void salvato();
 
+    void eliminaLavoratori();
+
 private:
     lista<Lavoratore*> lavoratori;
     bool _deviSalvare;

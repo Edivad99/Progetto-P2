@@ -3,8 +3,6 @@
 
 #include "persona.h"
 #include "util/orelavorative.h"
-#include <string>
-#include <QDate>
 
 using std::string;
 

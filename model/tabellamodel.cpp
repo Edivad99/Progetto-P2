@@ -6,7 +6,7 @@ TabellaModel::TabellaModel(): lavoratori(), _deviSalvare(false)
 
 void TabellaModel::readFromFile(QDomDocument doc)
 {
-    lavoratori.clear();
+    eliminaLavoratori();
     QDomElement root = doc.firstChildElement();
     if(root.nodeName()!= "Dipendenti")
         throw new std::invalid_argument("La root non ha nome \"Dipendenti\"");
@@ -15,22 +15,22 @@ void TabellaModel::readFromFile(QDomDocument doc)
         if(root.childNodes().at(i).nodeName()=="Operaio")
         {
             QDomElement oper=root.childNodes().at(i).toElement();
-            lavoratori.insertBack(new Operaio(oper));
+            aggiungiLavoratore(new Operaio(oper));
         }
         else if(root.childNodes().at(i).nodeName()=="Impiegato")
         {
             QDomElement impie=root.childNodes().at(i).toElement();
-            lavoratori.insertBack(new Impiegato(impie));
+            aggiungiLavoratore(new Impiegato(impie));
         }
         else if(root.childNodes().at(i).nodeName()=="Rappresentante")
         {
             QDomElement rappr=root.childNodes().at(i).toElement();
-            lavoratori.insertBack(new Rappresentante(rappr));
+            aggiungiLavoratore(new Rappresentante(rappr));
         }
         else if(root.childNodes().at(i).nodeName()=="StudenteLavoratore")
         {
             QDomElement studlav=root.childNodes().at(i).toElement();
-            lavoratori.insertBack(new StudenteLavoratore(studlav));
+            aggiungiLavoratore(new StudenteLavoratore(studlav));
         }
         else
         {
@@ -57,6 +57,11 @@ QDomDocument TabellaModel::saveFile()
 
 void TabellaModel::aggiungiLavoratore(Lavoratore *nuovoLavoratore)
 {
+    for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
+    {
+        if((*cit)->getCodiceFiscale() == nuovoLavoratore->getCodiceFiscale())
+            throw new std::invalid_argument("Un lavoratore con questo codice fiscale è già stato inserito");
+    }
     lavoratori.insertBack(nuovoLavoratore);
     _deviSalvare = true;
 }
@@ -111,4 +116,9 @@ bool TabellaModel::deviSalvare() const
 void TabellaModel::salvato()
 {
     _deviSalvare = false;
+}
+
+void TabellaModel::eliminaLavoratori()
+{
+    lavoratori.clear();
 }

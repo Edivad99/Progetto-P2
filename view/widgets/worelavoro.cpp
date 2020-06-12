@@ -18,7 +18,7 @@ void WOreLavoro::setOreLavoro(OreLavorative nuovo)
 
 void WOreLavoro::initUI()
 {
-    ore = new WCSpinBox("Ore di lavoro previste", 0, 200, 160);
+    ore = new WCSpinBox("Ore lavorative", 0, 200, 160);
     minuti = new WCSpinBox("Minuti", 0, 59, 0);
 
     QHBoxLayout *oreLavoroLayout = new QHBoxLayout(this);

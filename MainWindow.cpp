@@ -3,7 +3,6 @@
 MainWindow::MainWindow(QWidget *parent): QWidget(parent)
 {
     mainLayout = new QVBoxLayout(this);
-    //La barra dei menu va per prima
     addMenuButtons();
     fileAperto = nullptr;
 
@@ -64,7 +63,6 @@ void MainWindow::setApplicationStyle()
     setWindowState(Qt::WindowMaximized);
     setMinimumSize(QSize(650,650));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-    //TODO: Da rimuovere e mettere nel file css appena possibile
     mainLayout->setMargin(0);
 }
 
@@ -102,6 +100,8 @@ void MainWindow::apriClicked()
         }
         catch (std::exception *e)
         {
+            tabellaModel->eliminaLavoratori();
+            tabellaModel->salvato();
             QMessageBox::warning(this, "Impossibile leggere il file", e->what());
         }
 
@@ -226,8 +226,17 @@ void MainWindow::analizzaStipendio()
 }
 
 
-void MainWindow::apriGuida(){
-
+void MainWindow::apriGuida() const {
+    QMessageBox box(QMessageBox::Information, "Informazioni applicazione",
+                    QString("Software realizzato da <u>%1</u> <br>"
+                            "Progetto di Programmazione a Oggetti, "
+                            "UniPD 2019 <br><br>"
+                            "Le <u>icone</u> (in .SVG e .PNG) usate in questo progetto sono rilasciate"
+                            " su licenza (<a href='https://fontawesome.com/license/free'>Creative and Commons By 4.0</a>)"
+                            " da parte di FontAwesome. "
+                            "Alcune icone sono state modificate appositamente per le colorazioni "
+                            "e le dimensioni."), QMessageBox::Ok);
+    box.exec();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
