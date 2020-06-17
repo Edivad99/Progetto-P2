@@ -20,6 +20,7 @@ jobs:
           arch: 'win64_mingw73'
           dir: '${{ github.workspace }}/example/'
           install-deps: 'true'
+          modules: 'qtcharts'
           mirror: 'http://mirrors.ocf.berkeley.edu/qt/'
           cached: 'false'
           aqtversion: '==0.8'
@@ -28,6 +29,5 @@ jobs:
       - name: Eseguo qmake
         run: |
           ls -l
-          qmake -project
           qmake
           make
