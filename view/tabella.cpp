@@ -322,7 +322,6 @@ void Tabella::VisualizzaStudente()
 
 bool Tabella::convalidaInput(string nome, string cognome, string cf, string reparto) const
 {
-    //TODO:Forse da aggiungere controlli sulle date
     bool accettabile = true;
     if(nome.empty()) accettabile = false;
     else if(accettabile && cognome.empty()) accettabile = false;

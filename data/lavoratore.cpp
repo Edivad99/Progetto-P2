@@ -18,11 +18,6 @@ Lavoratore::Lavoratore(QDomElement lavorat):
 
 }
 
-Lavoratore::~Lavoratore()
-{
-
-}
-
 string Lavoratore::getReparto() const
 {
     return _reparto;

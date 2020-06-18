@@ -48,9 +48,12 @@ void MainWindow::addMenuButtons()
 
     QMenu* help = new QMenu("Help", menuBar);
     QAction* guide = new QAction("Guida", help);
-    guide->setShortcut(Qt::CTRL | Qt::Key_H);
+    guide->setShortcut(Qt::Key_F1);
+    QAction* info = new QAction("Info", help);
     connect(guide, SIGNAL(triggered()), this, SLOT(apriGuida()));
+    connect(info, SIGNAL(triggered()), this, SLOT(apriInfo()));
     help->addAction(guide);
+    help->addAction(info);
 
     menuBar->addMenu(file);
     menuBar->addMenu(help);
@@ -197,6 +200,7 @@ void MainWindow::analizzaStipendio()
             if(!fileAperto->open(QIODevice::ReadOnly | QIODevice::Text))
             {
                 QMessageBox::information(this, "Impossibile aprire il file", fileAperto->errorString());
+                delete csvData;
                 return;
             }
 
@@ -227,15 +231,18 @@ void MainWindow::analizzaStipendio()
 
 
 void MainWindow::apriGuida() const {
+    QMessageBox box(QMessageBox::Information, "Guida",
+                    QString("Per usare l'applicazione con dei dati già inseriti si consiglia di aprire il file <u><i>dipendenti.xml</i></u> in <u>File>Apri</u><br>"
+                            "Per vedere lo storico degli stipendi si consiglia di aprire i file con nome <u><i>BustePagaXY.csv</i></u> in <u>File>Analizza stipendio</u>"), QMessageBox::Ok);
+    box.exec();
+}
+
+void MainWindow::apriInfo() const
+{
     QMessageBox box(QMessageBox::Information, "Informazioni applicazione",
-                    QString("Software realizzato da <u>%1</u> <br>"
-                            "Progetto di Programmazione a Oggetti, "
-                            "UniPD 2019 <br><br>"
-                            "Le <u>icone</u> (in .SVG e .PNG) usate in questo progetto sono rilasciate"
-                            " su licenza (<a href='https://fontawesome.com/license/free'>Creative and Commons By 4.0</a>)"
-                            " da parte di FontAwesome. "
-                            "Alcune icone sono state modificate appositamente per le colorazioni "
-                            "e le dimensioni."), QMessageBox::Ok);
+                    QString("Software realizzato da:"
+                            "<ul><li>Davide Albiero</li> <li>Cristiano Panighel</li> <li>Matteo Vignaga</li></ul>"
+                            "Progetto di Programmazione a Oggetti, UniPD 2020"), QMessageBox::Ok);
     box.exec();
 }
 

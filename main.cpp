@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":/img/icona.png"));
-    a.setApplicationName("QGestionale Aziendale");
+    a.setApplicationName("QBusiness");
 
     MainWindow w;
     w.show();

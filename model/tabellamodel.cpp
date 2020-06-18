@@ -53,8 +53,6 @@ QDomDocument TabellaModel::saveFile()
     return doc;
 }
 
-//Per i metodi che bosigna creare, ricordasi di mettere _deviSalvare a TRUE
-
 void TabellaModel::aggiungiLavoratore(Lavoratore *nuovoLavoratore)
 {
     for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
