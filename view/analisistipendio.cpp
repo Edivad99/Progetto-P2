@@ -2,6 +2,7 @@
 
 AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent): QWidget(parent)
 {
+    setWindowTitle("QBusiness - Analizza stipendio");
     mainLayout = new QHBoxLayout(this);
     dati = new QListWidget();
     dati->setSizeAdjustPolicy(QListWidget::AdjustToContents);
@@ -105,5 +106,4 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
 
     mainLayout->addWidget(chartView, 66);
     mainLayout->addWidget(dati, 33);
-
 }
