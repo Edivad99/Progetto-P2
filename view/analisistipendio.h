@@ -27,6 +27,7 @@ private:
     QHBoxLayout *mainLayout;
     QListWidget *dati;
     QChartView *chartView;
+    void Grafico(lista<QStringList*> *csvData);
 
 };
 
