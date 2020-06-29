@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QDate>
 #include <util/generalutil.h>
+#include <model/tabellamodel.h>
 
 class WStipendioMensile : public QFrame
 {
