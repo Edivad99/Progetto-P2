@@ -27,7 +27,11 @@ private:
     QHBoxLayout *mainLayout;
     QListWidget *dati;
     QChartView *chartView;
+
     void Grafico(lista<QStringList*> *csvData);
+    void SalarioTot(lista<QStringList*> *csvData, unsigned int N);
+    void InizializzaSalario(unsigned int size, unsigned int N);
+    float *stipendio;
 
 };
 

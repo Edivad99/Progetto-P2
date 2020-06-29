@@ -32,6 +32,8 @@ public:
 
     void eliminaLavoratori();
 
+    static QStringList categorie();
+
 private:
     lista<Lavoratore*> lavoratori;
     bool _deviSalvare;
