@@ -89,12 +89,7 @@ void Tabella::Aggiungi()
     tipologiaLayout->setSpacing(0);
     tipologiaLayout->addWidget(new QLabel("Tipologia"));
 
-    QStringList tipologieItems;
-    tipologieItems.push_back("Operaio");
-    tipologieItems.push_back("Impiegato");
-    tipologieItems.push_back("Rappresentante");
-    tipologieItems.push_back("Studente-Lavoratore");
-    tipologia->addItems(tipologieItems);
+    tipologia->addItems(TabellaModel::categorie());
     tipologiaLayout->addWidget(tipologia);
     layoutAggiungi->addLayout(tipologiaLayout, 0, 0);
 
@@ -320,7 +315,7 @@ void Tabella::VisualizzaStudente()
     Qoccupazione->setVisible(true);
 }
 
-bool Tabella::convalidaInput(string nome, string cognome, string cf, string reparto) const
+bool Tabella::convalidaInput(const string& nome, const string& cognome, const string& cf, const string& reparto) const
 {
     bool accettabile = true;
     if(nome.empty()) accettabile = false;
@@ -479,7 +474,7 @@ void Tabella::btnAggiungiClicked()
 
     if(!convalidaInput(Nome, Cognome, CF, Reparto))
     {
-        QMessageBox *message = new QMessageBox(QMessageBox::Information, "Errore dati inseriti", "I dati inseriti non sono corretti o sono mancanti!", QMessageBox::Ok);
+        QMessageBox *message = new QMessageBox(QMessageBox::Information, "Errore dati inseriti", "I dati inseriti non sono corretti o sono mancanti", QMessageBox::Ok);
         message->show();
     }
     else
@@ -512,6 +507,10 @@ void Tabella::btnAggiungiClicked()
             {
                 QMessageBox::information(this, "Errore di inserimento", err->what());
             }
+        }
+        else
+        {
+            QMessageBox::warning(this, "Errore di inserimento", "Categoria non ancora supportata");
         }
     }
 }

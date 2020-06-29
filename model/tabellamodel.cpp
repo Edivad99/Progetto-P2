@@ -120,3 +120,13 @@ void TabellaModel::eliminaLavoratori()
 {
     lavoratori.clear();
 }
+
+QStringList TabellaModel::categorie()
+{
+    QStringList tipologieItems;
+    tipologieItems.push_back("Operaio");
+    tipologieItems.push_back("Impiegato");
+    tipologieItems.push_back("Rappresentante");
+    tipologieItems.push_back("Studente-Lavoratore");
+    return tipologieItems;
+}
