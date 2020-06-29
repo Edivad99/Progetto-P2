@@ -27,7 +27,7 @@ void TabellaModel::readFromFile(QDomDocument doc)
             QDomElement rappr=root.childNodes().at(i).toElement();
             aggiungiLavoratore(new Rappresentante(rappr));
         }
-        else if(root.childNodes().at(i).nodeName()=="StudenteLavoratore")
+        else if(root.childNodes().at(i).nodeName()=="Studente-Lavoratore")
         {
             QDomElement studlav=root.childNodes().at(i).toElement();
             aggiungiLavoratore(new StudenteLavoratore(studlav));
@@ -119,4 +119,14 @@ void TabellaModel::salvato()
 void TabellaModel::eliminaLavoratori()
 {
     lavoratori.clear();
+}
+
+QStringList TabellaModel::categorie()
+{
+    QStringList tipologieItems;
+    tipologieItems.push_back("Operaio");
+    tipologieItems.push_back("Impiegato");
+    tipologieItems.push_back("Rappresentante");
+    tipologieItems.push_back("Studente-Lavoratore");
+    return tipologieItems;
 }

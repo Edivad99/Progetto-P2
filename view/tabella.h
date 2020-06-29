@@ -82,7 +82,7 @@ private:
     void tabellaChanged();
 
     //Controllo sull'input
-    bool convalidaInput(string nome, string cognome, string cf, string reparto) const;
+    bool convalidaInput(const string& nome, const string& cognome, const string& cf, const string& reparto) const;
 
     void setText(QString text, int row, int column);
 

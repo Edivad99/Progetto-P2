@@ -37,5 +37,5 @@ QDomElement StudenteLavoratore::XmlSerialize(QDomDocument doc) const
 
 QString StudenteLavoratore::type() const
 {
-    return QString("StudenteLavoratore");
+    return QString("Studente-Lavoratore");
 }

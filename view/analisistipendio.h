@@ -13,6 +13,7 @@
 #include <util/generalutil.h>
 #include <util/lista.h>
 #include <view/widgets/wstipendiomensile.h>
+#include <model/tabellamodel.h>
 
 class AnalisiStipendio : public QWidget
 {
@@ -25,9 +26,15 @@ public:
 private:
 
     QHBoxLayout *mainLayout;
-    QListWidget *dati;
+    QListWidget *listaStipendi;
     QChartView *chartView;
-    void Grafico(lista<QStringList*> *csvData);
+
+    void InizializzaSalario(unsigned int size, unsigned int numeroCategorie);
+    void Grafico(lista<QStringList*> *csvData,unsigned int numeroCategorie);
+    void ListaStipendi();
+
+    float *stipendio;
+    QList<QDate> listaDataLetta;
 
 };
 
