@@ -27,7 +27,7 @@ void TabellaModel::readFromFile(QDomDocument doc)
             QDomElement rappr=root.childNodes().at(i).toElement();
             aggiungiLavoratore(new Rappresentante(rappr));
         }
-        else if(root.childNodes().at(i).nodeName()=="StudenteLavoratore")
+        else if(root.childNodes().at(i).nodeName()=="Studente-Lavoratore")
         {
             QDomElement studlav=root.childNodes().at(i).toElement();
             aggiungiLavoratore(new StudenteLavoratore(studlav));

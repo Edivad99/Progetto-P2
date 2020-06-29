@@ -12,58 +12,92 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     mainLayout->setMargin(0);
 
-
-    Grafico(csvData); //metodo per costruire l'istogramma
+    InizializzaSalario(csvData->getSize(), TabellaModel::categorie().size());
+    Grafico(csvData, TabellaModel::categorie().size()); //metodo per costruire l'istogramma
 
     mainLayout->addWidget(chartView, 66);
     mainLayout->addWidget(dati, 33);
 }
 
-void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int N)
+void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numeroCategorie)
 {
     //matrice contenente il salario per ogni categoria di dipendente di ogni file aperto
-    stipendio = new float[size*N];
+    stipendio = new float[size*numeroCategorie];
     for(unsigned int i = 0; i < size; i++)
-        for(unsigned int j = 0; j < N; j++)
-            stipendio[(i*N)+j] = 0;
+        for(unsigned int j = 0; j < numeroCategorie; j++)
+            stipendio[(i*numeroCategorie)+j] = 0;
 }
 
 
- void AnalisiStipendio::Grafico(lista<QStringList*> *csvData)
+ void AnalisiStipendio::Grafico(lista<QStringList*> *csvData, unsigned int numeroCategorie)
  {
-     //creazione legenda
-     QBarSet *set0 = new QBarSet("Operaio");
-     QBarSet *set1 = new QBarSet("Impiegato");
-     QBarSet *set2 = new QBarSet("Rappresentante");
-     QBarSet *set3 = new QBarSet("StudenteLavoratore");
-     QBarSet *set4 = new QBarSet("Altro");
-     QStringList categories;
-
-
      //creazione delle colonne dell'istogramma
-     QBarSeries *series = new QBarSeries();
-     series->append(set0);
-     series->append(set1);
-     series->append(set2);
-     series->append(set3);
-     series->append(set4);
+     QList<QBarSet*> *set = new QList<QBarSet*>();
+     QStringList categorie = TabellaModel::categorie();
+     for(unsigned int i = 0; i < numeroCategorie; i++)
+     {
+         set->push_back(new QBarSet(categorie.at(i)));
+     }
+     set->push_back(new QBarSet("Altro"));
+
+     QStringList listaMesiLetti;
+
+     //calcolo del salario
+     int rowCount = 0;
+     for (lista<QStringList*>::constiterator cit = csvData->begin(); cit != csvData->end(); ++cit)
+     {
+         QStringList* testo = *cit;
+         QString mese = testo->at(0).split(";")[0];
+         QString anno = testo->at(0).split(";")[1];
+
+
+         QDate data =QDate::fromString(mese.append(anno),"MMMMyyyy");
+         for(int i = 1;i<testo->size();++i)//file
+         {
+             QStringList linea=testo->at(i).split(";");//linea
+             QString tipologia=linea.at(3);
+             float salario=linea.at(5).toFloat();
+
+             bool trovato = false;
+             for(unsigned int j = 0; j < numeroCategorie && !trovato; j++)
+             {
+                 if(categorie.at(j) == tipologia)
+                 {
+                     stipendio[rowCount*numeroCategorie+j]+=salario;
+                     trovato = true;
+                 }
+             }
+             if(!trovato)
+                 stipendio[rowCount*numeroCategorie+numeroCategorie]+=salario;//altro
+         }
+         //inserimento dati delle varie categorie
+         listaMesiLetti << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM"));
+         for(int j = 0; j < set->size(); j++)
+         {
+            *((*set)[j]) << stipendio[rowCount*numeroCategorie +j];
+         }
+         rowCount++;
+     }
+
 
      //creazione grafico
      QChart *chart = new QChart();
-     chart->addSeries(series);
+     QBarSeries *finalSeries = new QBarSeries();
+     finalSeries->append(*set);
+     chart->addSeries(finalSeries);
      chart->setTitle("Stipendi");
      chart->setAnimationOptions(QChart::SeriesAnimations);
 
      QBarCategoryAxis *axisX = new QBarCategoryAxis();
-     axisX->append(categories);
+     axisX->append(listaMesiLetti);
      chart->addAxis(axisX, Qt::AlignBottom);
-     series->attachAxis(axisX);
+     finalSeries->attachAxis(axisX);
 
      QValueAxis *axisY = new QValueAxis();
-     float maxStipendio = *std::max_element(&salarioTot[0][0], &salarioTot[0][0]+5*csvData->getSize());
+     float maxStipendio = *std::max_element(stipendio, stipendio+(numeroCategorie*csvData->getSize()));
      axisY->setRange(0, maxStipendio*1.1);
      chart->addAxis(axisY, Qt::AlignLeft);
-     series->attachAxis(axisY);
+     finalSeries->attachAxis(axisY);
 
      chart->legend()->setVisible(true);
      chart->legend()->setAlignment(Qt::AlignBottom);
@@ -72,10 +106,10 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int N)
      chartView->setRenderHint(QPainter::Antialiasing);
  }
 
- void AnalisiStipendio::SalarioTot(lista<QStringList *> *csvData, unsigned int N)
+ void AnalisiStipendio::SalarioTot(lista<QStringList *> *csvData, unsigned int N)//Si occupa della lista
  {
      //calcolo del salario
-     int rowCount = 0;
+     /*int rowCount = 0;
      for (lista<QStringList*>::constiterator cit = csvData->begin(); cit != csvData->end(); ++cit)
      {
          QStringList* testo = *cit;
@@ -124,5 +158,5 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int N)
          *set3 << salarioTot[rowCount][3];
          *set4 << salarioTot[rowCount][4];
          rowCount++;
-     }
+     }*/
  }

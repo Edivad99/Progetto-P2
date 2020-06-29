@@ -86,36 +86,36 @@
    </Lavoratore>
   </Rappresentante>
  </Rappresentante>
- <StudenteLavoratore>
+ <Studente-Lavoratore>
   <Studente Occupazione="Superiori">
    <Persona Telefono="39 3556894878" DataNascita="22/02/2002" Nome="Mattia" Cognome="Biondo" CodiceFiscale="CLBTMM99T15L195A" Genere="M"/>
   </Studente>
   <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Elettrico" DataScadenza="01/09/2020" IDAziendale="4075768706">
    <Persona Telefono="39 3556894878" DataNascita="22/02/2002" Nome="Mattia" Cognome="Biondo" CodiceFiscale="CLBTMM99T15L195A" Genere="M"/>
   </Lavoratore>
- </StudenteLavoratore>
- <StudenteLavoratore>
+ </Studente-Lavoratore>
+ <Studente-Lavoratore>
   <Studente Occupazione="Superiori">
    <Persona Telefono="39 3811537584" DataNascita="19/06/2002" Nome="Enrico" Cognome="Rocco" CodiceFiscale="DLZLMJ63B62D255E" Genere="M"/>
   </Studente>
   <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Elettrico" DataScadenza="01/09/2020" IDAziendale="2983175078">
    <Persona Telefono="39 3811537584" DataNascita="19/06/2002" Nome="Enrico" Cognome="Rocco" CodiceFiscale="DLZLMJ63B62D255E" Genere="M"/>
   </Lavoratore>
- </StudenteLavoratore>
- <StudenteLavoratore>
+ </Studente-Lavoratore>
+ <Studente-Lavoratore>
   <Studente Occupazione="Universita'">
    <Persona Telefono="39 3884024785" DataNascita="26/04/1998" Nome="Marta" Cognome="Rossi" CodiceFiscale="GBNPRZ55L71C829B" Genere="F"/>
   </Studente>
   <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Assistenza" DataScadenza="01/09/2020" IDAziendale="2598729706">
    <Persona Telefono="39 3884024785" DataNascita="26/04/1998" Nome="Marta" Cognome="Rossi" CodiceFiscale="GBNPRZ55L71C829B" Genere="F"/>
   </Lavoratore>
- </StudenteLavoratore>
- <StudenteLavoratore>
+ </Studente-Lavoratore>
+ <Studente-Lavoratore>
   <Studente Occupazione="Universita'">
    <Persona Telefono="39 3454323453" DataNascita="12/04/1998" Nome="Federico" Cognome="Boso" CodiceFiscale="HFNGHK99S18E981O" Genere="M"/>
   </Studente>
   <Lavoratore OrePreviste="80:0" Contratto="Determinato" Reparto="Assistenza" DataScadenza="01/09/2020" IDAziendale="2888195443">
    <Persona Telefono="39 3454323453" DataNascita="12/04/1998" Nome="Federico" Cognome="Boso" CodiceFiscale="HFNGHK99S18E981O" Genere="M"/>
   </Lavoratore>
- </StudenteLavoratore>
+ </Studente-Lavoratore>
 </Dipendenti>
