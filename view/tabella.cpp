@@ -252,7 +252,7 @@ void Tabella::BottomBar()
     numeroDipendenti = new QLabel("Dipendenti: 0");
     operaioCB = new QCheckBox("Operaio");
     impiegatoCB = new QCheckBox("Impiegato");
-    studlavCB = new QCheckBox("StudenteLavoratore");
+    studlavCB = new QCheckBox("Studente-Lavoratore");
 
     operaioCB->setChecked(true);
     impiegatoCB->setChecked(true);
@@ -642,7 +642,7 @@ void Tabella::cellaClicked(int row, int column)
         int vendite = table->item(row, 15)->text().toInt();
         editVenditeEffettuate->setValue(vendite);
     }
-    else
+    else if (tipo == "Studente-Lavoratore")
     {
         editLivello->setVisible(false);
         editPagaPerOra->setVisible(false);

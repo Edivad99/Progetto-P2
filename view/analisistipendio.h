@@ -14,7 +14,6 @@
 #include <util/lista.h>
 #include <view/widgets/wstipendiomensile.h>
 #include <model/tabellamodel.h>
-#include <iostream>
 
 class AnalisiStipendio : public QWidget
 {

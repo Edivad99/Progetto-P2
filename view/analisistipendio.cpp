@@ -77,7 +77,6 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
          for(int j = 0; j < set->size(); j++)
          {
             *((*set)[j]) << stipendio[rowCount*(numeroCategorie + 1) +j];
-            std::cout << rowCount*(numeroCategorie + 1) +j << "   " << stipendio[rowCount*(numeroCategorie + 1) +j] << std::endl;
          }
          rowCount++;
      }
