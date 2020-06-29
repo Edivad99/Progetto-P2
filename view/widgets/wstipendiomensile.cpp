@@ -10,7 +10,7 @@ void WStipendioMensile::initUI()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setAlignment(Qt::AlignTop);
 
-    layout->addWidget(new QLabel("<h3><b>" + GeneralUtil::capitalizeFirstLetter(_data.toString("MMMM")) + "</b></h3>"));
+    layout->addWidget(new QLabel("<h3><b>" + GeneralUtil::capitalizeFirstLetter(_data.toString("MMMM yyyy")) + "</b></h3>"));
     QStringList categorie = TabellaModel::categorie();
     for(int i = 0; i < categorie.size(); i++)
     {

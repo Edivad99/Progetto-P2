@@ -73,7 +73,7 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
                  stipendio[rowCount*(numeroCategorie + 1)+numeroCategorie]+=salario;//altro
          }
          //inserimento dati delle varie categorie
-         listaMesiLetti << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM"));
+         listaMesiLetti << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM yyyy"));
          for(int j = 0; j < set->size(); j++)
          {
             *((*set)[j]) << stipendio[rowCount*(numeroCategorie + 1) +j];
