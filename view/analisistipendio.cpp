@@ -13,7 +13,7 @@ AnalisiStipendio::AnalisiStipendio(lista<QStringList*> *csvData, QWidget *parent
     mainLayout->setMargin(0);
 
     InizializzaSalario(csvData->getSize(), TabellaModel::categorie().size() + 1);
-    Grafico(csvData, TabellaModel::categorie().size());
+    Grafico(csvData);
     ListaStipendi();
 
     mainLayout->addWidget(chartView, 66);
@@ -30,12 +30,13 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
 }
 
 
- void AnalisiStipendio::Grafico(lista<QStringList*> *csvData, unsigned int numeroCategorie)
+ void AnalisiStipendio::Grafico(lista<QStringList*> *csvData)
  {
      //creazione delle colonne dell'istogramma
      QList<QBarSet*> *set = new QList<QBarSet*>();
      QStringList categorie = TabellaModel::categorie();
-     for(unsigned int i = 0; i < numeroCategorie; i++)
+     int numeroCategorie = categorie.size();
+     for(int i = 0; i < numeroCategorie; i++)
      {
          set->push_back(new QBarSet(categorie.at(i)));
      }
@@ -61,7 +62,7 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
              float salario=std::min(linea.at(5).toFloat(), 0.0F);
 
              bool trovato = false;
-             for(unsigned int j = 0; j < numeroCategorie && !trovato; j++)
+             for(int j = 0; j < numeroCategorie && !trovato; j++)
              {
                  if(categorie.at(j) == tipologia)
                  {

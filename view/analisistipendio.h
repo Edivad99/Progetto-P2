@@ -30,7 +30,7 @@ private:
     QChartView *chartView;
 
     void InizializzaSalario(unsigned int size, unsigned int numeroCategorie);
-    void Grafico(lista<QStringList*> *csvData,unsigned int numeroCategorie);
+    void Grafico(lista<QStringList*> *csvData);
     void ListaStipendi();
 
     float *stipendio;
