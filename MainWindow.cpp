@@ -229,7 +229,6 @@ void MainWindow::analizzaStipendio()
     }
 }
 
-
 void MainWindow::apriGuida() const {
     QMessageBox box(QMessageBox::Information, "Guida",
                     QString("Per usare l'applicazione con dei dati già inseriti si consiglia di aprire il file <u><i>dipendenti.xml</i></u> in <u>File>Apri</u><br>"
