@@ -113,7 +113,7 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
      for(int i = 0; i < listaDataLetta.size(); i++)
      {
          QListWidgetItem *item = new QListWidgetItem();
-         item->setSizeHint(QSize(item->sizeHint().width(), 180));
+         item->setSizeHint(QSize(item->sizeHint().width(), 22*(categorie+3)));
          listaStipendi->addItem(item);
          listaStipendi->setItemWidget(item, new WStipendioMensile(listaDataLetta.at(i), stipendio+(categorie*i)));
      }
