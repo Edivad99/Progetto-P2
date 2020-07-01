@@ -379,7 +379,7 @@ void Tabella::updateTabella()
         QString orePreviste = QString::fromStdString(textOrePreviste.str());//Ore di lavoro
         QString contratto = QString::fromStdString(((*cit)->getTipologiaContratto() == 0 ? "Determinato" : "Indeterminato"));//Contratto
         QString dataScadenza = GeneralUtil::dateToItaStr((*cit)->getDataScadenza());//Data scadenza
-        QString stipendio = QString::number((*cit)->Stipendio(0));
+        QString stipendio = QString::number((*cit)->Stipendio(0)).append("€");;
 
         Operaio* operaio =dynamic_cast<Operaio*>(*cit);
         Impiegato* impiegato =dynamic_cast<Impiegato*>(*cit);
@@ -408,18 +408,15 @@ void Tabella::updateTabella()
 
             if(operaio)
             {
-                string livello = std::to_string(operaio->getLivello() + 1);
-                setText(QString::fromStdString(livello), rowCount, 13);//Livello
+                setText(QString::number(operaio->getLivello() + 1), rowCount, 13);//Livello
             }
             else if(impiegato)
             {
-                string pagaPerOra = std::to_string(impiegato->getPagaPerOra());
-                setText(QString::fromStdString(pagaPerOra), rowCount, 14);//Paga per ora
+                setText(QString::number(impiegato->getPagaPerOra()).append("€"), rowCount, 14);//Paga per ora
 
                 if (rappresentante)
                 {
-                    string venditeEffettuate = std::to_string(rappresentante->getVenditeEffettuate());
-                    setText(QString::fromStdString(venditeEffettuate), rowCount, 15);//Vendite effettuate
+                    setText(QString::number(rappresentante->getVenditeEffettuate()), rowCount, 15);//Vendite effettuate
                 }
             }
             else if(studlav)
