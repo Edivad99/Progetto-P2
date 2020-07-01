@@ -15,6 +15,7 @@ public:
 
     Telefono getNumeroTelefono() const;
     void setNumeroTelefono(Telefono telefono);
+    void reset();
 private:
     QLineEdit *prefisso, *numero;
 

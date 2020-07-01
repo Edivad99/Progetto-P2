@@ -220,10 +220,7 @@ void Tabella::Modifica()
     //BOTTONE MODIFICA
     layoutModifica->addWidget(btnModifica, 4, 1);
 
-    //Nascondi i campi dati variabili
-    editLivello->setVisible(false);
-    editPagaPerOra->setVisible(false);
-    editVenditeEffettuate->setVisible(false);
+    resetModifica();
 
     modifica->setLayout(layoutModifica);
     layoutOpzioni->addWidget(modifica);
@@ -574,7 +571,21 @@ void Tabella::btnRimuoviClicked()
     {
         _model->rimuoviPerID(id.toStdString());
         updateTabella();
+        resetModifica();
     }
+}
+
+void Tabella::resetModifica()
+{
+    editNome->setText("");
+    editID->setText("");
+    editNumeroTelefono->reset();
+    editReparto->setText("");
+    editOreDiLavoro->reset();
+    editContratto->reset();
+    editLivello->setVisible(false);
+    editPagaPerOra->setVisible(false);
+    editVenditeEffettuate->setVisible(false);
 }
 
 void Tabella::cellaClicked(int row, int column)

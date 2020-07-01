@@ -16,6 +16,12 @@ void WOreLavoro::setOreLavoro(OreLavorative nuovo)
     minuti->setValue(nuovo.getMinuti());
 }
 
+void WOreLavoro::reset()
+{
+    ore->setValue(160);
+    minuti->setValue(0);
+}
+
 void WOreLavoro::initUI()
 {
     ore = new WCSpinBox("Ore lavorative", 0, 200, 160);

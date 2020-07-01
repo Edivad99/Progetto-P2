@@ -24,6 +24,12 @@ void WTelefono::setNumeroTelefono(Telefono telefono)
     }
 }
 
+void WTelefono::reset()
+{
+    prefisso->setText("39");
+    numero->setText("");
+}
+
 void WTelefono::initUI()
 {
     numero = new QLineEdit();

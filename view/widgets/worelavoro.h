@@ -15,7 +15,7 @@ public:
 
     OreLavorative getOreLavoro() const;
     void setOreLavoro(OreLavorative nuovo);
-
+    void reset();
 private:
     WCSpinBox *ore,*minuti;
     void initUI();

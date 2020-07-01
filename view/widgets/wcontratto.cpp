@@ -29,6 +29,13 @@ void WContratto::setContrattoDeterminato(QDate dataScadenza)
     scadenzaContratto->setDate(dataScadenza);
 }
 
+void WContratto::reset()
+{
+    scadenzaContratto->setDate(QDate::currentDate().addMonths(1));
+    indeterminato->setChecked(true);
+    determinato->setChecked(false);
+}
+
 void WContratto::initUI()
 {
     scadenzaContratto = new QDateEdit(QDate::currentDate().addMonths(1));
