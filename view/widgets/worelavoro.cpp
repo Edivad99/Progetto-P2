@@ -10,7 +10,7 @@ OreLavorative WOreLavoro::getOreLavoro() const
     return OreLavorative(ore->getValue(), minuti->getValue());
 }
 
-void WOreLavoro::setOreLavoro(OreLavorative nuovo)
+void WOreLavoro::setOreLavoro(const OreLavorative& nuovo)
 {
     ore->setValue(nuovo.getOre());
     minuti->setValue(nuovo.getMinuti());

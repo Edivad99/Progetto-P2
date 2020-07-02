@@ -36,7 +36,7 @@ public:
 
     virtual QDomElement XmlSerialize(QDomDocument doc) const;
 
-    void setNumeroTelefono(Telefono numeroTelefono);
+    void setNumeroTelefono(const Telefono& numeroTelefono);
 
     bool operator==(const Persona &p) const;
 

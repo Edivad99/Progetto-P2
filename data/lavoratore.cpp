@@ -33,12 +33,12 @@ Contratto Lavoratore::getTipologiaContratto() const
     return _contratto;
 }
 
-void Lavoratore::setReparto(string nuovoReparto)
+void Lavoratore::setReparto(const string& nuovoReparto)
 {
     _reparto = nuovoReparto;
 }
 
-void Lavoratore::setOrePreviste(OreLavorative o)
+void Lavoratore::setOrePreviste(const OreLavorative& o)
 {
     _orePreviste = o;
 }
@@ -49,7 +49,7 @@ void Lavoratore::setContrattoIndeterminato()
     _dataScadenza = QDate(0,0,0);
 }
 
-void Lavoratore::setContrattoDeterminato(QDate dataScadenza)
+void Lavoratore::setContrattoDeterminato(const QDate& dataScadenza)
 {
     _contratto = Determinato;
     _dataScadenza = dataScadenza;
@@ -60,7 +60,7 @@ size_t Lavoratore::getID() const
     return _IDAziendale;
 }
 
-size_t Lavoratore::generateID(std::string cf)
+size_t Lavoratore::generateID(const string& cf)
 {
     std::hash<std::string> hash_fn;
     size_t str_hash = hash_fn(cf);

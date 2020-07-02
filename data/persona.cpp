@@ -60,7 +60,7 @@ string Persona::getCodiceFiscale() const
     return _codiceFiscale;
 }
 
-void Persona::setNumeroTelefono(Telefono numeroTelefono)
+void Persona::setNumeroTelefono(const Telefono& numeroTelefono)
 {
     _numeroTelefono = numeroTelefono;
 }

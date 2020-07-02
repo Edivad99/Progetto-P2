@@ -4,7 +4,7 @@ TabellaModel::TabellaModel(): lavoratori(), _deviSalvare(false)
 {
 }
 
-void TabellaModel::readFromFile(QDomDocument doc)
+void TabellaModel::readFromFile(const QDomDocument& doc)
 {
     eliminaLavoratori();
     QDomElement root = doc.firstChildElement();
@@ -69,7 +69,7 @@ lista<Lavoratore*> TabellaModel::getLavoratori() const
     return lavoratori;
 }
 
-Lavoratore *TabellaModel::getLavoratoreByID(std::string ID)
+Lavoratore *TabellaModel::getLavoratoreByID(const string& ID)
 {
     for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
     {
@@ -82,7 +82,7 @@ Lavoratore *TabellaModel::getLavoratoreByID(std::string ID)
     return nullptr;
 }
 
-void TabellaModel::rimuoviPerID(std::string ID)
+void TabellaModel::rimuoviPerID(const string& ID)
 {
     for (lista<Lavoratore*>::constiterator cit = lavoratori.begin(); cit != lavoratori.end(); ++cit)
     {

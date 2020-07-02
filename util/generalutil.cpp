@@ -1,7 +1,7 @@
 #include "generalutil.h"
 
 
-QString GeneralUtil::capitalizeFirstLetter(QString string)
+QString GeneralUtil::capitalizeFirstLetter(const QString& string)
 {
     if(string.size()!=0)
     {
@@ -16,12 +16,12 @@ QString GeneralUtil::capitalizeFirstLetter(QString string)
     }
 }
 
-QDate GeneralUtil::strToItaDate(QString date)
+QDate GeneralUtil::strToItaDate(const QString& date)
 {
     return QDate::fromString(date,"dd/MM/yyyy");
 }
 
-QString GeneralUtil::dateToItaStr(QDate date)
+QString GeneralUtil::dateToItaStr(const QDate& date)
 {
     return date.toString("dd/MM/yyyy");
 }

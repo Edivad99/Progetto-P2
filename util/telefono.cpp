@@ -12,7 +12,7 @@ Telefono Telefono::Sconosciuto()
     return Telefono("0", "0");
 }
 
-bool Telefono::isNumber(string numero)
+bool Telefono::isNumber(const string& numero)
 {
     string::const_iterator it = numero.begin();
     while (it != numero.end() && std::isdigit(*it)) ++it;

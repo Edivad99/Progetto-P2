@@ -16,14 +16,14 @@ class TabellaModel
 public:
     TabellaModel();
 
-    void readFromFile(QDomDocument doc);
+    void readFromFile(const QDomDocument& doc);
     QDomDocument saveFile();
 
     void aggiungiLavoratore(Lavoratore *nuovoLavoratore);
     lista<Lavoratore*> getLavoratori() const;
 
-    Lavoratore* getLavoratoreByID(string ID);
-    void rimuoviPerID(string ID);
+    Lavoratore* getLavoratoreByID(const string& ID);
+    void rimuoviPerID(const string& ID);
 
     QString generaStipendio(float bonus) const;
 

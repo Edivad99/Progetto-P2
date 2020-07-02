@@ -12,7 +12,7 @@ public:
     Telefono(string numeroTelefono, string prefisso = "39");
     static Telefono Sconosciuto();
 
-    static bool isNumber(string numero);
+    static bool isNumber(const string& numero);
 
     string getNumeroTelefono() const;
     string getPrefisso() const;

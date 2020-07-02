@@ -10,7 +10,7 @@ Telefono WTelefono::getNumeroTelefono() const
     return Telefono(numero->text().toStdString(), prefisso->text().toStdString());
 }
 
-void WTelefono::setNumeroTelefono(Telefono telefono)
+void WTelefono::setNumeroTelefono(const Telefono& telefono)
 {
     if(telefono.getNumeroTelefono() == "0")
     {

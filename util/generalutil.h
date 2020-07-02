@@ -7,9 +7,9 @@
 class GeneralUtil
 {
 public:
-    static QString capitalizeFirstLetter(QString string);
-    static QDate strToItaDate(QString date);
-    static QString dateToItaStr(QDate date);
+    static QString capitalizeFirstLetter(const QString& string);
+    static QDate strToItaDate(const QString& date);
+    static QString dateToItaStr(const QDate& date);
 };
 
 #endif // GENERALUTIL_H

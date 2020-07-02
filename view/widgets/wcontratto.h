@@ -18,7 +18,7 @@ public:
     QDate getDataScadenza() const;
     bool isDeterminato() const;
     void setContrattoIndeterminato();
-    void setContrattoDeterminato(QDate dataScadenza);
+    void setContrattoDeterminato(const QDate& dataScadenza);
     void reset();
 private:
     QDateEdit *scadenzaContratto;

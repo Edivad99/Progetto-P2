@@ -23,13 +23,13 @@ public:
 
     Contratto getTipologiaContratto() const;
 
-    void setReparto(string nuovoReparto);
+    void setReparto(const string& nuovoReparto);
 
-    void setOrePreviste(OreLavorative o);
+    void setOrePreviste(const OreLavorative& o);
 
     void setContrattoIndeterminato();
 
-    void setContrattoDeterminato(QDate dataScadenza);
+    void setContrattoDeterminato(const QDate& dataScadenza);
 
     size_t getID() const;
 
@@ -54,7 +54,7 @@ private:
 
     const size_t _IDAziendale;//Identificativo aziendale, usato per riconoscre il lavoratore
 
-    static size_t generateID(string cf);
+    static size_t generateID(const string& cf);
 };
 
 #endif // LAVORATORE_H

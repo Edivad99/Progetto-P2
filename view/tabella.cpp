@@ -322,7 +322,7 @@ bool Tabella::convalidaInput(const string& nome, const string& cognome, const st
     return accettabile;
 }
 
-void Tabella::setText(QString text, int row, int column)
+void Tabella::setText(const QString& text, int row, int column)
 {
     QTableWidgetItem *pCell = table->item(row, column);
     if(!pCell)

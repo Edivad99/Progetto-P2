@@ -14,7 +14,7 @@ public:
     WOreLavoro(QWidget *parent =0);
 
     OreLavorative getOreLavoro() const;
-    void setOreLavoro(OreLavorative nuovo);
+    void setOreLavoro(const OreLavorative& nuovo);
     void reset();
 private:
     WCSpinBox *ore,*minuti;

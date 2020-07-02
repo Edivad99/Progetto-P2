@@ -84,7 +84,7 @@ private:
     //Controllo sull'input
     bool convalidaInput(const string& nome, const string& cognome, const string& cf, const string& reparto) const;
 
-    void setText(QString text, int row, int column);
+    void setText(const QString& text, int row, int column);
     void resetModifica();
 private slots:
     void tipologiaIndexChanged(int);
