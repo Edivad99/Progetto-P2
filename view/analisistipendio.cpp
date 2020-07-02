@@ -48,18 +48,18 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
      int rowCount = 0;
      for (lista<QStringList*>::constiterator cit = csvData->begin(); cit != csvData->end(); ++cit)
      {
-         QStringList* testo = *cit;
-         QString mese = testo->at(0).split(";")[0];
-         QString anno = testo->at(0).split(";")[1];
+         QStringList* riga = *cit;
+         QString mese = riga->at(0).split(";")[0];
+         QString anno = riga->at(0).split(";")[1];
 
          QDate data =QDate::fromString(mese.append(anno),"MMMMyyyy");
          listaDataLetta.push_back(data);
 
-         for(int i = 1;i<testo->size();++i)//file
+         for(int i = 1;i<riga->size();++i)
          {
-             QStringList linea=testo->at(i).split(";");//linea
-             QString tipologia=linea.at(3);
-             float salario=std::max(linea.at(5).toFloat(), 0.0F);
+             QStringList rigaSplit=riga->at(i).split(";");//linea
+             QString tipologia=rigaSplit.at(3);
+             float salario=std::abs(rigaSplit.at(5).toFloat());
 
              bool trovato = false;
              for(int j = 0; j < numeroCategorie && !trovato; j++)
