@@ -57,7 +57,7 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
 
          for(int i = 1;i<riga->size();++i)
          {
-             QStringList rigaSplit=riga->at(i).split(";");//linea
+             QStringList rigaSplit=riga->at(i).split(";");
              QString tipologia=rigaSplit.at(3);
              float salario=std::abs(rigaSplit.at(5).toFloat());
 
