@@ -115,7 +115,7 @@ void MainWindow::salvaClicked()
 {
     if (fileAperto != nullptr)
     {
-        if(!fileAperto->open(QIODevice::ReadWrite | QIODevice::Text))
+        if(!fileAperto->open(QIODevice::ReadWrite | QIODevice::Text|QIODevice::Truncate))
         {
             QMessageBox::information(this, "Impossibile salvare nel file", fileAperto->errorString());
             return;
