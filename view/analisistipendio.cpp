@@ -59,7 +59,7 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
          {
              QStringList linea=testo->at(i).split(";");//linea
              QString tipologia=linea.at(3);
-             float salario=std::min(linea.at(5).toFloat(), 0.0F);
+             float salario=std::max(linea.at(5).toFloat(), 0.0F);
 
              bool trovato = false;
              for(int j = 0; j < numeroCategorie && !trovato; j++)
