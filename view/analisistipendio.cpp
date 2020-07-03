@@ -42,7 +42,7 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
      }
      set->push_back(new QBarSet("Altro"));
 
-     QStringList listaMesiLetti;
+     QList<QDate> listaDataLetta;
 
      //calcolo del salario
      int rowCount = 0;
@@ -53,6 +53,11 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
          QString anno = riga->at(0).split(";")[1];
 
          QDate data =QDate::fromString(mese.append(anno),"MMMMyyyy");
+         int count = listaDataLetta.count(data);
+         if(count == 0)
+             listaMesiLetti << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM yyyy"));
+         else
+            listaMesiLetti << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM yyyy")).append(" (").append(QString::number(count)).append(")");
          listaDataLetta.push_back(data);
 
          for(int i = 1;i<riga->size();++i)
@@ -74,7 +79,6 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
                  stipendio[rowCount*(numeroCategorie + 1)+numeroCategorie]+=salario;//altro
          }
          //inserimento dati delle varie categorie
-         listaMesiLetti << GeneralUtil::capitalizeFirstLetter(data.toString("MMMM yyyy"));
          for(int j = 0; j < set->size(); j++)
          {
             *((*set)[j]) << stipendio[rowCount*(numeroCategorie + 1) +j];
@@ -111,11 +115,11 @@ void AnalisiStipendio::InizializzaSalario(unsigned int size, unsigned int numero
  void AnalisiStipendio::ListaStipendi()
  {
      int categorie = TabellaModel::categorie().size() + 1;
-     for(int i = 0; i < listaDataLetta.size(); i++)
+     for(int i = 0; i < listaMesiLetti.size(); i++)
      {
          QListWidgetItem *item = new QListWidgetItem();
          item->setSizeHint(QSize(item->sizeHint().width(), 22*(categorie+3)));
          listaStipendi->addItem(item);
-         listaStipendi->setItemWidget(item, new WStipendioMensile(listaDataLetta.at(i), stipendio+(categorie*i)));
+         listaStipendi->setItemWidget(item, new WStipendioMensile(listaMesiLetti.at(i), stipendio+(categorie*i)));
      }
  }

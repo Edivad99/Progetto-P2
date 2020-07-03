@@ -34,7 +34,7 @@ private:
     void ListaStipendi();
 
     float *stipendio;
-    QList<QDate> listaDataLetta;
+    QStringList listaMesiLetti;
 
 };
 

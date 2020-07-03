@@ -1,6 +1,6 @@
 #include "wstipendiomensile.h"
 
-WStipendioMensile::WStipendioMensile(QDate data, float *stipendio, QWidget *parent): QFrame(parent), _data(data), _stipendio(stipendio)
+WStipendioMensile::WStipendioMensile(QString data, float *stipendio, QWidget *parent): QFrame(parent), _data(data), _stipendio(stipendio)
 {
     initUI();
 }
@@ -10,7 +10,7 @@ void WStipendioMensile::initUI()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setAlignment(Qt::AlignTop);
 
-    layout->addWidget(new QLabel("<h3><b>" + GeneralUtil::capitalizeFirstLetter(_data.toString("MMMM yyyy")) + "</b></h3>"));
+    layout->addWidget(new QLabel("<h3><b>" + GeneralUtil::capitalizeFirstLetter(_data) + "</b></h3>"));
     QStringList categorie = TabellaModel::categorie();
     for(int i = 0; i < categorie.size(); i++)
     {

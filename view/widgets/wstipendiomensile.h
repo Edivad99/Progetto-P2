@@ -4,7 +4,6 @@
 #include <QFrame>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <QDate>
 #include <util/generalutil.h>
 #include <model/tabellamodel.h>
 
@@ -12,9 +11,9 @@ class WStipendioMensile : public QFrame
 {
     Q_OBJECT
 public:
-    WStipendioMensile(QDate data, float *stipendio, QWidget *parent =0);
+    WStipendioMensile(QString data, float *stipendio, QWidget *parent =0);
 private:
-    QDate _data;
+    QString _data;
     float *_stipendio;
 
     void initUI();
